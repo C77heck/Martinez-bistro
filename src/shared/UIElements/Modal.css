@@ -1,0 +1,215 @@
+.modals {
+  z-index: 100;
+  position: fixed;
+  top: 22vh;
+  left: 23vw;
+  width: 54vw;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .26);
+  text-align: center;
+}
+
+.password-recovery__modal {
+  width: 30vw;
+  left: 35vw;
+}
+
+.password-recovery__modal .modal__content {
+  width: 80%;
+  margin: auto;
+}
+
+.basket-modal {
+  top: 10vh;
+  width: 46vw;
+  left: 27vw;
+}
+
+.basket-modal .modal__content {
+  max-height: 70vh;
+}
+
+.map-modal {
+  width: 55vw;
+  left: 22.5vw;
+}
+
+.instructions-modal .modal__content {
+  padding: 0 .5rem;
+}
+
+.instructions-modal .modal__footer {
+  padding: 0 .5rem 1rem;
+}
+
+.modal__header {
+  width: 100%;
+  padding: 1rem .5rem;
+  background: rgb(221, 115, 54);
+  color: white;
+}
+
+.modal__header h2 {
+  margin: .5rem;
+}
+
+.modal__content {
+  padding: 1rem .5rem;
+}
+
+.modal__footer {
+  padding: 1rem .5rem;
+}
+
+.modal-enter {
+  transform: translateY(-10rem);
+  opacity: 0;
+}
+
+.modal-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 300ms;
+}
+
+.modal-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modal-exit-active {
+  transform: translateY(-10rem);
+  opacity: 0;
+  transition: transform 200ms;
+}
+
+.date-picker__modal {
+  width: unset;
+  display: inline;
+  left: 40%;
+}
+
+.date-picker__modal .modal__content {
+  padding: 0;
+  background-color: rgb(171, 202, 171);
+}
+
+.date-picker__modal .modal__header, .date-picker__modal .modal__footer {
+  background-color: rgb(49, 130, 133);
+}
+
+.date-picker__modal .modal__header h2 {
+  margin: 0;
+}
+
+.date-picker__modal .modal__footer {
+  padding: .7rem;
+}
+
+.password-change__modal {
+  width: 22vw;
+  min-width: 22rem;
+  left: 39vw;
+}
+
+@media (max-width: 1150px) {
+  .date-picker__modal {
+    left: 35%;
+  }
+  .basket-modal {
+    width: 58vw;
+    left: 22vw;
+  }
+  .password-change__modal {
+    left: 30vw;
+  }
+  .password-recovery__modal {
+    width: 46vw;
+    left: 27vw;
+  }
+}
+
+@media (max-width: 859px) {
+  .modals {
+    width: 60vw;
+    left: 20vw;
+  }
+  .map-modal {
+    width: 70vw;
+    left: 15vw;
+  }
+  .basket-modal {
+    width: 75vw;
+    left: 12.5vw;
+  }
+}
+
+@media (max-width: 775px) {
+  .date-picker__modal {
+    left: 25%;
+  }
+  .basket-modal {
+    width: 70vw;
+    left: 15vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .password-change__modal {
+    left: 19vw;
+  }
+  .map-modal {
+    top: 3vh;
+    width: 100vw;
+    left: 0;
+    z-index: 500;
+  }
+}
+
+@media (max-width: 600px) {
+  .modals {
+    width: 84vw;
+    left: 8vw;
+  }
+}
+
+@media (max-width: 575px) {
+  .date-picker__modal {
+    left: 18%;
+  }
+  .basket-modal {
+    width: 100vw;
+    left: 0;
+  }
+  .basket-modal .modal__header {
+    margin: 0 0 1vh;
+    font-size: .8rem;
+    padding: 1vh;
+  }
+  .basket-modal .modal__content {
+    font-size: .8rem;
+    padding: 1vh 1vh 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .password-change__modal {
+    width: 80vw;
+    left: 10vw;
+    min-width: 0;
+    font-size: .8rem;
+    top: 7vh;
+  }
+  .password-change__modal .modal__header {
+    margin: 0;
+    font-size: .8rem;
+    padding: 1vh;
+  }
+}
+
+@media (max-width: 475px) {
+  .date-picker__modal {
+    left: 0;
+    width: 100%;
+  }
+}
