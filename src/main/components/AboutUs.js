@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-
+import { Link } from 'react-router-dom';
 
 const AboutUs = () => {
     const [mobile, setMobile] = useState('');
@@ -45,7 +45,12 @@ const AboutUs = () => {
                     perspiciatis porro. Amet nemo expedita id voluptates in
                     quidem autem doloribus a dolore?
                     </p>
-                <a href="#" className="btn-text btn-desktop-view">Nézd meg az étlapunkat &rarr;</a>
+                <Link
+                    to='/menu'
+                    className="btn-text btn-desktop-view"
+                >
+                    Nézd meg az étlapunkat &rarr;
+                </Link>
             </div>
 
             <div className="about__right-side">
@@ -60,7 +65,12 @@ const AboutUs = () => {
                 </div>
             </div>
             <div className='about__bottom'>
-                <a href="#" className="btn-text btn-text--mobile btn-mobile-view">Nézd meg az étlapunkat &rarr;</a>
+                <Link
+                    to='/menu'
+                    className="btn-text btn-text--mobile btn-mobile-view"
+                >
+                    Nézd meg az étlapunkat &rarr;
+                </Link>
 
             </div>
 

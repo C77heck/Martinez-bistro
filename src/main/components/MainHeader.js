@@ -12,7 +12,7 @@ const MainHeader = () => {
             <div className='header__name'>
                 <h1>
                     <span className='header__name--1'>
-                        Martinez Taco-Burrito
+                    El poco loco
                     </span>
                     <span className='header__name--2'>
                         Bistro Étterem

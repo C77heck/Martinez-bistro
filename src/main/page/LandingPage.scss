@@ -42,11 +42,11 @@
                 rgba($color-primary-dark, 0.8)
             ),
             url("../../cssImgs/header-mobile.jpg");
-        height: 58vh;
+        height: 67vh;
         -webkit-clip-path: polygon(0% 0%, 100% 0, 100% 88%, 50% 100%, 0 88%);
         clip-path: polygon(0% 0%, 100% 0, 100% 88%, 50% 100%, 0 88%);
         &__name {
-            top: 18%;
+            top: 21%;
             letter-spacing: 0.4rem;
         }
     }
@@ -131,7 +131,7 @@
 
 @media screen and (max-width: $mobile) {
     .cta-btn {
-        bottom: 5rem;
+        bottom: 3rem;
     }
 }
 

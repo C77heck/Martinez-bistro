@@ -27,11 +27,11 @@
         }
     }
     &__item {
-        border-bottom: 1.5px solid var(--color-border-light);
+        border-bottom: 1.5px solid var(--color-navbar);
         padding: 1rem 3rem;
         list-style: none;
         font-size: 2rem;
-        color: #158900;
+        color: var(--color-navbar);
         text-transform: uppercase;
         transition: all 500ms ease-out;
         position: relative;
@@ -53,6 +53,8 @@
                 background-color 120ms;
         }
         &:hover {
+            border-bottom: 1.5px solid var(--color-primary-dark);
+
             color: white;
         }
         &:hover::before {

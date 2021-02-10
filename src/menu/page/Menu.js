@@ -6,6 +6,7 @@ const Menu = () => {
 
     return (
         <div className='menu'>
+            <h1 className='menu-title'>El poco loco menü</h1>
             <Layout />
         </div>
     )

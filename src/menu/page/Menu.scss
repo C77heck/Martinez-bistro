@@ -1,6 +1,7 @@
 .menu {
     background-image: url("/cssImgs/menu.jpg");
     background-size: cover;
+    padding-bottom: 15.5rem;
 }
 
 .layout {
@@ -13,7 +14,7 @@
     //   grid-template-columns: repeat(auto-fill, 30rem);
     grid-auto-rows: min-content;
     grid-gap: 30px;
-    padding-top: 30rem;
+    padding-top: 11rem;
     @media screen and (max-width: $mobile) {
         padding-top: 12rem;
     }
@@ -24,11 +25,18 @@
         grid-template-columns: repeat(auto-fill, 5rem);
         grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     }
+
+    & p {
+        color: #463939;
+        font-size: 140%;
+    }
     &__item {
         background-color: rgba(255, 255, 255, 0.527);
         padding: 2rem;
         box-shadow: 0 1rem 2.5rem rgb(14, 10, 10);
-        & p {
+        & .food-item p {
+            color: var(--color-text-dark);
+
             font-size: 140%;
             //color: #5b6155;
             @media screen and (max-width: $mobile) {
@@ -45,5 +53,18 @@
                 }
             }
         }
+    }
+}
+
+.menu-title {
+    text-align: center;
+    padding-top: 14rem;
+    font-size: 7.5rem;
+    color: var(--color-text-lighter);
+    @media screen and (max-width: $tablet) {
+        font-size: 8vw;
+    }
+    @media screen and (max-width: $mobile) {
+        font-size: 4.5rem;
     }
 }

@@ -5,11 +5,19 @@ import Map from '../../shared/UIElements/Map';
 
 const FindUs = () => {
 
-
-    return (
+/*     <Map className='map__landing-page' />
+ */    return (
         <div className='find-us'>
             <div className='find-us__left'>
-                <Map className='map__landing-page' />
+                <div className='map map__landing-page '>
+                    <a
+                        target='_blanc'
+                        href='https://www.google.com/maps/place/El+poco+loco/@46.506658,18.4116852,15z/data=!4m5!3m4!1s0x0:0x253f81b5695e6d50!8m2!3d46.506658!4d18.4116852'
+                    >
+                        <img src='/img/map.jpg' alt='map' className='map-img' />
+                    </a>
+
+                </div>
             </div>
 
             <div className='find-us__right'>

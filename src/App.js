@@ -9,7 +9,7 @@ import {
 
 import LoadingSpinner from './shared/UIElements/LoadingSpinner';
 import LandingPage from './main/page/LandingPage';
-
+import Footer from './shared/footer/Footer';
 
 import logo from './logo.svg';
 import './App.scss';

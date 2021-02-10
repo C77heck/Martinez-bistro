@@ -1,6 +1,7 @@
 .map {
     height: 30rem;
     width: 30rem;
+    overflow: hidden;
     &__landing-page {
         height: 46rem;
         width: 53rem;
@@ -48,4 +49,9 @@
             transform: scale(1);
         }
     }
+}
+
+.map-img {
+    width: 100%;
+    height: auto;
 }

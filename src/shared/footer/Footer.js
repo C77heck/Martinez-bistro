@@ -15,10 +15,20 @@ import Map from '../UIElements/Map';
 
 
 const Footer = () => {
+
+    //  <Map className='map__footer' />
     return (
         <div className='footer'>
             <div className='footer__left'>
-                <Map className='map__footer' />
+
+                <div className='map map__footer'>
+                    <a
+                        target='_blanc'
+                        href='https://www.google.com/maps/place/El+poco+loco/@46.506658,18.4116852,15z/data=!4m5!3m4!1s0x0:0x253f81b5695e6d50!8m2!3d46.506658!4d18.4116852'
+                        >
+                        <img src='/img/map.jpg' alt='map' className='map-img' />
+                    </a>
+                </div>
             </div>
             <div className='footer__right'>
                 <div className='social-icons'>
