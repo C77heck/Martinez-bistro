@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group'
 
 import Backdrop from './Backdrop'
-import './Modal.css'
 
 
 const ModalOverlay = props => {
@@ -16,7 +15,7 @@ const ModalOverlay = props => {
             classNames='modal'
         >
 
-            <div className={`modals ${props.className}`} >
+            <div className={`modal ${props.className}`} >
 
                 <header
                     className={`modal__header ${props.headerClass}`}

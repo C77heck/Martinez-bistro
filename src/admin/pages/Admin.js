@@ -1,0 +1,36 @@
+import React, { useState } from 'react';
+
+import { Link } from 'react-router-dom';
+import EditAboutUs from '../components/EditAboutUs';
+import EditOpening from '../components/EditOpening';
+
+const Admin = () => {
+
+    return (
+        <React.Fragment>
+            <div className='admin'>
+                <h2>beállítások:</h2>
+                <div className='admin__inner-border'>
+
+                    <EditOpening />
+                    <EditAboutUs />
+
+                    <div>
+                        <Link
+                            className='admin__menu'
+                            to='/admin/menu'
+                        >
+                            <span>Menü</span>
+                        </Link>
+                    </div>
+
+                </div>
+            </div>
+        </React.Fragment>
+    )
+}
+
+
+
+
+export default Admin;
