@@ -32,9 +32,9 @@ const Footer = () => {
             </div>
             <div className='footer__right'>
                 <div className='social-icons'>
-                    <Facebook />
-                    <Tripadvisor />
-                    <Instagram />
+                    <Facebook link='El-PoCo-LoCo-Mexicoi-Bistro-2878400305509882' />
+                    <Tripadvisor link='' />
+                    <Instagram link='' />
                 </div>
 
                 <ul className='footer__list'>

@@ -13,7 +13,6 @@
     height: 2rem;
     width: 100%;
     padding: 1rem 0.5rem;
-    background: rgb(221, 115, 54);
     color: white;
     & h2 {
       margin: 0.5rem;
@@ -29,6 +28,24 @@
 }
 
 .modal--about {
+  width: 30vw;
+  left: 35vw;
+  @media screen and (max-width: $tablet-land) {
+    width: 40vw;
+    left: 30vw;
+  }
+  @media screen and (max-width: $tablet) {
+    width: 50vw;
+    left: 25vw;
+  }
+  @media screen and (max-width: $mobile) {
+    width: 70vw;
+    left: 15vw;
+  }
+  @media screen and (max-width: $mobile-sm) {
+    width: 90vw;
+    left: 5vw;
+  }
   .modal {
     &__content {
       width: 85%;
@@ -44,6 +61,58 @@
         font-size: 1.3rem;
       }
       & button:nth-child(4) {
+        font-size: 1.65rem;
+        margin: 2rem auto 0;
+      }
+    }
+    &__header {
+      background: #2a4485;
+    }
+    &__footer {
+    }
+    & button {
+      background: #2a4485;
+    }
+  }
+}
+
+.modal--opening {
+  width: 30vw;
+  left: 35vw;
+  @media screen and (max-width: $tablet-land) {
+    width: 40vw;
+    left: 30vw;
+  }
+  @media screen and (max-width: $tablet) {
+    width: 50vw;
+    left: 25vw;
+  }
+  @media screen and (max-width: $mobile) {
+    width: 70vw;
+    left: 15vw;
+  }
+  @media screen and (max-width: $mobile-sm) {
+    width: 90vw;
+    left: 5vw;
+  }
+  .modal {
+    &__content {
+      width: 95%;
+      margin: auto;
+      & label {
+        font-size: 2rem;
+        @media screen and (max-width: $mobile-extra-sm) {
+          font-size: 1.7rem;
+        }
+      }
+      & input {
+        height: 4rem;
+        font-size: 1.3rem;
+      }
+      & textarea {
+        font-size: 1.3rem;
+      }
+      & button {
         font-size: 1.65rem;
         margin: 2rem auto 0;
       }

@@ -2,7 +2,6 @@ import React from 'react';
 
 import Modal from './Modal';
 
-import './MessageModal.css'
 
 const MessageModal = props => {
     return (

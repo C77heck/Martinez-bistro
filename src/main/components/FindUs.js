@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useHttpClient } from '../../shared/hooks/http-hook';
 
 import Map from '../../shared/UIElements/Map';
 
 
 const FindUs = () => {
+    const { sendRequest } = useHttpClient()
+    const [opening, setOpening] = useState({
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+    })
+    useEffect(() => {
+        (async () => {
+            const responseData = await sendRequest(process.env.REACT_APP_OPENING)
+            setOpening(responseData.opening)
+        })()
+    }, [])
 
 /*     <Map className='map__landing-page' />
  */    return (
@@ -35,13 +52,13 @@ const FindUs = () => {
                         <p>Vasárnap</p>
                     </div>
                     <div className='opening__hours'>
-                        <p>10:00 - 22:00</p>
-                        <p>10:00 - 22:00</p>
-                        <p>10:00 - 22:00</p>
-                        <p>10:00 - 22:00</p>
-                        <p>10:00 - 22:00</p>
-                        <p>10:00 - 22:00</p>
-                        <p>10:00 - 22:00</p>
+                        <p>{opening.monday}</p>
+                        <p>{opening.tuesday}</p>
+                        <p>{opening.wednesday}</p>
+                        <p>{opening.thursday}</p>
+                        <p>{opening.friday}</p>
+                        <p>{opening.saturday}</p>
+                        <p>{opening.sunday}</p>
                     </div>
                 </div>
             </div>

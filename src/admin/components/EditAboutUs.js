@@ -11,6 +11,8 @@ import {
 import { useForm } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import Button from '../../shared/UIElements/Button';
+import MessageModal from '../../shared/UIElements/MessageModal';
+import ErrorModal from '../../shared/UIElements/ErrorModal';
 
 const EditAboutUs = () => {
     const {
@@ -20,6 +22,7 @@ const EditAboutUs = () => {
         clearError,
         applicationError
     } = useHttpClient();
+    const [message, setMessage] = useState('')
 
 
 
@@ -39,31 +42,31 @@ const EditAboutUs = () => {
         }
     });
 
-    // grab the current data so the user can edit it.
-    useEffect(() => {
-        (async () => {
-            try {
-                const responseData = await sendRequest(process.env.REACT_APP_QUOTE);
-                console.log(responseData)
-                setFormData({
-                    quote: {
-                        value: responseData.testimonial.quote,
-                        valid: true
-                    },
-                    text: {
-                        value: responseData.testimonial.text,
-                        valid: true
-                    },
-                    image: {
-                        value: responseData.testimonial.image,
-                        valid: true
-                    }
-                })
-            } catch (err) {
-                console.log(err)
-            }
-        })()
-    }, [])
+
+   useEffect(() => {
+            (async () => {
+                try {
+                    const responseData = await sendRequest(process.env.REACT_APP_QUOTE);
+                    console.log(responseData)
+                    setFormData({
+                        quote: {
+                            value: responseData.testimonial.quote,
+                            valid: true
+                        },
+                        text: {
+                            value: responseData.testimonial.text,
+                            valid: true
+                        },
+                        image: {
+                            value: responseData.testimonial.image,
+                            valid: true
+                        }
+                    })
+                } catch (err) {
+                    console.log(err)
+                }
+            })()
+        }, []) 
 
 
     const [show, setShow] = useState(false)
@@ -71,19 +74,64 @@ const EditAboutUs = () => {
     const modalHandler = () => {
         setShow(true)
     }
-    const onClickHandler = async () => {
 
-        /* do the submit here. */
+    const onSubmitHandler = async e => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append('quote', inputState.inputs.quote.value)
+        formData.append('text', inputState.inputs.text.value)
+        formData.append('image', inputState.inputs.image.value)
+        for (var p of formData) {
+            console.log(p);
+        }
+        try {
+
+            const responseData = await sendRequest(
+                process.env.REACT_APP_QUOTE,
+                'PATCH',
+                formData
+            )
+            setFormData({
+                quote: {
+                    value: '',
+                    valid: false
+                },
+                text: {
+                    value: '',
+                    valid: false
+                },
+                image: {
+                    value: null,
+                    valid: false
+                }
+            })
+            setMessage(responseData.message);
+            setShow(false);
+        } catch (err) {
+            console.log(err)
+        }
+
     }
 
 
 
     return (
         <React.Fragment>
+            <ErrorModal
+                error={error}
+                onClear={clearError}
+            />
+            <MessageModal
+                onClear={() => { setMessage('') }}
+                message={message}
+                className='admin-message-modal'
+            />
             <Modal
                 show={show}
                 onCancel={() => { setShow(false) }}
                 className='modal--about'
+                onSubmit={onSubmitHandler}
             >
                 <Input
                     id='quote'
@@ -119,9 +167,10 @@ const EditAboutUs = () => {
                 />
                 <Button
                     buttonClass='btn--submit btn--blue'
-                    onClick={onClickHandler}
+                    type='submit'
+                    disabled={isFormValid}
                 >
-                    KÉSZ
+                    MEHET
                 </Button>
             </Modal>
 

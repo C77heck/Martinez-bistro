@@ -68,7 +68,7 @@ const ImageUpload = props => {
             alt="Preview"
           />
             :
-            !previewUrl ? <p>Please pick an image.</p>
+            !previewUrl ? <p>Válassz egy képet.</p>
               :
               <img src={previewUrl} alt="Preview" />}
         </div>

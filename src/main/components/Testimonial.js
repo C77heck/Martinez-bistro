@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { useHttpClient } from '../../shared/hooks/http-hook';
 
 
 
 const Testimonial = () => {
     const [mobile, setMobile] = useState('');
-
+    const [testimonial, setTestimonial] = useState({
+        quote: 'A főzés is művészet',
+        text: ''
+    })
+    const { sendRequest } = useHttpClient()
     /* watch for screen size and use size appropiate images */
     const resizeWatcher = e => {
         if (e.target.outerWidth > 700) {
@@ -16,25 +21,34 @@ const Testimonial = () => {
     useEffect(() => {
         window.addEventListener("resize", resizeWatcher);
     })
+    useEffect(() => {
+        (async () => {
+
+            try {
+                const responseData = await sendRequest(process.env.REACT_APP_QUOTE)
+                setTestimonial({
+                    quote: responseData.testimonial.quote,
+                    text: responseData.testimonial.text
+                })
+            } catch (err) {
+
+            }
+
+        })()
+    }, [])
 
     return (
         <div className='testimonial'>
             <div className='testimonial__left'>
-                <h2 className='heading-secondary'>"A főzés is művészet"</h2>
+                <h2 className='heading-secondary'>"{testimonial.quote}"</h2>
                 <h4 className='heading-italic'>Christian Martinez Séf</h4>
-                <p className='paragraph paragraph--testimonial'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Voluptatem porro veritatis dignissimos amet ex, consequuntur eum harum nemo.
-                    Nemo odit eveniet officia deleniti exercitationem quidem accusamus sit nostrum
-                    aliquam neque.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Voluptatem porro veritatis dignissimos amet ex, consequuntur eum harum nemo.
-                    Nemo odit eveniet officia deleniti exercitationem quidem accusamus sit nostrum
-                    aliquam neque.Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Voluptatem porro veritatis dignissimos amet ex, consequuntur eum harum nemo.
-                    Nemo odit eveniet officia deleniti exercitationem quidem accusamus sit nostrum
-                    aliquam neque.
-</p>
+                <p className='paragraph paragraph--testimonial'>{testimonial.text.length > 0 ? testimonial.text :
+                ' egyedi, vendégeink által sokat dicsért ízvilágával igyekszik a gasztronómia szerelmeseinek kedvében járni.Éttermünkben igyekszünk '+
+                 'helyi alapanyagokból, a környékre jellemző ízekkel megismertetni vendégeinket. Büszkék vagyunk arra, hogy konyhánkon a helyben terítékre '+
+                 'hozott vadból frissen, sousvideált és smooker BBQ ételek készülnek. Szezonálisan igyekszünk bemutatni a tájegység ízeit. Leveseket, főételeket'+
+                 'és helyben készült desszertek formájában.Ételeink elkészítése során igyekszünk kiszolgálni az egyedi igényeket, elővarázsoljuk különböző nemzetek'+
+                 'konyháinak ízeit figyelembe véve vendégeink esetleges étel érzékenységeit is.'}</p>
+           
             </div>
 
             <div className='testimonial__right'>

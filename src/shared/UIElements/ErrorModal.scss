@@ -1,0 +1,35 @@
+#modal-hook .error-modal {
+    width: 30vw;
+    left: 35vw;
+    font-size: 2rem;
+
+    & button {
+        background-color: rgb(243, 12, 12);
+        border: none;
+        transition: all 200ms;
+        font-size: 1.5rem;
+        &:hover {
+            background-color: rgb(236, 118, 6) !important;
+        }
+    }
+
+    & .modal__header {
+        background-color: rgb(243, 16, 16);
+    }
+    @media (max-width: $desktop) {
+        width: 40vw;
+        left: 30vw;
+    }
+    @media screen and (max-width: $tablet) {
+        width: 60vw;
+        left: 20vw;
+    }
+    @media screen and (max-width: $mobile) {
+        width: 90vw;
+        left: 5vw;
+    }
+    @media screen and (max-width: $mobile-sm) {
+        width: 100vw;
+        left: 0;
+    }
+}
