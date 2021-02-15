@@ -27,6 +27,78 @@
   }
 }
 
+.modal {
+  &--opening {
+    width: 30vw;
+    left: 35vw;
+
+    @media screen and (max-width: $tablet-land) {
+      width: 40vw;
+      left: 30vw;
+    }
+    @media screen and (max-width: $tablet) {
+      width: 50vw;
+      left: 25vw;
+    }
+    @media screen and (max-width: $mobile) {
+      width: 100vw;
+      top: 8vh;
+      left: 0;
+      z-index: 1001; //to be on top of the navbar button
+    }
+  }
+  &__content {
+    & .opening-item {
+      display: flex;
+      justify-content: flex-end;
+      width: 99%;
+      margin: 1rem auto;
+      position: relative;
+    }
+    width: 95%;
+    margin: auto;
+    & label {
+      font-size: 2rem;
+
+      position: absolute;
+      left: 0;
+      display: inline-block;
+
+      @media screen and (max-width: $mobile-extra-sm) {
+        font-size: 1.7rem;
+      }
+    }
+    & input {
+      height: 4rem;
+      font-size: 1.3rem;
+
+      display: inline-block;
+      width: 8.5rem;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+    & textarea {
+      font-size: 1.3rem;
+    }
+    & button {
+      font-size: 1.65rem;
+      margin: 2rem auto 0;
+    }
+    & .error-text {
+      display: none;
+    }
+  }
+  &__header {
+    background: #2a4485;
+  }
+  &__footer {
+  }
+  & button {
+    background: #2a4485;
+  }
+}
+
+
 .modal--about {
   width: 30vw;
   left: 35vw;
@@ -41,6 +113,8 @@
   @media screen and (max-width: $mobile) {
     width: 70vw;
     left: 15vw;
+    top: 13vh;
+    z-index: 1001; //to be on top of the navbar button
   }
   @media screen and (max-width: $mobile-sm) {
     width: 90vw;
@@ -52,6 +126,7 @@
       margin: auto;
       & label {
         font-size: 2rem;
+        position: relative;
       }
       & input {
         height: 4rem;
@@ -76,57 +151,7 @@
   }
 }
 
-.modal--opening {
-  width: 30vw;
-  left: 35vw;
-  @media screen and (max-width: $tablet-land) {
-    width: 40vw;
-    left: 30vw;
-  }
-  @media screen and (max-width: $tablet) {
-    width: 50vw;
-    left: 25vw;
-  }
-  @media screen and (max-width: $mobile) {
-    width: 70vw;
-    left: 15vw;
-  }
-  @media screen and (max-width: $mobile-sm) {
-    width: 90vw;
-    left: 5vw;
-  }
-  .modal {
-    &__content {
-      width: 95%;
-      margin: auto;
-      & label {
-        font-size: 2rem;
-        @media screen and (max-width: $mobile-extra-sm) {
-          font-size: 1.7rem;
-        }
-      }
-      & input {
-        height: 4rem;
-        font-size: 1.3rem;
-      }
-      & textarea {
-        font-size: 1.3rem;
-      }
-      & button {
-        font-size: 1.65rem;
-        margin: 2rem auto 0;
-      }
-    }
-    &__header {
-      background: #2a4485;
-    }
-    &__footer {
-    }
-    & button {
-      background: #2a4485;
-    }
-  }
-}
+
 
 //CSS TRANSITION
 .modal-enter {

@@ -210,29 +210,3 @@
         }
     }
 }
-
-.modal--opening {
-    .modal__content {
-        & .opening-item {
-            display: flex;
-            justify-content: flex-end;
-            width: 99%;
-            margin: 1rem auto;
-            position: relative;
-            & label {
-                position: absolute;
-                left: 0;
-                display: inline-block;
-            }
-            & input {
-                display: inline-block;
-                width: 8.5rem;
-                overflow: hidden;
-                border-radius: 10px;
-            }
-            & .error-text {
-                display: none;
-            }
-        }
-    }
-}

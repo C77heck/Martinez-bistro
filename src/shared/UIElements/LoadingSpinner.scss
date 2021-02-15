@@ -19,6 +19,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1;
+    position: fixed;
 }
 
 .loader_center {
@@ -124,18 +125,18 @@
         height: 4rem;
     }
     .second_loader {
-        border-top: .9rem groove rgb(59, 167, 230);
+        border-top: 0.9rem groove rgb(59, 167, 230);
         border-right: hidden;
         border-left: hidden;
-        border-bottom: .9rem double rgb(59, 167, 230);
+        border-bottom: 0.9rem double rgb(59, 167, 230);
         width: 7rem;
         height: 7rem;
     }
     .third_loader {
-        border-top: .6rem double rgb(47, 124, 187);
+        border-top: 0.6rem double rgb(47, 124, 187);
         border-right: hidden;
         border-left: hidden;
-        border-bottom: .6rem groove rgb(47, 124, 187);
+        border-bottom: 0.6rem groove rgb(47, 124, 187);
         width: 9.5rem;
         height: 9.5rem;
     }

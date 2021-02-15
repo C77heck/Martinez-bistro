@@ -17,6 +17,7 @@ import Navbar from './shared/navigation/Navbar';
 import OpenDrawer from './shared/navigation/OpenDrawer';
 import Menu from './menu/page/Menu';
 import Admin from './admin/pages/Admin';
+import EditMenu from './admin/pages/EditMenu';
 
 function App() {
   let routes;
@@ -38,6 +39,12 @@ function App() {
           <Navbar className='navigation--scrolled' />
           <OpenDrawer />
           <Admin />
+        </Route>
+        <Route path='/admin/menu' exact>
+          <Navbar className='navigation--scrolled' />
+          <Navbar className='navigation--scrolled' />
+          <OpenDrawer />
+          <EditMenu />
         </Route>
         <Redirect to='/' />
       </Switch>
