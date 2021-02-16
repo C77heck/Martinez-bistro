@@ -8,6 +8,8 @@ const EditModal = props => {
         <Modal
             show={props.show}
             onCancel={props.onClear}
+            onSubmit={props.onSubmit}
+            className={props.className}
         >
             {props.children}
         </Modal>

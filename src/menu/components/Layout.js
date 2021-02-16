@@ -1,43 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
-import { objectSorting } from '../../utility/objectSorting';
 import { addId } from '../../utility/addId';
+import { MenuContext } from '../../shared/context/menu-context';
 
 const Layout = props => {
+    const { types, menu, count, clearCount, saveMenu } = useContext(MenuContext);
     const { location } = useHistory();
     const { sendRequest, isLoading } = useHttpClient();
-    const [mains, setMains] = useState({
-        burgers: [],
-        platillos: [],
-        mexicanos: [],
-        double: [],
-        nachos: [],
-        arroz: [],
-        dippers: [],
-        desserts: [],
-        extras: [],
-        drinks: []
-    })
-
     useEffect(() => {
-        (async () => {
-            try {
-                const responseData = await sendRequest(process.env.REACT_APP_MENU);
-                //adding special id so we can match item up to the targeted element
-                const addedSpecialId = addId(responseData.menu);
-                //we sort items dynamically into different arrays based on type
-                setMains(objectSorting(addedSpecialId));
-                //we then save it into the local storage so we can iterate from there.
-                localStorage.setItem('menu', JSON.stringify(addedSpecialId));
-            } catch (err) {
+        if (menu.length > 0) {// to map items when the admin changes things like type
+            saveMenu(menu)
+        } else {
+            (async () => {
+                try {
+                    const responseData = await sendRequest(process.env.REACT_APP_MENU);
+                    //adding special id so we can match item up to the targeted element
+                    const addedSpecialId = addId(responseData.menu);
+                    // then we process it in menu context with a hook function. see menu-hook for logic
+                    saveMenu(addedSpecialId);
+                } catch (err) {
+                }
+            })()
+        }
 
-            }
-        })()
-    }, [])
+    }, [saveMenu, menu])
 
 
     return (
@@ -50,7 +40,7 @@ const Layout = props => {
                 </h2>
                     <h4 className='heading-fourth'> </h4>
 
-                    {mains.burgers && mains.burgers.map(i => {
+                    {types.burgers && types.burgers.map(i => {
                         return (
                             <div
                                 key={i.id}
@@ -76,7 +66,7 @@ const Layout = props => {
                     <h2 className='heading-secondary'>
                         Platillos tex-mex
                 </h2>
-                    {mains.platillos && mains.platillos.map(i => {
+                    {types.platillos && types.platillos.map(i => {
                         return (
                             <div
                                 key={i.id}
@@ -103,7 +93,7 @@ const Layout = props => {
                         Platillos Mexicanos
                 </h2>
 
-                    {mains.mexicanos && mains.mexicanos.map(i => {
+                    {types.mexicanos && types.mexicanos.map(i => {
                         return (
                             <div
                                 key={i.id}
@@ -131,7 +121,7 @@ const Layout = props => {
                 </h2>
                     <h4 className='heading-fourth'>Nachos</h4>
 
-                    {mains.nachos && mains.nachos.map(i => {
+                    {types.nachos && types.nachos.map(i => {
                         return (
                             <div
                                 key={i.id}
@@ -152,7 +142,7 @@ const Layout = props => {
 
 
                     <h4 className='heading-fourth'>Arroz empanizado</h4>
-                    {mains.arroz && mains.arroz.map(i => {
+                    {types.arroz && types.arroz.map(i => {
                         return (
                             <div
                                 key={i.id}
@@ -172,7 +162,7 @@ const Layout = props => {
                     })}
 
                     <h4 className='heading-fourth'>Dippers</h4>
-                    {mains.dippers && mains.dippers.map(i => {
+                    {types.dippers && types.dippers.map(i => {
                         return (
                             <div
                                 key={i.id}
@@ -195,7 +185,7 @@ const Layout = props => {
                     <h2 className='heading-secondary'>
                         PoCo LoCo két személyes tál
                 </h2>
-                    {mains.double && mains.double.map(i => {
+                    {types.double && types.double.map(i => {
                         return (
                             <div
                                 key={i.id}
@@ -219,7 +209,7 @@ const Layout = props => {
 
                 <div className='layout__item'>
                     <h4 className='heading-fourth'>Desszert</h4>
-                    {mains.desserts && mains.desserts.map(i => {
+                    {types.desserts && types.desserts.map(i => {
                         return (
                             <div
                                 key={i.id}
@@ -246,7 +236,7 @@ const Layout = props => {
                         Extrák
                 </h2>
 
-                    {mains.extras && mains.extras.map(i => {
+                    {types.extras && types.extras.map(i => {
                         return (
                             <div
                                 className={`food-item ${location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}`}
@@ -269,7 +259,7 @@ const Layout = props => {
                     <h2 className='heading-secondary'>
                         Üdítők
                 </h2>
-                    {mains.drinks && mains.drinks.map(i => {
+                    {types.drinks && types.drinks.map(i => {
                         return (
                             <div
                                 key={i.id}

@@ -9,7 +9,6 @@ import {
 
 import LoadingSpinner from './shared/UIElements/LoadingSpinner';
 import LandingPage from './main/page/LandingPage';
-import Footer from './shared/footer/Footer';
 
 import logo from './logo.svg';
 import './App.scss';
@@ -18,10 +17,15 @@ import OpenDrawer from './shared/navigation/OpenDrawer';
 import Menu from './menu/page/Menu';
 import Admin from './admin/pages/Admin';
 import EditMenu from './admin/pages/EditMenu';
+import { useMenu } from './shared/hooks/menu-hook';
+import { MenuContext } from './shared/context/menu-context';
+
 
 function App() {
-  let routes;
 
+  const { menu, saveMenu, types, count, clearCount } = useMenu();
+
+  let routes;
   routes = (
     <Router>
       <Switch>
@@ -35,6 +39,7 @@ function App() {
           <OpenDrawer />
           <Menu />
         </Route>
+
         <Route path='/admin' exact>
           <Navbar className='navigation--scrolled' />
           <OpenDrawer />
@@ -52,7 +57,18 @@ function App() {
   )
 
   return (
-    <main><div className='center'>{routes}</div></main>
+    <MenuContext.Provider
+      value={{
+        menu: menu,
+        types: types,
+        count: count,
+        saveMenu: saveMenu,
+        clearCount: clearCount
+      }}
+    >
+      <main><div className='center'>{routes}</div></main>
+    </MenuContext.Provider>
+
   );
 }
 
