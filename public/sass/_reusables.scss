@@ -113,3 +113,18 @@
         }
     }
 }
+
+.btn--add {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    border: rgb(60, 128, 190) 1px solid;
+    outline: none;
+    background-color: #3dbebe;
+    color: white;
+    position: absolute;
+    right: -1rem;
+    top: -2rem;
+    font-size: 3rem;
+    font-weight: 900;
+}

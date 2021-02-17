@@ -14,9 +14,7 @@ const MenuTopSec = () => {
                     <li>Ha mégsem változtatnál kattints a vissza gombra</li>
                     <li>Az ételek elhelyezkedése a típus besorolástól függ</li>
                     <li>tehát annak megváltoztatása az étel áthelyezese lesz az étlapon belül</li>
-                    <li>A "HOZZÁADÁS" gomb étel/ital hozzáadását teszi lehetővé a menühöz</li>
-
-
+                    <li>A "+" gomb étel/ital hozzáadását teszi lehetővé a menühöz</li>
                 </ul>
             </div>
         </div>

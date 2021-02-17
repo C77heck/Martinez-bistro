@@ -13,7 +13,7 @@ import { MenuContext } from '../../shared/context/menu-context';
 
 
 
-const foodTypes = [
+export const foodTypes = [
     { value: 'burger', english: 'burgers', id: 1 },
     { value: 'platillos', english: 'platillos', id: 2 },
     { value: 'platillos mexicanos', english: 'platillos mexicanos', id: 3 },
@@ -51,7 +51,7 @@ const EditMenu = () => {
     const [show, setShow] = useState(false);
     const [message, setMessage] = useState();
     const [foodType, setFoodType] = useState('');
-    const { menu, saveMenu, types, count } = useContext(MenuContext);
+    const { menu, saveMenu } = useContext(MenuContext);
     const onClickHandler = e => {
         setShow(true);
         menu.map(i => {
@@ -192,6 +192,7 @@ const EditMenu = () => {
                         label='Alapanyag lista(Opcionalis)'
                         onInput={inputHandler}
                         value={inputState.inputs.description.value}
+                        validators={[]}
                         type='text'
                         element='textarea'
                     />
