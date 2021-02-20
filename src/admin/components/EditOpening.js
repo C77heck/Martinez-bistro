@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import {
     VALIDATOR_MINLENGTH,
@@ -13,6 +13,7 @@ import Input from '../../shared/form-elements/Input';
 import Button from '../../shared/UIElements/Button';
 import MessageModal from '../../shared/UIElements/MessageModal';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
+import { AuthContext } from '../../shared/context/auth-context';
 
 
 
@@ -87,6 +88,8 @@ const EditOpening = () => {
 
     const [show, setShow] = useState(false)
     const [message, setMessage] = useState('')
+    const { token } = useContext(AuthContext);
+
 
     const onSubmitHandler = async e => {
         e.preventDefault();
@@ -112,6 +115,7 @@ const EditOpening = () => {
                         + '-' + inputState.inputs.sundayClose.value
                 }),
                 {
+                    Authorization: 'Bearer ' + token,
                     'Content-Type': 'application/json'
                 }
             )
@@ -289,7 +293,7 @@ const EditOpening = () => {
                     className='admin__opening'
                     onClick={modalHandler}
                 >
-                    Nyitva tartás
+                    Nyitás
                  </button>
             </div>
         </React.Fragment>

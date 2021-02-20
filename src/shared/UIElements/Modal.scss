@@ -73,7 +73,6 @@
       font-size: 1.3rem;
 
       display: inline-block;
-      width: 8.5rem;
       overflow: hidden;
       border-radius: 10px;
     }
@@ -89,9 +88,6 @@
     }
   }
   &__header {
-    background: #e36464;
-  }
-  & button {
     background: #e36464;
   }
 }
@@ -146,7 +142,6 @@
 }
 
 .modal--edit {
-
   @media screen and (max-width: $mobile) {
     width: 70vw;
     left: 15vw;
@@ -159,6 +154,85 @@
   }
   &__content {
     font-size: 2rem;
+  }
+}
+
+.modal--auth {
+  width: 32vw;
+  left: 34vw;
+  @media screen and (max-width: $tablet-lg) {
+    width: 50vw;
+    left: 25vw;
+    top: 13vh;
+    z-index: 1001; //to be on top of the navbar button
+  }
+  @media screen and (max-width: $mobile) {
+    width: 90vw;
+    left: 5vw;
+    top: 13vh;
+    z-index: 1001; //to be on top of the navbar button
+  }
+  .modal {
+    &__header {
+      background-color: #298412;
+    }
+    &__content {
+      font-size: 2rem;
+      & input {
+        width: 80%;
+      }
+    }
+  }
+}
+
+.modal--news{
+  top: 9vh;
+  width: 30vw;
+  left: 35vw;
+  @media screen and (max-width: $tablet-land) {
+    width: 40vw;
+    left: 30vw;
+  }
+  @media screen and (max-width: $tablet) {
+    width: 50vw;
+    left: 25vw;
+  }
+  @media screen and (max-width: $mobile) {
+    width: 70vw;
+    left: 15vw;
+    top: 13vh;
+    z-index: 1001; //to be on top of the navbar button
+  }
+  @media screen and (max-width: $mobile-sm) {
+    width: 90vw;
+    left: 5vw;
+  }
+
+  .modal {
+    &__content {
+      width: 85%;
+      margin: auto;
+      & label {
+        font-size: 2rem;
+      }
+      & input {
+        height: 4rem;
+        font-size: 1.3rem;
+      }
+      & textarea {
+        font-size: 1.3rem;
+      }
+      & button:nth-child(4) {
+        font-size: 1.65rem;
+        margin: 2rem auto 0;
+      }
+    }
+    &__header {
+      background: #75c22e;
+    }
+    & button {
+      background: #75c22e;
+    }
   }
 }
 

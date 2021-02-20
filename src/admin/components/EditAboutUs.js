@@ -20,7 +20,6 @@ const EditAboutUs = () => {
         isLoading,
         error,
         clearError,
-        applicationError
     } = useHttpClient();
     const [message, setMessage] = useState('')
 
@@ -47,7 +46,6 @@ const EditAboutUs = () => {
             (async () => {
                 try {
                     const responseData = await sendRequest(process.env.REACT_APP_QUOTE);
-                    console.log(responseData)
                     setFormData({
                         quote: {
                             value: responseData.testimonial.quote,
@@ -77,14 +75,10 @@ const EditAboutUs = () => {
 
     const onSubmitHandler = async e => {
         e.preventDefault();
-
         const formData = new FormData();
         formData.append('quote', inputState.inputs.quote.value)
         formData.append('text', inputState.inputs.text.value)
         formData.append('image', inputState.inputs.image.value)
-        for (var p of formData) {
-            console.log(p);
-        }
         try {
 
             const responseData = await sendRequest(
@@ -92,20 +86,6 @@ const EditAboutUs = () => {
                 'PATCH',
                 formData
             )
-            setFormData({
-                quote: {
-                    value: '',
-                    valid: false
-                },
-                text: {
-                    value: '',
-                    valid: false
-                },
-                image: {
-                    value: null,
-                    valid: false
-                }
-            })
             setMessage(responseData.message);
             setShow(false);
         } catch (err) {

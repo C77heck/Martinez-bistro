@@ -15,14 +15,12 @@ export const useAuth = () => {
     const [token, setToken] = useState(false);
     const [expiration, setExpiration] = useState()
     const [userId, setUserId] = useState(false)
-    const [favourites, setFavourites] = useState([]);
 
 
     const signin = useCallback((userData, expiration) => {
 
         setToken(userData.token);
         setUserId(userData.userId);
-        setFavourites(userData.favourites || []);
         const tokenExpiration = expiration || new Date().getTime() + 1000 * 60 * 30;// half an hour expiration time
         setExpiration(tokenExpiration);
 
@@ -74,5 +72,5 @@ export const useAuth = () => {
         }
     }, [token, signout, expiration, userId])
 
-    return { signin, signout, token, userId, favourites }
+    return { signin, signout, token, userId }
 }

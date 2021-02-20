@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { ExpiryContext } from '../../shared/context/expiry-context';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 
 import Map from '../../shared/UIElements/Map';
@@ -15,15 +16,24 @@ const FindUs = () => {
         saturday: '',
         sunday: ''
     })
+    const { openingExpiry } = useContext(ExpiryContext);
+
     useEffect(() => {
-        (async () => {
-            const responseData = await sendRequest(process.env.REACT_APP_OPENING)
-            setOpening(responseData.opening)
-        })()
+        const storedData = [JSON.parse(localStorage.getItem('opening'))]
+        if (storedData[0] !== null && !openingExpiry) {
+            setOpening(storedData[0])
+        } else {
+            (async () => {
+                const responseData = await sendRequest(process.env.REACT_APP_OPENING)
+                setOpening(responseData.opening)
+                localStorage.setItem('opening', JSON.stringify(responseData.opening));
+            })()
+        }
+
     }, [])
 
-/*     <Map className='map__landing-page' />
- */    return (
+
+    return (
         <div className='find-us'>
             <div className='find-us__left'>
                 <div className='map map__landing-page '>

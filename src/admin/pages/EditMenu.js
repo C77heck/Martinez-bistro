@@ -10,13 +10,15 @@ import CustomSelect from '../../shared/form-elements/CustomSelect';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import MessageModal from '../../shared/UIElements/MessageModal';
 import { MenuContext } from '../../shared/context/menu-context';
+import ErrorModal from '../../shared/UIElements/ErrorModal';
+import { AuthContext } from '../../shared/context/auth-context';
 
 
 
 export const foodTypes = [
     { value: 'burger', english: 'burgers', id: 1 },
     { value: 'platillos', english: 'platillos', id: 2 },
-    { value: 'platillos mexicanos', english: 'platillos mexicanos', id: 3 },
+    { value: 'platillos mexicanos', english: 'mexicanos', id: 3 },
     { value: 'dupla tál', english: 'double', id: 4 },
     { value: 'nachos', english: 'nachos', id: 5 },
     { value: 'arroz', english: 'arroz', id: 6 },
@@ -29,7 +31,7 @@ export const foodTypes = [
 const EditMenu = () => {
 
 
-    const { sendRequest, isLoading } = useHttpClient();
+    const { sendRequest, isLoading, error, clearError } = useHttpClient();
     const [inputState, inputHandler, isFormValid, setFormData] = useForm({
         name: {
             value: '',
@@ -51,7 +53,8 @@ const EditMenu = () => {
     const [show, setShow] = useState(false);
     const [message, setMessage] = useState();
     const [foodType, setFoodType] = useState('');
-    const { menu, saveMenu } = useContext(MenuContext);
+    const { menu, saveMenu, removeItem } = useContext(MenuContext);
+    const { token } = useContext(AuthContext);
     const onClickHandler = e => {
         setShow(true);
         menu.map(i => {
@@ -104,6 +107,7 @@ const EditMenu = () => {
                     id: inputState.inputs.id.value
                 }),
                 {
+                    Authorization: 'Bearer ' + token,
                     'Content-Type': 'application/json'
                 }
             )
@@ -131,18 +135,23 @@ const EditMenu = () => {
     const deleteHandler = async () => {
         try {
             const responseData = await sendRequest(
-                process.env.REACT_APP_DELETE_ITEM + inputState.inputs.id.value,
+                process.env.REACT_APP_DELETE_ITEM,
                 'DELETE',
-                null,
+                JSON.stringify({
+                    id: inputState.inputs.id.value,
+                    name: inputState.inputs.name.value
+                }),
                 {
+                    Authorization: 'Bearer ' + token,
                     'Content-Type': 'application/json'
                 }
             )
             onClearHandler()
+            removeItem(inputState.inputs.identifier.value)
             setMessage(responseData.message);
 
         } catch (err) {
-
+            console.log(err)
         }
     };
 
@@ -151,6 +160,7 @@ const EditMenu = () => {
     const onClearHandler = () => { setShow(false) }
     return (
         <React.Fragment>
+            <ErrorModal error={error} onClear={clearError} />
             <MessageModal
                 onClear={() => { setMessage('') }}
                 message={message}
@@ -186,6 +196,8 @@ const EditMenu = () => {
                         onChange={onChangeHandler}
                         initialValue={foodType}
                         selection={foodTypes}
+                        id='custom-select2'
+                        label='Étel típus'
                     />
                     <Input
                         id='description'

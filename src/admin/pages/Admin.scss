@@ -1,4 +1,5 @@
 .admin {
+    font-family: sans-serif;
     width: 80%;
     margin: auto;
     min-height: 100vh;
@@ -19,16 +20,11 @@
         justify-content: space-around;
         align-items: center;
     }
-    @media screen and (max-width: $tablet) {
+    @media screen and (max-width: $tablet-sm) {
         & h2 {
             font-size: 9vw;
-        }
-    }
-    @media screen and (max-width: $mobile) {
-        width: 80%;
-        & h2 {
-            font-size: 3.8rem;
             margin-top: 12rem;
+
         }
         &__inner-border {
             padding-top: 12vh;
@@ -39,22 +35,64 @@
             align-items: center;
         }
     }
+    @media screen and (max-width: $mobile) {
+        width: 80%;
+        & h2 {
+            font-size: 3.8rem;
+            margin-top: 12rem;
+        }
 
-    &__about-us {
+    }
+    & button,
+    & a {
+        margin: 3rem;
         outline: none;
         border: none;
-        height: 20rem;
-        width: 20rem;
+        height: 15rem;
+        width: 15rem;
         border-radius: 50%;
-        background-image: radial-gradient(#7777dd, #2a4485, #8f8f8f);
-        box-shadow: 0 2rem 2.5rem rgb(49, 43, 43);
-        color: #eeede3;
-        font-size: 3rem;
+        font-size: 2.2rem;
         font-weight: 600;
         text-transform: uppercase;
         position: relative;
         transition: all 450ms;
-
+        color: #eeede3;
+        box-shadow: 0 2rem 2.5rem rgb(49, 43, 43);
+    }
+    &__story {
+        background-image: radial-gradient(#f4a803, #c07210, #fffdfd);
+        &::after {
+            content: "";
+            background: transparent;
+            border: 1px solid #f4a803;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            // z-index: -1;
+            width: 100%;
+            height: 100%;
+            transition: all 900ms;
+        }
+        &:hover {
+            color: #ffffff;
+            &::after {
+                border: 1px solid #f3d9a2;
+                transform: scale(1.5);
+            }
+        }
+        &:active {
+            color: #ffffff;
+            transform: scale(0.98);
+            box-shadow: 0 1rem 1rem grey;
+            &::after {
+                transition: all 220ms;
+                transform: scale(1);
+            }
+        }
+    }
+    &__about-us {
+        background-image: radial-gradient(#7777dd, #2a4485, #8f8f8f);
         &::after {
             content: "";
             background: transparent;
@@ -87,19 +125,8 @@
         }
     }
     &__opening {
-        outline: none;
-        border: none;
-        height: 20rem;
-        width: 20rem;
-        border-radius: 50%;
         background-image: radial-gradient(#c999a8, #cb1e1e, #f6f6f6);
         box-shadow: 0 2rem 2.5rem rgb(49, 43, 43);
-        color: #eeede3;
-        font-size: 3rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        position: relative;
-        transition: all 450ms;
         &::after {
             content: "";
             background: transparent;
@@ -136,19 +163,7 @@
     &__menu:visited {
         text-decoration: none;
         display: inline-block;
-        outline: none;
-        border: none;
-        height: 20rem;
-        width: 20rem;
-        border-radius: 50%;
         background-image: radial-gradient(#84a48e, #3dcf37, #cccdcc);
-        box-shadow: 0 2rem 2.5rem rgb(49, 43, 43);
-        color: #eeede3;
-        font-size: 3rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        position: relative;
-        transition: all 450ms;
         & span {
             position: absolute;
             top: 50%;
@@ -213,54 +228,6 @@
 
 .btn-container {
     display: flex;
-    .btn--save {
-        outline: none;
-        border: none;
-        width: 8rem;
-        height: 4rem;
-        border-radius: 50rem;
-        background-color: #298412;
-        color: wheat;
-        transition: all 200ms;
-        &:hover {
-            background-color: #19460e;
-        }
-        &:active {
-            transform: scale(1.02);
-        }
-    }
-    .btn--delete {
-        outline: none;
-        border: none;
-        width: 8rem;
-        height: 4rem;
-        border-radius: 50rem;
-        background-color: #a73b3b;
-        color: wheat;
-        transition: all 200ms;
-        &:hover {
-            background-color: #740101;
-        }
-        &:active {
-            transform: scale(1.02);
-        }
-    }
-    .btn--cancel {
-        outline: none;
-        border: none;
-        width: 8rem;
-        height: 4rem;
-        border-radius: 50rem;
-        background-color: #7a6503;
-        color: wheat;
-        transition: all 200ms;
-        &:hover {
-            background-color: #a58700;
-        }
-        &:active {
-            transform: scale(1.02);
-        }
-    }
 }
 
 //TOP SECTION
@@ -282,5 +249,11 @@
         & h2 {
             text-align: center;
         }
+    }
+}
+
+.top-section__help {
+    & li {
+        list-style-type: decimal;
     }
 }

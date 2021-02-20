@@ -7,4 +7,6 @@ select {
     font-family: Arial;
     height: 3.2vh;
     color: rgb(240, 234, 234);
+    display: block;
+    margin: auto;
 }

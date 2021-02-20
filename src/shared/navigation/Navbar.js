@@ -1,12 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { Link } from 'react-scroll'
+import { AuthContext } from '../context/auth-context';
 
-import { Main, Menu } from './Navlinks';
+import { AdminLinks, Main, Menu } from './Navlinks';
 
 
 const Navbar = props => {
+
+    const { isLoggedIn } = useContext(AuthContext);
 
     const { location } = useHistory();
 
@@ -28,13 +31,21 @@ const Navbar = props => {
 
     }, [])
 
-
+    const locations = () => {
+        if (location.pathname === '/') {
+            return <Main />
+        } else if (location.pathname === '/menu') {
+            return <Menu />
+        } else if (location.pathname.match('/admin')) {
+            return <AdminLinks />
+        }
+    }
     return (
         <div
             className={`${isScrolled ? 'navigation--scrolled' : ''} 
-        ${props.className} navigation`}>
+        ${props.className} navigation ${isLoggedIn && location.pathname.match('admin') && 'navigation--loggedin'}`}>
             <nav className='navigation__content'>
-                {location.pathname === '/' ? <Main /> : <Menu />}
+                {locations()}
             </nav>
         </div>
     )

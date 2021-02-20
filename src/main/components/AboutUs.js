@@ -1,10 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
+import { ExpiryContext } from '../../shared/context/expiry-context';
+import { useHttpClient } from '../../shared/hooks/http-hook';
 
 const AboutUs = () => {
-    const [mobile, setMobile] = useState('');
+    const { storyExpiry } = useContext(ExpiryContext);
 
+    const [mobile, setMobile] = useState('');
+    const [stories, setStories] = useState({
+        firsth2: '',
+        firsth3: '',
+        firstp: '',
+        secondh2: '',
+        secondp: ''
+    });
+    const { sendRequest } = useHttpClient()
     /* watch for screen size and use size appropiate images */
     const resizeWatcher = e => {
         if (e.target.outerWidth > 700) {
@@ -17,34 +28,48 @@ const AboutUs = () => {
         window.addEventListener("resize", resizeWatcher);
     })
 
+    // setting the story either from local storage or fetching it.
+    useEffect(() => {
+        const storedStories = JSON.parse(localStorage.getItem('stories')) || [];
+
+        if (storedStories.length > 0 && !storyExpiry) {
+            setStories(storedStories);
+        } else {
+            (async () => {
+                try {
+                    const responseData = await sendRequest(process.env.REACT_APP_STORIES);
+                    setStories(responseData.story)
+                    localStorage.setItem('stories', JSON.stringify(responseData.story));
+                } catch (err) {
+
+                }
+            })()
+        }
+
+    }, [])
+
 
 
     return (
         <div className='about'>
             <div className="about__left-side">
                 <h2 className="heading-secondary">
-                    Ízben gazdag konyha, elérhető áron!
+                    {stories.firsth2}
                 </h2>
 
 
                 <h3 className="heading-tertiary">
-                    Ímádni fogod az ételeinket!
-                    </h3>
+                    {stories.firsth3}
+                </h3>
                 <p className="paragraph">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Deleniti, unde maiores. Veniam eligendi ad quam commodi et
-                    perspiciatis porro. Amet nemo expedita id voluptates in
-                    quidem autem doloribus a dolore?
-                    </p>
+                    {stories.firstp}
+                </p>
                 <h3 className="heading-tertiary">
-                    Ílyet máshol nem kapsz!
-                    </h3>
+                    {stories.secondh2}
+                </h3>
                 <p className="paragraph">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Deleniti, unde maiores. Veniam eligendi ad quam commodi et
-                    perspiciatis porro. Amet nemo expedita id voluptates in
-                    quidem autem doloribus a dolore?
-                    </p>
+                    {stories.secondp}
+                </p>
                 <Link
                     to='/menu'
                     className="btn-text btn-desktop-view"

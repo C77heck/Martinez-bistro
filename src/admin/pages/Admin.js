@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import EditAboutUs from '../components/EditAboutUs';
+import EditNews from '../components/EditNews';
 import EditOpening from '../components/EditOpening';
 
 const Admin = () => {
@@ -14,7 +15,7 @@ const Admin = () => {
 
                     <EditOpening />
                     <EditAboutUs />
-
+                    <EditNews />
                     <div>
                         <Link
                             className='admin__menu'
@@ -33,4 +34,6 @@ const Admin = () => {
 
 
 
+
 export default Admin;
+

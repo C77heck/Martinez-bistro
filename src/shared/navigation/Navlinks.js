@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-scroll';
+import AuthModal from '../../admin/components/AuthModal';
 
 export const Main = () => {
 
@@ -97,6 +98,35 @@ export const Menu = () => {
                 </Link>
 
             </li>
+        </ul>
+    )
+}
+
+export const AdminLinks = () => {
+    return (
+        <ul className='navigation__list'>
+
+            <li className='navigation__item'>
+                <NavLink
+                    to='/admin'
+                >
+                    Admin
+                </NavLink>
+            </li>
+
+            <li className='navigation__item'>
+                <AuthModal />
+            </li>
+
+            <li className='navigation__item'>
+                <NavLink
+                    to='/'
+                >
+                    Főoldal
+                </NavLink>
+            </li>
+
+
         </ul>
     )
 }

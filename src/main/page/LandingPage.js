@@ -29,7 +29,7 @@ const LandingPage = () => {
                 <Testimonial />
             </section>
             <section id='instagram'>
-                <div class="elfsight-app-fadd920a-df2b-4646-b538-c1853e3f5f1f"></div>
+                <div className="elfsight-app-fadd920a-df2b-4646-b538-c1853e3f5f1f"></div>
             </section>
             <section id='footer'>
                 <Footer />

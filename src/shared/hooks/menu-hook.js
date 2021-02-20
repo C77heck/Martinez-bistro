@@ -6,7 +6,6 @@ import { objectSorting } from '../../utility/objectSorting';
 export const useMenu = () => {
 
     const [menu, setMenu] = useState([]);
-    const [count, setCount] = useState(0);
     const [types, setTypes] = useState({
         burgers: [],
         platillos: [],
@@ -21,14 +20,34 @@ export const useMenu = () => {
     })
     const saveMenu = useCallback((menu) => {
         setMenu(menu)
-        // count here is to induce a rerender artifically when updating the menu
-        setCount(1)
         //we sort the array to types made up of arrays so the layout will work out
         setTypes(objectSorting(menu))
+        //we save it to the local storage
+        localStorage.setItem('menu', JSON.stringify(menu))
     }, [])
 
-    const clearCount = useCallback((numb) => {
-        setCount(numb)
+
+    const addMenuItem = useCallback((item) => {
+
+        const storedMenu = JSON.parse(localStorage.getItem('menu'));
+        storedMenu.push(item);
+        setMenu(storedMenu);
+        setTypes(objectSorting(storedMenu));
+        localStorage.setItem('menu', JSON.stringify(storedMenu))
+    });
+
+
+    const removeItem = useCallback((identifier) => {
+        //filter out the item being deleted
+        //perhaps split these below.
+        const storedMenu = JSON.parse(localStorage.getItem('menu'))
+        .filter(i => i.identifier !== identifier);
+        
+        setMenu(storedMenu)
+        setTypes(objectSorting(storedMenu))
+        localStorage.setItem('menu', JSON.stringify(storedMenu))
     })
-    return { menu, saveMenu, types, count, clearCount }
+
+
+    return { menu, saveMenu, types, removeItem, addMenuItem }
 }
