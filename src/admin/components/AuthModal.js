@@ -10,7 +10,7 @@ import { VALIDATOR_REQUIRE } from '../../utility/validators';
 
 
 export const AuthModal = props => {
-    const { signin, isLoggedIn, token, disableDrawer, enableDrawer } = useContext(AuthContext);
+    const { signin, isLoggedIn, disableDrawer, enableDrawer } = useContext(AuthContext);
 
     const [show, setShow] = useState(false);
     const { sendRequest, error, clearError } = useHttpClient();
@@ -39,7 +39,6 @@ export const AuthModal = props => {
                     password: inputState.inputs.password.value
                 }),
                 {
-                    Authorization: 'Bearer ' + token,
                     'Content-Type': 'application/json'
                 }
             )

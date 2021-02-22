@@ -43,7 +43,7 @@ const Testimonial = () => {
             })()
         }
 
-    }, [])
+    }, [testimonialExpiry])
 
     return (
         <div className='testimonial'>

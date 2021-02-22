@@ -12,11 +12,11 @@ export const useExpiry = () => {
 
             const { menu, opening, testimonial, story } = old;
 
-            setMenuExpiry(newExpiry.menu > menu ? true : false);
-            setOpeningExpiry(newExpiry.opening > opening ? true : false);
-            setTestimonialExpiry(newExpiry.testimonial > testimonial ? true : false);
-            setStoryExpiry(newExpiry.story > story ? true : false);
-            
+            setMenuExpiry(newExpiry.menu > menu ? true : false)
+            setOpeningExpiry(newExpiry.opening > opening ? true : false)
+            setTestimonialExpiry(newExpiry.testimonial > testimonial ? true : false)
+            setStoryExpiry(newExpiry.story > story ? true : false)
+            localStorage.setItem('expiry', JSON.stringify(newExpiry))
         }, []);
 
     return {

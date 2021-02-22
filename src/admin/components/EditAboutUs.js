@@ -22,7 +22,7 @@ const EditAboutUs = () => {
         clearError,
     } = useHttpClient();
     const [message, setMessage] = useState('')
-    const { isLoggedIn } = useContext(AuthContext);
+    const { isLoggedIn, token } = useContext(AuthContext);
 
 
 
@@ -67,15 +67,19 @@ const EditAboutUs = () => {
 
     const onSubmitHandler = async e => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append('quote', inputState.inputs.quote.value)
-        formData.append('text', inputState.inputs.text.value)
         try {
-
+         
             const responseData = await sendRequest(
                 process.env.REACT_APP_QUOTE,
                 'PATCH',
-                formData
+                JSON.stringify({
+                    quote: inputState.inputs.quote.value,
+                    text: inputState.inputs.text.value
+                }),
+                {
+                    Authorization: 'Bearer ' + token,
+                    'Content-Type': 'application/json'
+                }
             )
             setMessage(responseData.message);
             setShow(false);

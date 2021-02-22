@@ -44,14 +44,15 @@ function App() {
         fetch fresher data if needed */
         const responseData = await sendRequest(process.env.REACT_APP_EXPIRY)
         updateExpiry(responseData.expiries, storedExpiry)
-        localStorage.setItem('expiry', JSON.stringify(responseData.expiries))
+       
       } catch (err) {
 
       }
     })()
 
 
-  }, [updateExpiry, sendRequest])
+  }, [])
+
 
   const { menu, saveMenu, types, removeItem, addMenuItem } = useMenu();
   const {
