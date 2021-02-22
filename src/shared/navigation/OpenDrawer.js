@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -7,12 +7,13 @@ import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 import NavLinks from './Navlinks';
 import { useHistory } from 'react-router-dom';
-import AuthModal from '../../admin/components/AuthModal';
+import { AuthButton } from '../../admin/components/AuthModal';
+import { AuthContext } from '../context/auth-context';
 
 
 const SideDrawer = props => {
 
-
+    const { isLoggedIn } = useContext(AuthContext);
     const content = (<CSSTransition
         in={props.show}
         timeout={200}
@@ -20,7 +21,11 @@ const SideDrawer = props => {
         mountOnEnter
         unmountOnExit
     >
-        {<aside className="side-drawer" onClick={props.onClick}>
+        {<aside
+            name='name'
+            id='aside'
+            className={`side-drawer ${isLoggedIn && 'side-drawer__logged-out'}`}
+            onClick={props.onClick}>
             {props.children}
         </aside>}
     </CSSTransition>)
@@ -31,11 +36,11 @@ const SideDrawer = props => {
 
 
 const OpenDrawer = () => {
-
+    const { drawer } = useContext(AuthContext);
     const [show, setShow] = useState(false)
     const { location } = useHistory()
     const onClickHandler = e => {
-        if (e.target.id === 'auth-btn') {
+        if (e.target.id === 'auth-btn' || e.target.id === 'backdrop') {
             //to prevent the sidedrawer from closing when clicking on login button
         } else {
             setShow(false)
@@ -98,7 +103,7 @@ const OpenDrawer = () => {
                 </Link>
                 </li>
                 <li className='navigation__item'>
-                    <AuthModal />
+                    <AuthButton />
                 </li>
 
             </React.Fragment>)
@@ -107,8 +112,10 @@ const OpenDrawer = () => {
     }
     return (
         <React.Fragment>
-            <SideDrawer show={show} onClick={onClickHandler}>
-                <ul className='navigation__list'>
+            <SideDrawer show={show} onClick={!drawer ? onClickHandler : undefined}>
+                <ul
+                    id='navigation-items'
+                    className='navigation__list'>
                     {locations()}
                 </ul>
 

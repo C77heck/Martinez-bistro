@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../shared/context/auth-context';
 import Input from '../../shared/form-elements/Input';
 import { useForm } from '../../shared/hooks/form-hook';
@@ -9,8 +9,8 @@ import Modal from '../../shared/UIElements/Modal';
 import { VALIDATOR_REQUIRE } from '../../utility/validators';
 
 
-const AuthModal = () => {
-    const { signin, signout, isLoggedIn, userId, token } = useContext(AuthContext);
+export const AuthModal = props => {
+    const { signin, isLoggedIn, token, disableDrawer, enableDrawer } = useContext(AuthContext);
 
     const [show, setShow] = useState(false);
     const { sendRequest, isLoading, error, clearError } = useHttpClient();
@@ -25,6 +25,8 @@ const AuthModal = () => {
             valid: ''
         }
     });
+
+
 
     const onSubmitHandler = async e => {
         e.preventDefault();
@@ -44,6 +46,7 @@ const AuthModal = () => {
             signin(responseData.adminData)
             setShow(false)
             setMessage(responseData.message)
+            enableDrawer(false)
         } catch (err) {
             console.log(err)
         }
@@ -51,22 +54,19 @@ const AuthModal = () => {
 
     const onCancelHandler = () => {
         setShow(false)
+        enableDrawer(false)
     }
 
     const onClearHandler = () => {
-        setShow(false)
+        setMessage('')
+        enableDrawer(false)
     }
 
-    const signoutHandler = async e => {
-        e.preventDefault();
-        try {
-            const responseData = await sendRequest(process.env.REACT_APP_SIGNOUT + userId)
-            signout()
-            setMessage(responseData.message)
-            setShow(false);
-        } catch (err) {
-        }
+    const onClickHandler = () => {
+        setShow(true);
+        disableDrawer(true);
     }
+
 
     return (
         <React.Fragment>
@@ -102,21 +102,44 @@ const AuthModal = () => {
                 />
                 <button className='btn--save'>Mehet</button>
             </Modal>
-            {!isLoggedIn ? <a
-                id='auth-btn'
-                onClick={() => setShow(true)}
+            <div
+                onClick={!isLoggedIn ? onClickHandler : undefined}
             >
-                Bejelentkezés
-             </a> : <a
-                    id='auth-btn'
-                    onClick={signoutHandler}
-                >
-                    Kijelentkezés
-             </a>}
+                {props.children}
+            </div>
 
         </React.Fragment>
 
     );
+}
+
+
+
+export const AuthButton = props => {
+    const { isLoggedIn, signout, userId } = useContext(AuthContext);
+    const { sendRequest } = useHttpClient();
+    const [message, setMessage] = useState('')
+
+    const signoutHandler = async e => {
+        e.preventDefault();
+        try {
+            const responseData = await sendRequest(process.env.REACT_APP_SIGNOUT + userId)
+            signout()
+            setMessage(responseData.message)
+        } catch (err) {
+        }
+    }
+    return (
+        <AuthModal >
+            <a
+                id='auth-btn'
+                onClick={isLoggedIn ? signoutHandler : undefined}
+            >
+                {!isLoggedIn ? 'Bejelentkezés' : 'Kijelentkezés'}
+            </a>
+        </AuthModal>
+
+    )
 }
 
 export default AuthModal;

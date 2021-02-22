@@ -12,6 +12,7 @@ import MessageModal from '../../shared/UIElements/MessageModal';
 import { MenuContext } from '../../shared/context/menu-context';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
 import { AuthContext } from '../../shared/context/auth-context';
+import { AuthModal } from '../components/AuthModal';
 
 
 
@@ -30,7 +31,7 @@ export const foodTypes = [
 
 const EditMenu = () => {
 
-
+    const { isLoggedIn } = useContext(AuthContext);
     const { sendRequest, isLoading, error, clearError } = useHttpClient();
     const [inputState, inputHandler, isFormValid, setFormData] = useForm({
         name: {
@@ -235,12 +236,12 @@ const EditMenu = () => {
                     </div>
                 </div>
             </EditModal>
-
-            <Menu
-                admin={true}
-                onClick={onClickHandler}
-            />
-
+            <AuthModal>
+                <Menu
+                    admin={true}
+                    onClick={!isLoggedIn ? undefined : onClickHandler}
+                />
+            </AuthModal>
         </React.Fragment>
     )
 }

@@ -180,6 +180,9 @@
             margin: 3rem;
         }
     }
+    &__logged-out {
+        background-image: linear-gradient(to left bottom, #f9f9f9, #36ae35);
+        }
 }
 
 @media (min-width: $tablet-sm) {

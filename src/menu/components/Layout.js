@@ -58,7 +58,7 @@ const Layout = props => {
                     {types.burgers && types.burgers.map(i => {
                         return (
                             <div
-                                key={i.id}
+                                key={i._id}
                                 onClick={props.onClick}
                                 className={location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}
                             >
@@ -87,7 +87,7 @@ const Layout = props => {
                     {types.platillos && types.platillos.map(i => {
                         return (
                             <div
-                                key={i.id}
+                                key={i._id}
                                 className={` ${location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}`}
                                 onClick={props.onClick}
                             >
@@ -118,7 +118,7 @@ const Layout = props => {
                     {types.mexicanos && types.mexicanos.map(i => {
                         return (
                             <div
-                                key={i.id}
+                                key={i._id}
                                 className={`${location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}`}
                                 onClick={props.onClick}
                             >
@@ -148,7 +148,7 @@ const Layout = props => {
                     {types.nachos && types.nachos.map(i => {
                         return (
                             <div
-                                key={i.id}
+                                key={i._id}
                                 className={`${location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}`}
                                 onClick={props.onClick}
                             >
@@ -170,7 +170,7 @@ const Layout = props => {
                     {types.arroz && types.arroz.map(i => {
                         return (
                             <div
-                                key={i.id}
+                                key={i._id}
                                 className={`${location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}`}
                                 onClick={props.onClick}
                             >
@@ -192,7 +192,7 @@ const Layout = props => {
                     {types.dippers && types.dippers.map(i => {
                         return (
                             <div
-                                key={i.id}
+                                key={i._id}
                                 className={`food-item ${location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}`}
                                 onClick={props.onClick}
                             >
@@ -219,7 +219,7 @@ const Layout = props => {
                     {types.double && types.double.map(i => {
                         return (
                             <div
-                                key={i.id}
+                                key={i._id}
                                 className={`${location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}`}
                                 onClick={props.onClick}
                             >
@@ -245,7 +245,7 @@ const Layout = props => {
                     {types.desserts && types.desserts.map(i => {
                         return (
                             <div
-                                key={i.id}
+                                key={i._id}
                                 className={` ${location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}`}
                                 onClick={props.onClick}
                             >
@@ -276,7 +276,7 @@ const Layout = props => {
                         return (
                             <div
                                 className={`food-item ${location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}`}
-                                key={i.id}
+                                key={i._id}
                                 onClick={props.onClick}
                             >
                                 <p className='paragraph paragraph--menu'>{i.name}</p>
@@ -300,7 +300,7 @@ const Layout = props => {
                     {types.drinks && types.drinks.map(i => {
                         return (
                             <div
-                                key={i.id}
+                                key={i._id}
                                 className={`food-item ${location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}`}
                                 onClick={props.onClick}
                             >

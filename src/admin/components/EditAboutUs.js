@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import Modal from '../../shared/UIElements/Modal';
 import Input from '../../shared/form-elements/Input';
@@ -13,16 +13,17 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import Button from '../../shared/UIElements/Button';
 import MessageModal from '../../shared/UIElements/MessageModal';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
+import { AuthModal } from './AuthModal';
+import { AuthContext } from '../../shared/context/auth-context';
 
 const EditAboutUs = () => {
     const {
         sendRequest,
-        isLoading,
         error,
         clearError,
     } = useHttpClient();
     const [message, setMessage] = useState('')
-
+    const { isLoggedIn } = useContext(AuthContext);
 
 
 
@@ -42,29 +43,29 @@ const EditAboutUs = () => {
     });
 
 
-   useEffect(() => {
-            (async () => {
-                try {
-                    const responseData = await sendRequest(process.env.REACT_APP_QUOTE);
-                    setFormData({
-                        quote: {
-                            value: responseData.testimonial.quote,
-                            valid: true
-                        },
-                        text: {
-                            value: responseData.testimonial.text,
-                            valid: true
-                        },
-                        image: {
-                            value: responseData.testimonial.image,
-                            valid: true
-                        }
-                    })
-                } catch (err) {
-                    console.log(err)
-                }
-            })()
-        }, []) 
+    useEffect(() => {
+        (async () => {
+            try {
+                const responseData = await sendRequest(process.env.REACT_APP_QUOTE);
+                setFormData({
+                    quote: {
+                        value: responseData.testimonial.quote,
+                        valid: true
+                    },
+                    text: {
+                        value: responseData.testimonial.text,
+                        valid: true
+                    },
+                    image: {
+                        value: responseData.testimonial.image,
+                        valid: true
+                    }
+                })
+            } catch (err) {
+                console.log(err)
+            }
+        })()
+    }, [])
 
 
     const [show, setShow] = useState(false)
@@ -153,15 +154,16 @@ const EditAboutUs = () => {
                     MEHET
                 </Button>
             </Modal>
-
-            <div>
-                <button
-                    className='admin__about-us'
-                    onClick={modalHandler}
-                >
-                    Rólunk
+            <AuthModal>
+                <div>
+                    <button
+                        className='admin__about-us'
+                        onClick={!isLoggedIn ? undefined : modalHandler}
+                    >
+                        Rólunk
                 </button>
-            </div>
+                </div>
+            </AuthModal>
         </React.Fragment>
     )
 }

@@ -23,10 +23,13 @@
     @media screen and (max-width: $tablet) {
         width: 60vw;
         left: 20vw;
+        position: relative;
+        z-index: 2000;
     }
     @media screen and (max-width: $mobile) {
         width: 90vw;
         left: 5vw;
+
     }
     @media screen and (max-width: $mobile-sm) {
         width: 100vw;

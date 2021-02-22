@@ -14,18 +14,17 @@ import Button from '../../shared/UIElements/Button';
 import MessageModal from '../../shared/UIElements/MessageModal';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
 import { AuthContext } from '../../shared/context/auth-context';
+import { AuthModal } from './AuthModal';
 
 const EditNews = () => {
     const {
         sendRequest,
-        isLoading,
         error,
         clearError,
-        applicationError
     } = useHttpClient();
     const [message, setMessage] = useState('')
 
-    const { token } = useContext(AuthContext);
+    const { token, isLoggedIn } = useContext(AuthContext);
 
 
     const [inputState, inputHandler, isFormValid, setFormData] = useForm({
@@ -203,15 +202,16 @@ const EditNews = () => {
                     MEHET
                 </Button>
             </Modal>
-
-            <div>
-                <button
-                    className='admin__story'
-                    onClick={modalHandler}
-                >
-                    Hírek
+            <AuthModal>
+                <div>
+                    <button
+                        className='admin__story'
+                        onClick={!isLoggedIn ? undefined : modalHandler}
+                    >
+                        Hírek
                 </button>
-            </div>
+                </div>
+            </AuthModal>
         </React.Fragment>
     )
 }

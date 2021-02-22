@@ -14,6 +14,7 @@ import Button from '../../shared/UIElements/Button';
 import MessageModal from '../../shared/UIElements/MessageModal';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
 import { AuthContext } from '../../shared/context/auth-context';
+import { AuthModal } from './AuthModal';
 
 
 
@@ -88,7 +89,7 @@ const EditOpening = () => {
 
     const [show, setShow] = useState(false)
     const [message, setMessage] = useState('')
-    const { token } = useContext(AuthContext);
+    const { token, isLoggedIn } = useContext(AuthContext);
 
 
     const onSubmitHandler = async e => {
@@ -288,14 +289,16 @@ const EditOpening = () => {
                     MEHET
                 </Button>
             </Modal>
-            <div>
-                <button
-                    className='admin__opening'
-                    onClick={modalHandler}
-                >
-                    Nyitás
+            <AuthModal>
+                <div>
+                    <button
+                        className='admin__opening'
+                        onClick={!isLoggedIn ? undefined : modalHandler}
+                    >
+                        Nyitás
                  </button>
-            </div>
+                </div>
+            </AuthModal>
         </React.Fragment>
     )
 }

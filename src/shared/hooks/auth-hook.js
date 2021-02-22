@@ -15,7 +15,7 @@ export const useAuth = () => {
     const [token, setToken] = useState(false);
     const [expiration, setExpiration] = useState()
     const [userId, setUserId] = useState(false)
-
+    const [drawer, setDrawer] = useState(false)
 
     const signin = useCallback((userData, expiration) => {
 
@@ -33,6 +33,13 @@ export const useAuth = () => {
             })
         );
     }, []);
+
+    const disableDrawer = useCallback(() => {
+        setDrawer(true)
+    }, [])
+    const enableDrawer = useCallback(() => {
+        setDrawer(false)
+    }, [])
 
     const signout = useCallback(async () => {
         setToken(null);
@@ -72,5 +79,5 @@ export const useAuth = () => {
         }
     }, [token, signout, expiration, userId])
 
-    return { signin, signout, token, userId }
+    return { signin, signout, token, userId, drawer, disableDrawer, enableDrawer }
 }

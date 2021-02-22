@@ -58,7 +58,7 @@
 
 @media (max-width: 700px) {
     .error-text p {
-        font-size: .64rem;
+        font-size: .9rem;
         position: static;
     }
 }

@@ -56,7 +56,15 @@ function App() {
   }, [])
 
   const { menu, saveMenu, types, removeItem, addMenuItem } = useMenu();
-  const { signin, signout, token, userId } = useAuth();
+  const {
+    signin,
+    signout,
+    token,
+    userId,
+    drawer,
+    disableDrawer,
+    enableDrawer
+  } = useAuth();
   let routes;
   routes = (
     <Router>
@@ -101,9 +109,12 @@ function App() {
         value={{
           userId: userId,
           token: token,
+          drawer: drawer,
           isLoggedIn: !!token,
           signin: signin,
-          signout: signout
+          signout: signout,
+          enableDrawer: enableDrawer,
+          disableDrawer: disableDrawer
         }}
       >
         <MenuContext.Provider
