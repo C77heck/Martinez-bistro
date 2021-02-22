@@ -44,9 +44,9 @@
       left: 25vw;
     }
     @media screen and (max-width: $mobile) {
-      width: 100vw;
+      width: 80vw;
       top: 4vh;
-      left: 0;
+      left: 10vw;
       z-index: 1001; //to be on top of the navbar button
     }
   }
@@ -57,6 +57,13 @@
       width: 99%;
       margin: 1rem auto;
       position: relative;
+      & .input-control {
+        margin: 0.5rem 0.4rem;
+      }
+      @media screen and (max-width: $mobile) {
+        margin: 0 auto;
+      }
+
       & label {
         font-size: 2rem;
 
@@ -86,7 +93,7 @@
       font-size: 1.65rem;
       margin: 2rem auto 0;
     }
-/*     & .error-text {
+    /*     & .error-text {
       display: none;
     } */
   }
@@ -183,6 +190,7 @@
       font-size: 2rem;
       & input {
         width: 80%;
+        margin: auto;
       }
     }
   }

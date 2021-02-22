@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ExpiryContext } from '../../shared/context/expiry-context';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 
-import Map from '../../shared/UIElements/Map';
 
 
 const FindUs = () => {
@@ -30,7 +29,7 @@ const FindUs = () => {
             })()
         }
 
-    }, [])
+    }, [openingExpiry])
 
 
     return (

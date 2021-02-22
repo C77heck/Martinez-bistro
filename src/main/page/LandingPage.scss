@@ -23,7 +23,7 @@
 
         &--1 {
             color: var(--color-text-dark);
-            font-size: 3.5rem;
+            font-size: 5vw;
             display: block;
             text-shadow: var(--text-shadow-dark);
             padding-bottom: 1.2rem;
@@ -31,7 +31,28 @@
         &--2 {
             color: var(--color-text-dark);
             text-shadow: var(--text-shadow-dark);
-            font-size: 2.8rem;
+            font-size: 4.5rem;
+        }
+        @media screen and (max-width: $tablet-land) {
+            &--2 {
+                font-size: 3.5vw;
+            }
+        }
+        @media screen and (max-width: $tablet-sm) {
+            &--1 {
+                font-size: 8vw;
+            }
+            &--2 {
+                font-size: 4.5vw;
+            }
+        }
+        @media screen and (max-width: $mobile) {
+            &--1 {
+                font-size: 5rem;
+            }
+            &--2 {
+                font-size: 3rem;
+            }
         }
     }
 
@@ -57,7 +78,7 @@
 .cta-btn {
     cursor: pointer;
     position: absolute;
-    bottom: 10rem;
+    bottom: 3rem;
     border-radius: 50%;
     background-image: radial-gradient(rgb(185, 109, 79), rgb(248, 71, 1));
     border: none;
@@ -129,11 +150,7 @@
     }
 }
 
-@media screen and (max-width: $mobile) {
-    .cta-btn {
-        bottom: 3rem;
-    }
-}
+
 
 // ABOUTUS
 .about {
@@ -423,4 +440,68 @@
         width: 69%;
         border-radius: 50%;
     }
+}
+
+
+.map {
+    height: 30rem;
+    width: 30rem;
+    overflow: hidden;
+    &__landing-page {
+        height: 46rem;
+        width: 53rem;
+        border: 8px solid var(--color-footer-dark);
+        border-radius: 17%;
+        margin: auto;
+        transform: scale(0.9);
+        transition: all 400ms;
+
+        @media screen and (max-width: $tablet) {
+            height: 34rem;
+            width: 38rem;
+        }
+        @media screen and (max-width: $mobile) {
+            height: 32rem;
+            width: 32rem;
+            border-radius: 50%;
+        }
+
+        &:hover {
+            border: 18px double var(--color-footer-dark);
+
+            transform: scale(1);
+        }
+    }
+
+    &__footer {
+        margin: auto;
+        height: 38rem;
+        width: 38rem;
+        border-radius: 50%;
+        border: 8px solid var(--color-footer-dark);
+
+        transform: scale(0.9);
+        transition: all 400ms;
+        @media screen and (max-width: $tablet-lg) {
+            height: 26rem;
+            width: 26rem;
+            margin: 0;
+        }
+        @media screen and (max-width: $tablet) {
+            height: 26rem;
+            width: 26rem;
+            margin: 0;
+        }
+
+        &:hover {
+            border: 18px double var(--color-footer-dark);
+
+            transform: scale(1);
+        }
+    }
+}
+
+.map-img {
+    width: 100%;
+    height: auto;
 }

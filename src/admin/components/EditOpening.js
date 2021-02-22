@@ -1,10 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 
-import {
-    VALIDATOR_MINLENGTH,
-    VALIDATOR_REQUIRE,
-    VALIDATOR_MAXLENGTH
-} from '../../utility/validators';
+
 import { useForm } from '../../shared/hooks/form-hook';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 
@@ -22,13 +18,11 @@ import { AuthModal } from './AuthModal';
 const EditOpening = () => {
     const {
         sendRequest,
-        isLoading,
         error,
         clearError,
-        applicationError
     } = useHttpClient()
 
-    const [inputState, inputHandler, isFormValid, setFormData] = useForm({
+    const [inputState, inputHandler] = useForm({
         mondayOpen: {
             value: '',
             valid: false

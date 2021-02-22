@@ -17,11 +17,11 @@ const AddItem = props => {
 
     const { token } = useContext(AuthContext);
     const { addMenuItem } = useContext(MenuContext);
-    const { sendRequest, isLoading, error, clearError } = useHttpClient();
+    const { sendRequest, error, clearError } = useHttpClient();
     const [show, setShow] = useState(false);
     const [message, setMessage] = useState();
     const [foodType, setFoodType] = useState('Étel típus');
-    const [inputState, inputHandler, isFormValid, setFormData] = useForm({
+    const [inputState, inputHandler] = useForm({
         name: {
             value: '',
             valid: false
@@ -49,13 +49,7 @@ const AddItem = props => {
         e.preventDefault();
 
         try {
-            const item = {
-                name: inputState.inputs.name.value,
-                description: inputState.inputs.description.value,
-                price: inputState.inputs.price.value,
-                type: foodType,
-                identifier: 'newItem'
-            }
+
             const responseData = await sendRequest(
                 process.env.REACT_APP_ADD_ITEM,
                 'POST',

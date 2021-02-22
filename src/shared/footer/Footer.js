@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
-
 import {
     Facebook,
     Instagram,
@@ -9,10 +7,6 @@ import {
     Email,
     Home
 } from '../../SVG/Icons';
-
-
-import Map from '../UIElements/Map';
-
 
 const Footer = () => {
 

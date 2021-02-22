@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import Modal from '../../shared/UIElements/Modal';
 import Input from '../../shared/form-elements/Input';
-import ImageUpload from '../../shared/form-elements/ImageUpload';
 import {
     VALIDATOR_MINLENGTH,
     VALIDATOR_REQUIRE,

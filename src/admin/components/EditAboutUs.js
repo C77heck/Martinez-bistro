@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import Modal from '../../shared/UIElements/Modal';
 import Input from '../../shared/form-elements/Input';
-import ImageUpload from '../../shared/form-elements/ImageUpload';
 import {
     VALIDATOR_MINLENGTH,
     VALIDATOR_REQUIRE,
@@ -35,10 +34,6 @@ const EditAboutUs = () => {
         text: {
             value: '',
             valid: false
-        },
-        image: {
-            value: null,
-            valid: false
         }
     });
 
@@ -55,17 +50,13 @@ const EditAboutUs = () => {
                     text: {
                         value: responseData.testimonial.text,
                         valid: true
-                    },
-                    image: {
-                        value: responseData.testimonial.image,
-                        valid: true
                     }
                 })
             } catch (err) {
                 console.log(err)
             }
         })()
-    }, [])
+    }, [setFormData, sendRequest])
 
 
     const [show, setShow] = useState(false)
@@ -79,7 +70,6 @@ const EditAboutUs = () => {
         const formData = new FormData();
         formData.append('quote', inputState.inputs.quote.value)
         formData.append('text', inputState.inputs.text.value)
-        formData.append('image', inputState.inputs.image.value)
         try {
 
             const responseData = await sendRequest(
@@ -140,11 +130,6 @@ const EditAboutUs = () => {
                     ]}
                     type='text'
                     element='textarea'
-                />
-                <ImageUpload
-                    id='image'
-                    onInput={inputHandler}
-                    errorText='Válassz egy képet.'
                 />
                 <Button
                     buttonClass='btn--submit btn--blue'

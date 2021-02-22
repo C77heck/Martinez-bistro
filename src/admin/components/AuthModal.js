@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../shared/context/auth-context';
 import Input from '../../shared/form-elements/Input';
 import { useForm } from '../../shared/hooks/form-hook';
@@ -13,9 +13,9 @@ export const AuthModal = props => {
     const { signin, isLoggedIn, token, disableDrawer, enableDrawer } = useContext(AuthContext);
 
     const [show, setShow] = useState(false);
-    const { sendRequest, isLoading, error, clearError } = useHttpClient();
+    const { sendRequest, error, clearError } = useHttpClient();
     const [message, setMessage] = useState('')
-    const [inputState, inputHandler, isFormValid, setFormData] = useForm({
+    const [inputState, inputHandler] = useForm({
         name: {
             value: '',
             valid: ''
@@ -132,6 +132,7 @@ export const AuthButton = props => {
     return (
         <AuthModal >
             <a
+                href='#'
                 id='auth-btn'
                 onClick={isLoggedIn ? signoutHandler : undefined}
             >

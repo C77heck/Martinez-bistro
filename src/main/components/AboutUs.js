@@ -46,7 +46,7 @@ const AboutUs = () => {
             })()
         }
 
-    }, [])
+    }, [storyExpiry])
 
 
 

@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 import { objectSorting } from '../../utility/objectSorting';
 
 
@@ -34,7 +34,7 @@ export const useMenu = () => {
         setMenu(storedMenu);
         setTypes(objectSorting(storedMenu));
         localStorage.setItem('menu', JSON.stringify(storedMenu))
-    });
+    },[]);
 
 
     const removeItem = useCallback((identifier) => {
@@ -46,7 +46,7 @@ export const useMenu = () => {
         setMenu(storedMenu)
         setTypes(objectSorting(storedMenu))
         localStorage.setItem('menu', JSON.stringify(storedMenu))
-    })
+    },[])
 
 
     return { menu, saveMenu, types, removeItem, addMenuItem }

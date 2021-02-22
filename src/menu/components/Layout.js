@@ -39,7 +39,7 @@ const Layout = props => {
 
         }
 
-    }, [saveMenu, menu])
+    }, [saveMenu, menu,menuExpiry])
 
 
 

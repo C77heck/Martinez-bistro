@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
 
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
-import NavLinks from './Navlinks';
 import { useHistory } from 'react-router-dom';
 import { AuthButton } from '../../admin/components/AuthModal';
 import { AuthContext } from '../context/auth-context';

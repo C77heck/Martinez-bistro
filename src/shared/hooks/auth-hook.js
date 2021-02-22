@@ -54,7 +54,7 @@ export const useAuth = () => {
             console.log(err)
         }
         return true;
-    }, [sendRequest]);
+    }, [sendRequest,history]);
 
     //AUTOMATED SINGIN/SIGNOUT BASED ON EXPIRATION TIME. 
     useEffect(() => {

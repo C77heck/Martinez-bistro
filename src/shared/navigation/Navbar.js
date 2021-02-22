@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { Link } from 'react-scroll'
 import { AuthContext } from '../context/auth-context';
 
 import { AdminLinks, Main, Menu } from './Navlinks';

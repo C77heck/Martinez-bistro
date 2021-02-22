@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../../shared/navigation/Navbar';
 import CTAButton from './CTAButton';
 
 

@@ -7,10 +7,8 @@ import {
   Switch
 } from 'react-router-dom';
 
-import LoadingSpinner from './shared/UIElements/LoadingSpinner';
 import LandingPage from './main/page/LandingPage';
 
-import logo from './logo.svg';
 import './App.scss';
 import Navbar from './shared/navigation/Navbar';
 import OpenDrawer from './shared/navigation/OpenDrawer';
@@ -53,7 +51,7 @@ function App() {
     })()
 
 
-  }, [])
+  }, [updateExpiry, sendRequest])
 
   const { menu, saveMenu, types, removeItem, addMenuItem } = useMenu();
   const {

@@ -32,7 +32,7 @@ export const foodTypes = [
 const EditMenu = () => {
 
     const { isLoggedIn } = useContext(AuthContext);
-    const { sendRequest, isLoading, error, clearError } = useHttpClient();
+    const { sendRequest, error, clearError } = useHttpClient();
     const [inputState, inputHandler, isFormValid, setFormData] = useForm({
         name: {
             value: '',

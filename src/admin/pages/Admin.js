@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Link } from 'react-router-dom';
-import { AuthModal } from '../components/AuthModal';
 import EditAboutUs from '../components/EditAboutUs';
 import EditNews from '../components/EditNews';
 import EditOpening from '../components/EditOpening';
