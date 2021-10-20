@@ -12,7 +12,7 @@
     align-items: center;
     position: relative;
     @media screen and (max-width: $desktop) {
-        height: 62vh;
+        height: 74vh;
     }
 
     &__name {
@@ -149,8 +149,6 @@
         bottom: 6rem;
     }
 }
-
-
 
 // ABOUTUS
 .about {
@@ -441,7 +439,6 @@
         border-radius: 50%;
     }
 }
-
 
 .map {
     height: 30rem;

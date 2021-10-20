@@ -50,7 +50,7 @@ const Testimonial = () => {
             <div className='testimonial__left'>
                 <h2 className='heading-secondary'>"{testimonial.quote}"</h2>
                 <h4 className='heading-italic'>Christian Martinez Séf</h4>
-                <p className='paragraph paragraph--testimonial'>{testimonial.text.length > 0 ? testimonial.text :
+                <p className='paragraph paragraph--testimonial pr-4'>{testimonial.text.length > 0 ? testimonial.text :
                     ' egyedi, vendégeink által sokat dicsért ízvilágával igyekszik a gasztronómia szerelmeseinek kedvében járni.Éttermünkben igyekszünk ' +
                     'helyi alapanyagokból, a környékre jellemző ízekkel megismertetni vendégeinket. Büszkék vagyunk arra, hogy konyhánkon a helyben terítékre ' +
                     'hozott vadból frissen, sousvideált és smooker BBQ ételek készülnek. Szezonálisan igyekszünk bemutatni a tájegység ízeit. Leveseket, főételeket' +
