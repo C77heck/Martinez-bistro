@@ -137,8 +137,8 @@ const EditNews = () => {
                 className='modal--news'
                 onSubmit={onSubmitHandler}
             >
-                <div className={'display-flex justify-flex-center flex'}>
-                    <div className={'flex-basis-50'}>
+                <div className={'display-flex justify-content-between flex'}>
+                    <div className={'flex-basis-45'}>
                         <Input
                             id='firsth2'
                             label='Első hír főcíme'
@@ -158,7 +158,7 @@ const EditNews = () => {
                             type='text'
                         />
                     </div>
-                    <div className={'flex-basis-50'}>
+                    <div className={'flex-basis-45'}>
                         <Input
                             id='firstp'
                             label='Első hír szövege'
