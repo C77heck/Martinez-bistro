@@ -1,7 +1,7 @@
 .modal {
   z-index: 100;
   position: fixed;
-  top: 22vh;
+  top: 15vh;
   left: 23vw;
   width: 54vw;
   background: white;
@@ -198,21 +198,19 @@
 
 .modal--news {
   top: 9vh;
-  width: 30vw;
-  left: 35vw;
+  width: 70vw;
+  left: 15vw;
   @media screen and (max-width: $tablet-land) {
-    width: 40vw;
-    left: 30vw;
+    width: 80vw;
+    left: 10vw;
   }
   @media screen and (max-width: $tablet) {
-    width: 50vw;
-    left: 25vw;
+    width: 90vw;
+    left: 5vw;
   }
   @media screen and (max-width: $mobile) {
     overflow: scroll;
     height: 77vh;
-    width: 70vw;
-    left: 15vw;
     top: 4vh;
     z-index: 1001; //to be on top of the navbar button
   }

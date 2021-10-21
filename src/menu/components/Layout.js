@@ -55,7 +55,7 @@ const Layout = props => {
                             <div
                                 key={i._id}
                                 onClick={props.onClick}
-                                className={location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}
+                                className={location.pathname === '/admin/menu' ? 'menu-item-wrapper hover-opacity' : null}
                             >
                                 <div className='food-item'>
                                     <p className='paragraph paragraph--menu'>{i.name}</p>
@@ -83,7 +83,7 @@ const Layout = props => {
                         return (
                             <div
                                 key={i._id}
-                                className={` ${location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}`}
+                                className={` ${location.pathname === '/admin/menu' ? 'menu-item-wrapper hover-opacity' : null}`}
                                 onClick={props.onClick}
                             >
                                 <div className='food-item'>
@@ -114,7 +114,7 @@ const Layout = props => {
                         return (
                             <div
                                 key={i._id}
-                                className={`${location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}`}
+                                className={`${location.pathname === '/admin/menu' ? 'menu-item-wrapper hover-opacity' : null}`}
                                 onClick={props.onClick}
                             >
                                 <div className='food-item'>
@@ -144,7 +144,7 @@ const Layout = props => {
                         return (
                             <div
                                 key={i._id}
-                                className={`${location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}`}
+                                className={`${location.pathname === '/admin/menu' ? 'menu-item-wrapper hover-opacity' : null}`}
                                 onClick={props.onClick}
                             >
                                 <div className='food-item'>
@@ -166,7 +166,7 @@ const Layout = props => {
                         return (
                             <div
                                 key={i._id}
-                                className={`${location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}`}
+                                className={`${location.pathname === '/admin/menu' ? 'menu-item-wrapper hover-opacity' : null}`}
                                 onClick={props.onClick}
                             >
                                 <div className='food-item'>
@@ -188,7 +188,7 @@ const Layout = props => {
                         return (
                             <div
                                 key={i._id}
-                                className={`food-item ${location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}`}
+                                className={`food-item ${location.pathname === '/admin/menu' ? 'menu-item-wrapper hover-opacity' : null}`}
                                 onClick={props.onClick}
                             >
                                 <p className='paragraph paragraph--menu'>{i.name}</p>
@@ -215,7 +215,7 @@ const Layout = props => {
                         return (
                             <div
                                 key={i._id}
-                                className={`${location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}`}
+                                className={`${location.pathname === '/admin/menu' ? 'menu-item-wrapper hover-opacity' : null}`}
                                 onClick={props.onClick}
                             >
                                 <div className='food-item'>
@@ -241,7 +241,7 @@ const Layout = props => {
                         return (
                             <div
                                 key={i._id}
-                                className={` ${location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}`}
+                                className={` ${location.pathname === '/admin/menu' ? 'menu-item-wrapper hover-opacity' : null}`}
                                 onClick={props.onClick}
                             >
                                 <div className='food-item'>
@@ -270,7 +270,7 @@ const Layout = props => {
                     {types.extras && types.extras.map(i => {
                         return (
                             <div
-                                className={`food-item ${location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}`}
+                                className={`food-item ${location.pathname === '/admin/menu' ? 'menu-item-wrapper hover-opacity' : null}`}
                                 key={i._id}
                                 onClick={props.onClick}
                             >
@@ -296,7 +296,7 @@ const Layout = props => {
                         return (
                             <div
                                 key={i._id}
-                                className={`food-item ${location.pathname === '/admin/menu' ? 'menu-item-wrapper' : null}`}
+                                className={`food-item ${location.pathname === '/admin/menu' ? 'menu-item-wrapper hover-opacity' : null}`}
                                 onClick={props.onClick}
                             >
                                 <p className='paragraph paragraph--menu'>{i.name}</p>

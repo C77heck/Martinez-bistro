@@ -146,7 +146,7 @@ const AddItem = props => {
 
             <button
                 onClick={onClickHandler}
-                className='btn--add'
+                className='btn--add cursor-pointer'
             >
                 +
             </button>

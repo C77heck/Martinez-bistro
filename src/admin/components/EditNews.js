@@ -137,38 +137,45 @@ const EditNews = () => {
                 className='modal--news'
                 onSubmit={onSubmitHandler}
             >
-                <Input
-                    id='firsth2'
-                    label='Első hír főcíme'
-                    onInput={inputHandler}
-                    value={inputState.inputs.firsth2.value}
-                    errorText='Az idézetnek minimum 15 és maximum 40 karakter lehet.'
-                    validators={[VALIDATOR_REQUIRE()]}
-                    type='text'
-                />
-                <Input
-                    id='firsth3'
-                    label='Első hír alcíme'
-                    onInput={inputHandler}
-                    value={inputState.inputs.firsth3.value}
-                    errorText='Az leírásnak minimum 100 és maximum 750 karakter lehet.'
-                    validators={[VALIDATOR_REQUIRE()]}
-                    type='text'
-                />
-                <Input
-                    id='firstp'
-                    label='Első hír szövege'
-                    onInput={inputHandler}
-                    value={inputState.inputs.firstp.value}
-                    errorText='Az leírásnak minimum 100 és maximum 750 karakter lehet.'
-                    validators={[
-                        VALIDATOR_REQUIRE(),
-                        VALIDATOR_MAXLENGTH(450),
-                        VALIDATOR_MINLENGTH(100)
-                    ]}
-                    type='text'
-                    element='textarea'
-                />
+                <div className={'display-flex justify-flex-center flex'}>
+                    <div className={'flex-basis-50'}>
+                        <Input
+                            id='firsth2'
+                            label='Első hír főcíme'
+                            onInput={inputHandler}
+                            value={inputState.inputs.firsth2.value}
+                            errorText='Az idézetnek minimum 15 és maximum 40 karakter lehet.'
+                            validators={[VALIDATOR_REQUIRE()]}
+                            type='text'
+                        />
+                        <Input
+                            id='firsth3'
+                            label='Első hír alcíme'
+                            onInput={inputHandler}
+                            value={inputState.inputs.firsth3.value}
+                            errorText='Az leírásnak minimum 100 és maximum 750 karakter lehet.'
+                            validators={[VALIDATOR_REQUIRE()]}
+                            type='text'
+                        />
+                    </div>
+                    <div className={'flex-basis-50'}>
+                        <Input
+                            id='firstp'
+                            label='Első hír szövege'
+                            onInput={inputHandler}
+                            value={inputState.inputs.firstp.value}
+                            errorText='Az leírásnak minimum 100 és maximum 750 karakter lehet.'
+                            validators={[
+                                VALIDATOR_REQUIRE(),
+                                VALIDATOR_MAXLENGTH(450),
+                                VALIDATOR_MINLENGTH(100)
+                            ]}
+                            type='text'
+                            element='textarea'
+                        />
+                    </div>
+                </div>
+
                 <div className='hr-line' />
                 <Input
                     id='secondh2'
@@ -193,6 +200,7 @@ const EditNews = () => {
                     type='text'
                     element='textarea'
                 />
+
                 <Button
                     buttonClass='btn--submit btn--blue'
                     type='submit'
