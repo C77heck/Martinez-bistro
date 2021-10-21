@@ -188,18 +188,6 @@
     }
 }
 
-.hr-line {
-    width: 100%;
-    height: 1.5px;
-    margin: 3rem 0 2rem;
-    box-shadow: 0 1rem 0.8rem #75c22e;
-    background-color: #75c22e;
-}
-
-.pr-4 {
-    padding-right: 1.5rem;
-}
-
 .full-screen {
     min-width: 90vw;
     min-height: 85vh;
@@ -212,26 +200,6 @@
     width: fit-content;
 }
 
-.btn {
-    &--disabled {
-        background: #9e9e9e !important;
-        color: white;
-
-        & span {
-            color: white;
-        }
-    }
-
-    &--see-all {
-        cursor: pointer;
-        transition: all 550ms;
-        cursor: pointer !important;
-
-        &:hover {
-            background-color: white;
-        }
-    }
-}
 .hover-opacity {
     opacity: 1;
     transition: all 190ms ease-in-out;
@@ -241,6 +209,7 @@
         opacity: 0.7;
     }
 }
+
 .hover-scale {
     transform: translateY(0);
     transition: all 190ms ease-in-out;
@@ -248,7 +217,7 @@
 
     &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 8px 0 rgb(0 0 0 / 15%);
+        box-shadow: 0 4px 8px 0 rgb(169, 170, 169);
     }
 
     &:active {
@@ -274,14 +243,18 @@
 }
 
 .hover-lift {
-    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 15%);
+    box-shadow: 0 4px 8px 0 rgb(189, 184, 184);
     transition: all 250ms;
     cursor: pointer !important;
 
     &:hover {
-        box-shadow: 0 9px 11px 0 rgb(0 0 0 / 15%);
+        box-shadow: 0 9px 11px 0 rgba(189, 184, 184, 0.479);
         transform: scale(1.02);
     }
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
 }
 
 @for $i from 1 through 1000 {
@@ -366,18 +339,6 @@
     text-decoration: line-through;
 }
 
-a,
-button,
-input {
-    position: relative;
-    z-index: 11;
-}
-
-.screen-body {
-    min-height: 100vh;
-    min-width: 100vw;
-}
-
 .word-break-word {
     word-break: break-word;
 }
@@ -396,19 +357,6 @@ input {
 
 .uppercase {
     text-transform: uppercase;
-}
-
-.move-right {
-    @media (min-width: 500px) {
-        position: absolute;
-        right: 1rem;
-    }
-}
-
-.no-clear-fix {
-    &::after {
-        content: none;
-    }
 }
 
 .list-style-none {
@@ -441,36 +389,9 @@ input {
     transform: scale(1);
 }
 
-.animate--flickering-btn {
-    animation: flicker 60ms 3;
-}
-
 .clr {
     &--secondary {
         background-color: #eaba6b;
-    }
-}
-
-@keyframes flicker {
-    0% {
-        background-color: #6c6c6c;
-        color: #eaba6b;
-    }
-    20% {
-        background-color: #868383;
-    }
-    20% {
-        background-color: #adaaaa;
-    }
-    60% {
-        background-color: #d0c9c9;
-    }
-    80% {
-        background-color: #7f7e7e;
-    }
-    100% {
-        background-color: #4c4c4c;
-        color: black;
     }
 }
 

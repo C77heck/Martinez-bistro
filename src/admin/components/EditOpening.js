@@ -286,7 +286,7 @@ const EditOpening = () => {
             <AuthModal>
                 <div>
                     <button
-                        className='admin__opening'
+                        className='admin__opening cursor-pointer'
                         onClick={!isLoggedIn ? undefined : modalHandler}
                     >
                         Nyitás
