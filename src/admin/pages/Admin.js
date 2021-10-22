@@ -2,7 +2,7 @@ import React from 'react';
 import EditAboutUs from '../components/EditAboutUs';
 import EditNews from '../components/EditNews';
 import EditOpening from '../components/EditOpening';
-import { MenuButton } from '../components/MenuButton';
+import MenuButton from '../components/MenuButton';
 
 const Admin = () => {
 
