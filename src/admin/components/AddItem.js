@@ -15,7 +15,7 @@ import AddModal from './AddModal';
 
 const AddItem = props => {
 
-    const { token } = useContext(AuthContext);
+    const { token, isLoggedIn } = useContext(AuthContext);
     const { addMenuItem } = useContext(MenuContext);
     const { sendRequest, error, clearError } = useHttpClient();
     const [show, setShow] = useState(false);
@@ -145,7 +145,7 @@ const AddItem = props => {
             </AddModal>
 
             <button
-                onClick={onClickHandler}
+                onClick={isLoggedIn ? onClickHandler : undefined}
                 className='btn--add cursor-pointer'
             >
                 +
