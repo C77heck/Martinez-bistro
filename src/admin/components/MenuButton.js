@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../shared/context/auth-context';
 import AuthModal from './AuthModal';
 
-export const MenuButton = (props) => {
+const MenuButton = (props) => {
     const { token, isLoggedIn } = useContext(AuthContext);
 
     return <div>
@@ -20,3 +20,5 @@ export const MenuButton = (props) => {
 
 
 }
+
+export default MenuButton;
