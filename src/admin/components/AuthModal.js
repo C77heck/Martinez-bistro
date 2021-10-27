@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Redirect } from 'react-router';
 import { AuthContext } from '../../shared/context/auth-context';
 import Input from '../../shared/form-elements/Input';
 import { useForm } from '../../shared/hooks/form-hook';
@@ -6,6 +7,7 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
 import MessageModal from '../../shared/UIElements/MessageModal';
 import Modal from '../../shared/UIElements/Modal';
+import { redirect } from '../../utility/helpers';
 import { VALIDATOR_REQUIRE } from '../../utility/validators';
 
 
@@ -121,11 +123,16 @@ export const AuthButton = props => {
 
     const signoutHandler = async e => {
         e.preventDefault();
+        console.log(userId, process.env.REACT_APP_SIGNOUT);
         try {
-            const responseData = await sendRequest(process.env.REACT_APP_SIGNOUT + userId)
+            const responseData = await sendRequest(`${process.env.REACT_APP_SIGNOUT}/${userId}`)
             signout()
+            redirect('/admin');
+
             setMessage(responseData.message)
         } catch (err) {
+            setMessage(err)
+            console.log(err)
         }
     }
     return (
