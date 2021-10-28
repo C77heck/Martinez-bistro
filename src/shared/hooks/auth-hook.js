@@ -60,15 +60,14 @@ export const useAuth = () => {
     //AUTOMATED SINGIN/SIGNOUT BASED ON EXPIRATION TIME. 
     useEffect(() => {
         const storedData = JSON.parse(localStorage.getItem('userData'));
-        signin(storedData, new Date(storedData.expiration))
         // TODO -> review this in the future.
-        // if (
-        //     storedData &&
-        //     storedData.token &&
-        //     storedData.expiration > new Date().getTime()
-        // ) {
-        //     signin(storedData, new Date(storedData.expiration))
-        // }
+        if (
+            storedData &&
+            storedData.token &&
+            storedData.expiration > new Date().getTime()
+        ) {
+            signin(storedData, new Date(storedData.expiration))
+        }
     }, [signin]);
 
     // TODO -> review this in the future.

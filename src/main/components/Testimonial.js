@@ -24,25 +24,18 @@ const Testimonial = () => {
         window.addEventListener("resize", resizeWatcher);
     })
     useEffect(() => {
-        const storedData = [JSON.parse(localStorage.getItem('testimonial'))];
-        if (storedData[0] !== null && !testimonialExpiry) {
-            setTestimonial(storedData[0]);
-        } else {
-            (async () => {
-                try {
-                    const responseData = await sendRequest(process.env.REACT_APP_QUOTE)
-                    setTestimonial({
-                        quote: responseData.testimonial.quote,
-                        text: responseData.testimonial.text
-                    })
-                    localStorage.setItem('testimonial', JSON.stringify(responseData.testimonial));
-                } catch (err) {
+        (async () => {
+            try {
+                const responseData = await sendRequest(process.env.REACT_APP_QUOTE)
+                setTestimonial({
+                    quote: responseData.testimonial.quote,
+                    text: responseData.testimonial.text
+                })
+                localStorage.setItem('testimonial', JSON.stringify(responseData.testimonial));
+            } catch (err) {
 
-                }
-
-            })()
-        }
-
+            }
+        })()
     }, [testimonialExpiry])
 
     return (
