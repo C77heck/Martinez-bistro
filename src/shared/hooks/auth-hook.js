@@ -21,6 +21,7 @@ export const useAuth = () => {
 
         setToken(userData.token);
         setUserId(userData.userId);
+        // TODO -> will need redis for this
         const tokenExpiration = expiration || new Date().getTime() + 1000 * 60 * 30;// half an hour expiration time
         setExpiration(tokenExpiration);
 
@@ -54,30 +55,31 @@ export const useAuth = () => {
             console.log(err)
         }
         return true;
-    }, [sendRequest,history]);
+    }, [sendRequest, history]);
 
     //AUTOMATED SINGIN/SIGNOUT BASED ON EXPIRATION TIME. 
     useEffect(() => {
         const storedData = JSON.parse(localStorage.getItem('userData'));
-        if (
-            storedData &&
-            storedData.token &&
-            storedData.expiration > new Date().getTime()
-        ) {
-            signin(storedData, new Date(storedData.expiration))
-        }
+        signin(storedData, new Date(storedData.expiration))
+        // TODO -> review this in the future.
+        // if (
+        //     storedData &&
+        //     storedData.token &&
+        //     storedData.expiration > new Date().getTime()
+        // ) {
+        //     signin(storedData, new Date(storedData.expiration))
+        // }
     }, [signin]);
 
-
-    useEffect(() => {
-        if (token && expiration) {
-
-            const remainingTime = expiration - new Date().getTime();
-            timer = setTimeout(signout, remainingTime)
-        } else {
-            clearTimeout(timer);
-        }
-    }, [token, signout, expiration, userId])
+    // TODO -> review this in the future.
+    // useEffect(() => {
+    //     if (token && expiration) {
+    //         const remainingTime = expiration - new Date().getTime();
+    //         timer = setTimeout(signout, remainingTime)
+    //     } else {
+    //         clearTimeout(timer);
+    //     }
+    // }, [token, signout, expiration, userId])
 
     return { signin, signout, token, userId, drawer, disableDrawer, enableDrawer }
 }

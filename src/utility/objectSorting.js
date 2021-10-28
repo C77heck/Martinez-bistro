@@ -11,3 +11,13 @@ export const objectSorting = (array) => {
     });
     return res;
 }
+
+
+export const assignIdentifiers = (list) => {
+
+    return list.map((item, index) => {
+        item.identifier = `item${index}`;
+
+        return item;
+    })
+}

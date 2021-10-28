@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import { objectSorting } from '../../utility/objectSorting';
+import { objectSorting, assignIdentifiers } from '../../utility/objectSorting';
 
 
 
@@ -26,27 +26,31 @@ export const useMenu = () => {
         localStorage.setItem('menu', JSON.stringify(menu))
     }, [])
 
+    const getAndClearStorage = (name) => {
+        const data = JSON.parse(localStorage.getItem(name));
+        localStorage.removeItem(name);
 
+        return data;
+    }
     const addMenuItem = useCallback((item) => {
-
-        const storedMenu = JSON.parse(localStorage.getItem('menu'));
+        const storedMenu = getAndClearStorage('menu');
         storedMenu.push(item);
-        setMenu(storedMenu);
+        setMenu(assignIdentifiers(storedMenu));
         setTypes(objectSorting(storedMenu));
         localStorage.setItem('menu', JSON.stringify(storedMenu))
-    },[]);
+    }, []);
 
 
     const removeItem = useCallback((identifier) => {
         //filter out the item being deleted
         //perhaps split these below.
         const storedMenu = JSON.parse(localStorage.getItem('menu'))
-        .filter(i => i.identifier !== identifier);
-        
+            .filter(i => i.identifier !== identifier);
+
         setMenu(storedMenu)
         setTypes(objectSorting(storedMenu))
         localStorage.setItem('menu', JSON.stringify(storedMenu))
-    },[])
+    }, [])
 
 
     return { menu, saveMenu, types, removeItem, addMenuItem }
