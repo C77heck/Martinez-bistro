@@ -68,7 +68,6 @@ const EditAboutUs = () => {
     const onSubmitHandler = async e => {
         e.preventDefault();
         try {
-         
             const responseData = await sendRequest(
                 process.env.REACT_APP_QUOTE,
                 'PATCH',

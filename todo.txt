@@ -4,10 +4,6 @@ need to clear down the design a bit.
 restrict the admin completely so that we force user to login before being able to do anything. also 
 figure an additional protective layer just in case.
 
-fix the backend. check where is it and how the deployment is done.
-
-check why the newly added items not giving back data. 
-
 add spinners
 
 add more error handling.

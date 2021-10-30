@@ -30,21 +30,15 @@ const AboutUs = () => {
 
     // setting the story either from local storage or fetching it.
     useEffect(() => {
-        const storedStories = JSON.parse(localStorage.getItem('stories')) || [];
+        (async () => {
+            try {
+                const responseData = await sendRequest(process.env.REACT_APP_STORIES);
+                setStories(responseData.story)
+                localStorage.setItem('stories', JSON.stringify(responseData.story));
+            } catch (err) {
 
-        if (storedStories.length > 0 && !storyExpiry) {
-            setStories(storedStories);
-        } else {
-            (async () => {
-                try {
-                    const responseData = await sendRequest(process.env.REACT_APP_STORIES);
-                    setStories(responseData.story)
-                    localStorage.setItem('stories', JSON.stringify(responseData.story));
-                } catch (err) {
-
-                }
-            })()
-        }
+            }
+        })()
 
     }, [storyExpiry])
 
