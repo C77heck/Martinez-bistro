@@ -60,7 +60,7 @@ const Layout = props => {
                             >
                                 <div className='food-item'>
                                     <p className='paragraph paragraph--menu'>{i.name}</p>
-                                    <p className='paragraph paragraph--menu'>{i.price} Ft/adag</p>
+                                    <p className='paragraph paragraph--menu white-space-nowrap'>{i.price} Ft/adag</p>
                                     {
                                         location.pathname === '/admin/menu' && <div
                                             id={i.identifier}
@@ -89,7 +89,7 @@ const Layout = props => {
                             >
                                 <div className='food-item'>
                                     <p className='paragraph paragraph--menu'>{i.name}</p>
-                                    <p className='paragraph paragraph--menu'>{i.price} Ft/adag</p>
+                                    <p className='paragraph paragraph--menu white-space-nowrap'>{i.price} Ft/adag</p>
                                     {
                                         location.pathname === '/admin/menu' && <div
                                             id={i.identifier}
@@ -120,7 +120,7 @@ const Layout = props => {
                             >
                                 <div className='food-item'>
                                     <p className='paragraph paragraph--menu'>{i.name}</p>
-                                    <p className='paragraph paragraph--menu'>{i.price} Ft/adag</p>
+                                    <p className='paragraph paragraph--menu white-space-nowrap'>{i.price} Ft/adag</p>
                                     {
                                         location.pathname === '/admin/menu' && <div
                                             id={i.identifier}
@@ -150,7 +150,7 @@ const Layout = props => {
                             >
                                 <div className='food-item'>
                                     <p className='paragraph paragraph--menu'>{i.name}</p>
-                                    <p className='paragraph paragraph--menu'>{i.price} Ft/adag</p>
+                                    <p className='paragraph paragraph--menu white-space-nowrap'>{i.price} Ft/adag</p>
                                     {
                                         location.pathname === '/admin/menu' && <div
                                             id={i.identifier}
@@ -172,7 +172,7 @@ const Layout = props => {
                             >
                                 <div className='food-item'>
                                     <p className='paragraph paragraph--menu'>{i.name}</p>
-                                    <p className='paragraph paragraph--menu'>{i.price} Ft/adag</p>
+                                    <p className='paragraph paragraph--menu white-space-nowrap'>{i.price} Ft/adag</p>
                                     {
                                         location.pathname === '/admin/menu' && <div
                                             id={i.identifier}
@@ -193,7 +193,7 @@ const Layout = props => {
                                 onClick={props.onClick}
                             >
                                 <p className='paragraph paragraph--menu'>{i.name}</p>
-                                <p className='paragraph paragraph--menu'>{i.price} Ft/adag</p>
+                                <p className='paragraph paragraph--menu white-space-nowrap'>{i.price} Ft/adag</p>
                                 {
                                     location.pathname === '/admin/menu' && <div
                                         id={i.identifier}
@@ -221,7 +221,7 @@ const Layout = props => {
                             >
                                 <div className='food-item'>
                                     <p className='paragraph paragraph--menu'>{i.name}</p>
-                                    <p className='paragraph paragraph--menu'>{i.price} Ft/adag</p>
+                                    <p className='paragraph paragraph--menu white-space-nowrap'>{i.price} Ft/adag</p>
                                     {
                                         location.pathname === '/admin/menu' && <div
                                             id={i.identifier}
@@ -247,7 +247,7 @@ const Layout = props => {
                             >
                                 <div className='food-item'>
                                     <p className='paragraph paragraph--menu'>{i.name}</p>
-                                    <p className='paragraph paragraph--menu'>{i.price} Ft/adag</p>
+                                    <p className='paragraph paragraph--menu white-space-nowrap'>{i.price} Ft/adag</p>
                                     {
                                         location.pathname === '/admin/menu' && <div
                                             id={i.identifier}
@@ -276,7 +276,7 @@ const Layout = props => {
                                 onClick={props.onClick}
                             >
                                 <p className='paragraph paragraph--menu'>{i.name}</p>
-                                <p className='paragraph paragraph--menu'>{i.price} Ft/adag</p>
+                                <p className='paragraph paragraph--menu white-space-nowrap'>{i.price} Ft/adag</p>
                                 {
                                     location.pathname === '/admin/menu' && <div
                                         id={i.identifier}
@@ -301,7 +301,7 @@ const Layout = props => {
                                 onClick={props.onClick}
                             >
                                 <p className='paragraph paragraph--menu'>{i.name}</p>
-                                <p className='paragraph paragraph--menu'>{i.price} Ft/adag</p>
+                                <p className='paragraph paragraph--menu white-space-nowrap'>{i.price} Ft/adag</p>
                                 {
                                     location.pathname === '/admin/menu' && <div
                                         id={i.identifier}
