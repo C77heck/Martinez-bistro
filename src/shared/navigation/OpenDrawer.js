@@ -53,7 +53,7 @@ const OpenDrawer = () => {
                     <Link
                         to='/menu'
                     >
-                        Étlapunkat
+                        Étlapunk
                 </Link>
                 </li>
                 <li className='navigation__item'>
