@@ -1,3 +1,5 @@
+import { Button } from "react-scroll";
+
 export const ItemCard = props => {
     const { name, description, price } = props;
     return <div className='display-flex food_cart'>
@@ -7,8 +9,11 @@ export const ItemCard = props => {
         <div className='food_details'>
             <h3 className='fs-17 fw-800'>{name}</h3>
             <p className='fs-15'>{description}</p>
-            <div className='hr--light mt-2'>
-                <h3 className='fs-17 fw-800 text-align-right'>{price}</h3>
+            <div className='hr--light mt-1 display-flex justify-content-between align-items-center fix-height-40'>
+                <h3 className='fs-17 fw-800 text-align-right'>{price} Ft</h3>
+                <button className='buy-button display-flex align-items-center justify-content-center'>
+                    <span>Kosárba</span>
+                </button>
             </div>
         </div>
     </div>

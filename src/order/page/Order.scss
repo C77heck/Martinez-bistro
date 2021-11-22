@@ -3,11 +3,40 @@
     padding: 10px;
     border: 2px var(--color-border) solid;
     border-radius: 4px;
-
+    background-color: var(--color-light);
     &__image {
         overflow: hidden;
         border: 1px var(--color-primary) solid;
         border-radius: 4px;
         margin-right: 2rem;
+
+        & img {
+            max-width: 100%;
+        }
+    }
+}
+
+.buy-button {
+    border: none;
+    border-radius: 10px;
+    background-color: var(--color-border);
+    color: var(--color-light);
+    transition: all 200ms;
+    outline: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 98px;
+    height: 30px;
+    align-self: flex-end;
+    & span {
+        font-weight: 800;
+    }
+    &:hover {
+        background-color: var(--color-border-light);
+        color: var(--color-border);
+    }
+
+    &:active {
+        transform: translateX(3px);
     }
 }

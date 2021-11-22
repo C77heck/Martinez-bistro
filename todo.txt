@@ -7,3 +7,10 @@ figure an additional protective layer just in case.
 add spinners
 
 add more error handling.
+
+
+ordering:
+
+1. need the styling for all items even the ones with no description and such to be set
+2. add button to implement and a basket as well. checkout to do. where we will collect their data.
+3. we

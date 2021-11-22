@@ -12,13 +12,14 @@ export const useHttpClient = () => {
         const httpAbortCtrll = new AbortController();
         activeHttpRequests.current.push(httpAbortCtrll);
         try {
+            setIsLoading(true)
+
             const response = await fetch(url, {
                 method,
                 body,
                 headers,
                 signal: httpAbortCtrll.signal
             });
-            setIsLoading(true)
             const responseData = await response.json();
 
             activeHttpRequests.current = activeHttpRequests.current.filter(reqCtrl => reqCtrl !== httpAbortCtrll)
@@ -30,8 +31,7 @@ export const useHttpClient = () => {
             return responseData;
         } catch (err) {
             setError(err.message)
-            setIsLoading(false)
-            throw err;
+            setIsLoading(false);
         }
     }, [])
 
