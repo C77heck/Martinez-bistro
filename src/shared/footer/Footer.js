@@ -33,7 +33,7 @@ const Footer = () => {
 
                 <ul className='footer__list'>
                     <li className='footer__list__items' ><Home /> Kossuth Lajos tér 13, 7191</li>
-                    <li className='footer__list__items' ><Email />EMAIL@EMAIL.COM</li>
+                    <li className='footer__list__items' ><Email />martinezchristian1010@gmail.com</li>
                     <li className='footer__list__items' >Copyright &copy; by El Poco Loco</li>
                 </ul>
             </div>

@@ -17,13 +17,10 @@ const Layout = props => {
     useEffect(() => {
         const storedMenu = JSON.parse(localStorage.getItem('menu')) || [];
         if (menu.length > 0) {// to map items when the admin changes things like type
-            console.log(' if');
             saveMenu(menu)
         } else if (storedMenu.length > 0 && !menuExpiry) {
-            console.log('else if');
             saveMenu(storedMenu)
         } else {
-            console.log('else ');
             (async () => {
                 try {
                     const responseData = await sendRequest(process.env.REACT_APP_MENU);

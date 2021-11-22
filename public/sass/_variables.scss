@@ -3,11 +3,12 @@
     --color-primary: #eebd35;
     --color-primary-light: #d0a217cc;
     --color-primary-dark: #cc6238;
-
+    --color-light: rgb(219, 213, 213);
 
     --color-primary-contrast: #a9e0c6cc;
 
-    --color-border-light: #e1551e7c;
+    --color-border: #e1551e7c;
+    --color-border-light: hsla(17, 45%, 70%, 0.486);
 
     --color-text-lighter: #e2ca73;
     --color-text-light: #376622;
@@ -16,9 +17,6 @@
     --color-text-admin: #225304;
 
     --color-navbar: #158900;
-
-
-
 
     --color-footer-light: #e1551e;
     --color-footer-dark: #175633;
@@ -49,7 +47,6 @@ $color-mobile-dark: #ff5933cc;
 $color-transparent-light: rgba(228, 241, 45, 0.76);
 $color-transparent-dark: rgba(218, 172, 21, 0.82);
 
-
 // @MEDIA
 $desktop-lg: 112.5em; // 1800
 $desktop: 100em; // 1600
@@ -61,5 +58,3 @@ $tablet-sm: 48.5em; //776
 $mobile: 37.5em; // 600
 $mobile-sm: 31.25em; // 500
 $mobile-extra-sm: 24em; // 360
-
-

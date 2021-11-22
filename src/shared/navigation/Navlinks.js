@@ -4,17 +4,26 @@ import { NavLink } from 'react-router-dom';
 import { Link } from 'react-scroll';
 import { AuthButton } from '../../admin/components/AuthModal';
 
-export const Main = () => {
-
+export const Main = (props) => {
+    const { isMainPage } = props;
+    console.log(props, isMainPage);
     return (
         <ul className='navigation__list'>
-            <li className='navigation__item'>
-                <NavLink
-                    to='/menu'
-                >
-                    Étlapunk
+            {isMainPage && <li className='navigation__item'>
+                <NavLink to='/menu'>
+                    Étlap
                 </NavLink>
-            </li>
+            </li>}
+            {isMainPage && <li className='navigation__item'>
+                <NavLink to='/order'>
+                    Kiszállítás
+                </NavLink>
+            </li>}
+            {!isMainPage && <li className='navigation__item'>
+                <NavLink to='/'>
+                    Főoldal
+                </NavLink>
+            </li>}
             <li className='navigation__item'>
                 <Link
                     to='footer'
@@ -48,7 +57,7 @@ export const Main = () => {
                     Rólunk
                 </Link>
             </li>
-        </ul>
+        </ul >
     )
 }
 
@@ -56,10 +65,13 @@ export const Menu = () => {
     return (
         <ul className='navigation__list'>
             <li className='navigation__item'>
-                <NavLink
-                    to='/'
-                >
+                <NavLink to='/'>
                     Főoldal
+                </NavLink>
+            </li>
+            <li className='navigation__item'>
+                <NavLink to='/order'>
+                    Kiszállítás
                 </NavLink>
             </li>
             <li className='navigation__item'>

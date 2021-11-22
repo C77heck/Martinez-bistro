@@ -22,6 +22,7 @@ import { AuthContext } from './shared/context/auth-context';
 import { ExpiryContext } from './shared/context/expiry-context';
 import { useExpiry } from './shared/hooks/expiry-hook';
 import { useHttpClient } from './shared/hooks/http-hook';
+import { Order } from './order/page/Order';
 
 
 function App() {
@@ -44,7 +45,7 @@ function App() {
         fetch fresher data if needed */
         const responseData = await sendRequest(process.env.REACT_APP_EXPIRY)
         updateExpiry(responseData.expiries, storedExpiry)
-       
+
       } catch (err) {
 
       }
@@ -78,7 +79,11 @@ function App() {
           <OpenDrawer />
           <Menu />
         </Route>
-
+        <Route path='/order' exact>
+          <Navbar className='navigation--scrolled' />
+          <OpenDrawer />
+          <Order />
+        </Route>
         <Route path='/admin' exact>
           <Navbar className='navigation--scrolled' />
           <OpenDrawer />

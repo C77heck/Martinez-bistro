@@ -50,14 +50,13 @@ const OpenDrawer = () => {
         if (location.pathname === '/') {
             return (<React.Fragment>
                 <li className='navigation__item'>
-                    <Link
-                        to='/menu'
-                    >
-                        Étlapunk
-                </Link>
+                    <Link to='/menu'>Étlapunk</Link>
                 </li>
                 <li className='navigation__item'>
                     <a href='#footer'>Kapcsolat</a>
+                </li>
+                <li className='navigation__item'>
+                    <Link to='/order'>Kiszállítás</Link>
                 </li>
                 <li className='navigation__item'>
                     <a href='#find-us'>Nyitva tartás</a>

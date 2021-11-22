@@ -32,12 +32,15 @@ const Navbar = props => {
 
     const locations = () => {
         if (location.pathname === '/') {
-            return <Main />
+            return <Main isMainPage={true} />
         } else if (location.pathname === '/menu') {
             return <Menu />
         } else if (location.pathname.match('/admin')) {
             return <AdminLinks />
+        } else if (location.pathname === '/order') {
+            return <Main isMainPage={false} />
         }
+
     }
     return (
         <div

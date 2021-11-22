@@ -190,7 +190,7 @@
 
 .full-screen {
     min-width: 90vw;
-    min-height: 85vh;
+    min-height: 120vh;
 }
 .height-auto {
     height: auto;
@@ -309,6 +309,47 @@
     .#{w- + $i} {
         width: $i * 1% !important;
     }
+
+    .#{pb- + $i} {
+        padding-bottom: $i + rem !important;
+    }
+    .#{pt- + $i} {
+        padding-top: $i + rem !important;
+    }
+
+    .#{p- + $i} {
+        padding: $i + rem !important;
+    }
+
+    .#{px- + $i} {
+        padding-right: $i + rem !important;
+        padding-left: $i + rem !important;
+    }
+    .#{py- + $i} {
+        padding-top: $i + rem !important;
+        padding-bottom: $i + rem !important;
+    }
+
+    .#{mb- + $i} {
+        margin-bottom: $i + rem !important;
+    }
+    .#{mt- + $i} {
+        margin-top: $i + rem !important;
+    }
+
+    .#{m- + $i} {
+        margin: $i + rem !important;
+    }
+
+    .#{mx- + $i} {
+        margin-right: $i + rem !important;
+        margin-left: $i + rem !important;
+    }
+    .#{my- + $i} {
+        margin-top: $i + rem !important;
+        margin-bottom: $i + rem !important;
+    }
+
     .#{w-sm- + $i} {
         width: 100%;
         @media (min-width: 500px) {
@@ -432,4 +473,14 @@
 }
 .white-space-nowrap {
     white-space: nowrap;
+}
+
+.hr {
+    &--light {
+        border-top: 1px var(--color-border-light) solid;
+    }
+
+    &--dark {
+        border-top: 1px var(--color-border) solid;
+    }
 }
