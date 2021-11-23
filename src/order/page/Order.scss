@@ -40,3 +40,44 @@
         transform: translateX(3px);
     }
 }
+
+.grid-width {
+    max-width: 1200px;
+}
+
+.order-details {
+    background-color: #fcfdfb;
+    border: 2px solid var(--color-border);
+    border-radius: 4px;
+    padding: 1rem;
+    position: sticky;
+    top: 12rem;
+    margin-top: 6rem;
+}
+
+.basket-header {
+    background-color: #dbd8d8;
+}
+.order-button {
+    border: none;
+    border-radius: 10px;
+    background-color: var(--color-primary);
+    color: var(--color-lighter);
+    transition: all 200ms;
+    outline: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 198px;
+    height: 40px;
+    align-self: flex-end;
+    & span {
+        font-weight: 800;
+    }
+    &:hover {
+        opacity: 0.7;
+    }
+
+    &:active {
+        transform: translateY(3px);
+    }
+}

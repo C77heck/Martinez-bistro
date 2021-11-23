@@ -130,7 +130,7 @@ function App() {
             removeItem: removeItem
           }}
         >
-          <main><div className='center'>{routes}</div></main>
+          <main><div className=''>{routes}</div></main>
         </MenuContext.Provider>
       </AuthContext.Provider>
     </ExpiryContext.Provider>
