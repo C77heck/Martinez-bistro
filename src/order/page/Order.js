@@ -10,7 +10,6 @@ import { OrderDetails } from "../components/OrderDetails";
 
 export const Order = props => {
     const { types, menu, saveMenu } = useContext(MenuContext);
-    const { location } = useHistory();
     const { sendRequest, isLoading } = useHttpClient();
     const { menuExpiry } = useContext(ExpiryContext);
 
@@ -43,7 +42,7 @@ export const Order = props => {
             <div>
                 <h1 className='fs-28'>Étel Rendelés</h1>
                 <div className='max-width-600'>
-                    {menu.map(m => <ItemCard menuItem={m} />)}
+                    {menu.map(m => <ItemCard key={m._id} menuItem={m} />)}
                 </div>
             </div>
             <div className='min-width-400 display-flex justify-content-center'>

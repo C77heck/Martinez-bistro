@@ -58,7 +58,6 @@ const EditMenu = () => {
     const { token } = useContext(AuthContext);
     const onClickHandler = e => {
         setShow(true);
-        console.log(menu, e.target.id);
         menu.map(i => {
             if (i.identifier === e.target.id) {
                 setFormData({

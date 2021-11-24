@@ -6,7 +6,7 @@ import { AuthButton } from '../../admin/components/AuthModal';
 
 export const Main = (props) => {
     const { isMainPage } = props;
-    console.log(props, isMainPage);
+
     return (
         <ul className='navigation__list'>
             {isMainPage && <li className='navigation__item'>

@@ -66,7 +66,7 @@ function App() {
     enableDrawer
   } = useAuth();
 
-  const { add, remove, addedItems } = useOrder();
+  const { add, remove, addedItems, totalPrice } = useOrder();
 
 
 
@@ -108,6 +108,7 @@ function App() {
     <OrderContext.Provider
       value={{
         addedItems: addedItems,
+        totalPrice: totalPrice,
         add: add,
         remove: remove,
       }}

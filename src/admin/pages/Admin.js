@@ -8,7 +8,6 @@ import MenuButton from '../components/MenuButton';
 const Admin = () => {
     const [isLoading, setIsLoading] = useState(false);
     const getData = (val) => {
-        console.log(val);
         setIsLoading(val);
     }
     return (

@@ -1,22 +1,41 @@
-import { useCallback, useState } from "react";
+import { useState, useEffect } from "react";
 
 export const useOrder = () => {
     const [addedItems, setAddedItems] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
+
+    const calcTotal = (items) => {
+        if (!items.length) {
+            return 0;
+        }
+
+        if (items.lenght === 1) {
+            return parseFloat(items[0].totalPrice);
+        }
+        console.log(items.map(i => i.totalPrice));
+        return items.map(i => parseFloat(i.totalPrice)).reduce((a, b) => a + b);
+    }
+
+    useEffect(() => {
+        console.log('useEffect fired', addedItems, calcTotal(addedItems));
+        setTotalPrice(calcTotal(addedItems));
+    }, [addedItems])
 
     // TODO -> Will have to merge items that belong together. and only change the number.
     const add = (item) => {
-        const amontAdded = { ...item, amount: 1 };
+        const amountAdded = { ...item, amount: 1, totalPrice: parseFloat(item.price) };
         let alreadExists = false;
         const mappedItems = addedItems.map(i => {
-            if (i._id === amontAdded._id) {
+            if (i._id === amountAdded._id) {
                 alreadExists = true;
                 i.amount += 1;
             }
+            i.totalPrice = parseFloat(i.price) * i.amount;
 
             return i;
         })
 
-        setAddedItems(alreadExists ? mappedItems : [...addedItems, amontAdded])
+        setAddedItems(alreadExists ? mappedItems : [...addedItems, amountAdded])
     };
 
     const remove = (item) => {
@@ -27,6 +46,7 @@ export const useOrder = () => {
                 isZeroAmount = i.amount < 2;
                 i.amount -= 1;
             }
+            i.totalPrice = parseFloat(i.price) * i.amount;
 
             return i;
         })
@@ -34,5 +54,5 @@ export const useOrder = () => {
         setAddedItems(isZeroAmount ? mappedItems.filter(i => i._id !== item._id) : mappedItems);
     };
 
-    return { addedItems, add, remove };
+    return { addedItems, totalPrice, add, remove };
 };

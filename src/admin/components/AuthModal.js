@@ -123,7 +123,6 @@ export const AuthButton = props => {
 
     const signoutHandler = async e => {
         e.preventDefault();
-        console.log(userId, process.env.REACT_APP_SIGNOUT);
         try {
             const responseData = await sendRequest(`${process.env.REACT_APP_SIGNOUT}/${userId}`)
             signout()
