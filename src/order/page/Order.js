@@ -43,7 +43,7 @@ export const Order = props => {
             <div>
                 <h1 className='fs-28'>Étel Rendelés</h1>
                 <div className='max-width-600'>
-                    {menu.map(i => <ItemCard name={i.name} description={i.description} price={i.price} />)}
+                    {menu.map(m => <ItemCard menuItem={m} />)}
                 </div>
             </div>
             <div className='min-width-400 display-flex justify-content-center'>

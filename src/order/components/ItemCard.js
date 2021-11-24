@@ -1,7 +1,11 @@
-import { Button } from "react-scroll";
+import { useContext } from 'react';
+import { OrderContext } from '../../shared/context/order-context';
 
 export const ItemCard = props => {
-    const { name, description, price } = props;
+    const { name, description, price } = props.menuItem;
+    const { add } = useContext(OrderContext);
+
+
     return <div className='display-flex food_cart'>
         <div className='food_cart__image max-height-122 fix-width-150'>
             <img src='/img/food2-mobile.jpg' alt='étel kép' />
@@ -11,7 +15,10 @@ export const ItemCard = props => {
             <p className='fs-15'>{description}</p>
             <div className='hr--light mt-1 display-flex justify-content-between align-items-center fix-height-40'>
                 <h3 className='fs-17 fw-800 text-align-right'>{price} Ft</h3>
-                <button className='buy-button display-flex align-items-center justify-content-center'>
+                <button
+                    className='buy-button display-flex align-items-center justify-content-center'
+                    onClick={() => add(props.menuItem)}
+                >
                     <span>Kosárba</span>
                 </button>
             </div>

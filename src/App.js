@@ -6,9 +6,7 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom';
-
 import LandingPage from './main/page/LandingPage';
-
 import './App.scss';
 import Navbar from './shared/navigation/Navbar';
 import OpenDrawer from './shared/navigation/OpenDrawer';
@@ -20,7 +18,9 @@ import { MenuContext } from './shared/context/menu-context';
 import { useAuth } from './shared/hooks/auth-hook';
 import { AuthContext } from './shared/context/auth-context';
 import { ExpiryContext } from './shared/context/expiry-context';
+import { OrderContext } from './shared/context/order-context';
 import { useExpiry } from './shared/hooks/expiry-hook';
+import { useOrder } from './shared/hooks/order-hook';
 import { useHttpClient } from './shared/hooks/http-hook';
 import { Order } from './order/page/Order';
 
@@ -65,8 +65,12 @@ function App() {
     disableDrawer,
     enableDrawer
   } = useAuth();
-  let routes;
-  routes = (
+
+  const { add, remove, addedItems } = useOrder();
+
+
+
+  const routes = (
     <Router>
       <Switch>
         <Route path='/' exact>
@@ -101,40 +105,48 @@ function App() {
   )
 
   return (
-    <ExpiryContext.Provider
+    <OrderContext.Provider
       value={{
-        menuExpiry: menuExpiry,
-        testimonialExpiry: testimonialExpiry,
-        openingExpiry: openingExpiry,
-        storyExpiry: storyExpiry,
-        updateExpiry: updateExpiry
-      }}>
-      <AuthContext.Provider
+        addedItems: addedItems,
+        add: add,
+        remove: remove,
+      }}
+    >
+      <ExpiryContext.Provider
         value={{
-          userId: userId,
-          token: token,
-          drawer: drawer,
-          isLoggedIn: !!token,
-          signin: signin,
-          signout: signout,
-          enableDrawer: enableDrawer,
-          disableDrawer: disableDrawer
+          menuExpiry: menuExpiry,
+          testimonialExpiry: testimonialExpiry,
+          openingExpiry: openingExpiry,
+          storyExpiry: storyExpiry,
+          updateExpiry: updateExpiry
         }}
       >
-        <MenuContext.Provider
+        <AuthContext.Provider
           value={{
-            menu: menu,
-            types: types,
-            saveMenu: saveMenu,
-            addMenuItem: addMenuItem,
-            removeItem: removeItem
+            userId: userId,
+            token: token,
+            drawer: drawer,
+            isLoggedIn: !!token,
+            signin: signin,
+            signout: signout,
+            enableDrawer: enableDrawer,
+            disableDrawer: disableDrawer
           }}
         >
-          <main><div className=''>{routes}</div></main>
-        </MenuContext.Provider>
-      </AuthContext.Provider>
-    </ExpiryContext.Provider>
-
+          <MenuContext.Provider
+            value={{
+              menu: menu,
+              types: types,
+              saveMenu: saveMenu,
+              addMenuItem: addMenuItem,
+              removeItem: removeItem
+            }}
+          >
+            <main><div className=''>{routes}</div></main>
+          </MenuContext.Provider>
+        </AuthContext.Provider>
+      </ExpiryContext.Provider>
+    </OrderContext.Provider>
   );
 }
 

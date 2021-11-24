@@ -1,11 +1,12 @@
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { priceFormat } from '../../utility/helpers';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { OrderContext } from '../../shared/context/order-context';
 
 export const OrderDetails = props => {
-    const dummyFoods = [{ name: 'food1', price: 3213, amount: 2 }, { name: 'food1', price: 3213, amount: 2 }];
-    const total = dummyFoods.reduce((a, b) => a.price + b.price);
-    const neededHeight = dummyFoods.length * 167;
+    const { remove, addedItems } = useContext(OrderContext);
+    const total = !!addedItems.length ? addedItems.reduce((a, b) => parseFloat(a.price) + parseFloat(b.price)) : 0;
+    const neededHeight = total.length * 167;
 
 
     return <div className={`fix-width-300 fix-height-${neededHeight} order-details flex-column`}>
@@ -15,7 +16,7 @@ export const OrderDetails = props => {
             <h4 className='fs-16'>Ár</h4>
         </div>
         <div>
-            {dummyFoods.map(i => <PickedFood item={i} />)}
+            {addedItems.map(i => <PickedFood item={i} remove={remove} />)}
         </div>
         <div className='display-flex justify-content-around hr--light mt-2 pt-1 pb-2'>
             <h2 className='fs-22 fw-800'>Összesen:</h2>
@@ -70,6 +71,6 @@ const PickedFood = props => {
         <h5 className='fs-16'>{name}</h5>
         <h5 className='fs-16'>{amount} db</h5>
         <h5 className='fs-16'>{priceFormat(price)}</h5>
-        <h5 className='fs-16'>X</h5>
+        <h5 onClick={() => props.remove(props.item)} className='fs-16'>X</h5>
     </div>;
 }
