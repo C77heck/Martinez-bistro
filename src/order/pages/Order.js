@@ -7,6 +7,8 @@ import { MenuContext } from '../../shared/context/menu-context';
 import { ExpiryContext } from '../../shared/context/expiry-context';
 import { ItemCard } from "../components/ItemCard";
 import { OrderDetails } from "../components/OrderDetails";
+import { FilterLine } from "../components/Filter";
+import { foodTypes } from "../../admin/pages/EditMenu";
 
 export const Order = props => {
     const { types, menu, saveMenu } = useContext(MenuContext);
@@ -35,8 +37,10 @@ export const Order = props => {
 
     }, [saveMenu, menu, menuExpiry])
 
-    return <div className='full-screen m-3 mt-14 position-center'>
+    return <div className='full-screen m-3 mt-14 position-center flex-column'>
         {isLoading && <LoadingSpinner asOverlay />}
+        <FilterLine filters={foodTypes} />
+
         <div className='grid-width display-flex'>
             <div className='max-width-200' />
             <div>

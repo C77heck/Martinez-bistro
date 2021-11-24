@@ -81,3 +81,21 @@
         transform: translateY(3px);
     }
 }
+
+.filter-element {
+    padding: 5px 1rem;
+    background-color: var(--color-border-light);
+    transition: all 210ms;
+    color: var(--color-border);
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--color-border);
+        color: var(--color-light);
+    }
+
+    &:active {
+        transform: translateY(2px);
+    }
+}

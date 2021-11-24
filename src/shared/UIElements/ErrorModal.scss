@@ -2,6 +2,7 @@
     width: 30vw;
     left: 35vw;
     font-size: 2rem;
+    top: 20rem;
 
     & button {
         background-color: rgb(243, 12, 12);
@@ -16,6 +17,7 @@
     & .modal__header {
         background-color: rgb(243, 16, 16);
     }
+
     @media (max-width: $desktop) {
         width: 40vw;
         left: 30vw;
@@ -29,10 +31,18 @@
     @media screen and (max-width: $mobile) {
         width: 90vw;
         left: 5vw;
-
     }
     @media screen and (max-width: $mobile-sm) {
         width: 100vw;
         left: 0;
+    }
+}
+
+#modal-hook .light-error-modal {
+    & button {
+        background-color: var(--color-primary);
+    }
+    & .modal__header {
+        background-color: var(--color-primary);
     }
 }

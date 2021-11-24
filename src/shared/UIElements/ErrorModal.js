@@ -5,9 +5,10 @@ import Button from './Button';
 
 
 const ErrorModal = props => {
+
   return (
     <Modal
-      className='error-modal'
+      className={`error-modal ${props.className}`}
       onCancel={props.onClear}
       show={!!props.error}
       footer={<Button

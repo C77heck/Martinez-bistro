@@ -1,14 +1,14 @@
 import { useHttpClient } from '../../shared/hooks/http-hook';
-import { priceFormat } from '../../utility/helpers';
+import { priceFormat, redirect } from '../../utility/helpers';
 import { useState, useContext } from 'react';
 import { OrderContext } from '../../shared/context/order-context';
+import ErrorModal from '../../shared/UIElements/ErrorModal';
 
 export const OrderDetails = props => {
     const { remove, addedItems, totalPrice } = useContext(OrderContext);
-    const neededHeight = totalPrice.length * 167;
-    console.log({ totalPrice });
+    const neededHeight = (addedItems.length * 28) + 230;
 
-    return <div className={`fix-width-300 fix-height-${neededHeight} order-details flex-column`}>
+    return <div className={`fix-width-350 fix-height-${neededHeight} order-details flex-column`}>
         <h2 className='fs-22 text-align-center pb-2'>Kiválasztott termékek</h2>
         <div className='display-flex justify-content-around w-100 basket-header mb-1'>
             <h4 className='fs-16'>Termék</h4>
@@ -22,12 +22,37 @@ export const OrderDetails = props => {
             <h2 className='fs-22 fw-800'>{priceFormat(totalPrice)}</h2>
         </div>
         <div className='position-center fix-height-0'>
-            <OrderButton />
+            <CheckoutButton link={'/checkout'} items={addedItems} />
         </div>
     </div>
 }
 
+const CheckoutButton = props => {
+    const [show, setShow] = useState(false);
+    const onClickHandler = () => {
+        if (!props.items.length) {
+            setShow(true)
+        } else {
+            redirect(props.link)
+        }
+    }
+    return <div>
+        <ErrorModal
+            error={show}
+            onClear={() => setShow(false)}
+            errorMessage={'Kérünk elöbb válassz ételt. :)'}
+            className={'light-error-modal'}
+        />
+        <button
+            className='order-button'
+            onClick={onClickHandler}
+        >
+            <span>Megrendelem</span>
+        </button>
+    </div>
+}
 
+// TODO -> this button to be for the next page.
 const OrderButton = props => {
     const { sendRequest, error, clearError } = useHttpClient();
     const [show, setShow] = useState(false);
@@ -42,6 +67,8 @@ const OrderButton = props => {
                     items: props.items,
                     total: props.total,
                     deliverAt: props.deliverAt,
+                    name: props.name,
+                    address: props.address,
                 })
             )
             setMessage(responseData.message)
@@ -70,14 +97,14 @@ const PickedFood = props => {
         <div className='fix-width-140'>
             <h5 className='fs-16 white-space-nowrap'>{name}</h5>
         </div>
-        <div className='fix-width-30'>
-            <h5 className='fs-16'>{amount} db</h5>
+        <div className='fix-width-40'>
+            <h5 className='fs-16 white-space-nowrap'>{amount} db</h5>
         </div>
         <div className='fix-width-50'>
             <h5 className='fs-16'>{priceFormat(totalPrice)}</h5>
         </div>
         <div className='fix-width-20'>
-            <h5 onClick={() => props.remove(props.item)} className='fs-16'>&#10006;</h5>
+            <h5 onClick={() => props.remove(props.item)} className='fs-16 hover-primary active-translate'>&#10006;</h5>
         </div>
     </div>;
 }

@@ -71,6 +71,10 @@
     margin: 0px 5px;
 }
 
+.basic-border {
+    border: solid 1.5px var(--color-border);
+}
+
 .transition {
     transition: all 400ms;
 }
@@ -325,6 +329,15 @@
     width: fit-content;
 }
 
+.hover-primary {
+    transition: all 190ms ease-in-out;
+    cursor: pointer !important;
+
+    &:hover {
+        color: var(--color-primary);
+    }
+}
+
 .hover-opacity {
     opacity: 1;
     transition: all 190ms ease-in-out;
@@ -347,6 +360,12 @@
 
     &:active {
         transform: translateY(1px);
+    }
+}
+
+.active-translate {
+    &:active {
+        transform: scale(0.9);
     }
 }
 

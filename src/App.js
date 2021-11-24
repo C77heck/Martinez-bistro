@@ -22,7 +22,8 @@ import { OrderContext } from './shared/context/order-context';
 import { useExpiry } from './shared/hooks/expiry-hook';
 import { useOrder } from './shared/hooks/order-hook';
 import { useHttpClient } from './shared/hooks/http-hook';
-import { Order } from './order/page/Order';
+import { Order } from './order/pages/Order';
+import { Checkout } from './order/pages/Checkout';
 
 
 function App() {
@@ -87,6 +88,10 @@ function App() {
           <Navbar className='navigation--scrolled' />
           <OpenDrawer />
           <Order />
+        </Route>
+        <Route path='/checkout' exact>
+          <Navbar className='navigation--scrolled' />
+          <Checkout />
         </Route>
         <Route path='/admin' exact>
           <Navbar className='navigation--scrolled' />
