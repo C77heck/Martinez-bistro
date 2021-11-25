@@ -1,8 +1,6 @@
 import { useState, useCallback } from 'react'
 import { objectSorting, assignIdentifiers } from '../../utility/objectSorting';
 
-
-
 export const useMenu = () => {
     const [orderableList, setOrderableList] = useState([]);
     const [menu, setMenu] = useState([]);
@@ -43,7 +41,6 @@ export const useMenu = () => {
     const setOrderable = (list) => {
         setOrderableList(list);
     }
-
 
     const removeItem = useCallback((identifier) => {
         //filter out the item being deleted
