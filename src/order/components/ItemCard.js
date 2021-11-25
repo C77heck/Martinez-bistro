@@ -12,7 +12,7 @@ export const ItemCard = props => {
         </div>
         <div className='food_details w-100'>
             <h3 className='fs-17 fw-800'>{name}</h3>
-            <p className='fs-15 fix-height-42'>{description}</p>
+            <p className='fs-15 fix-height-42 overflow-hidden'>{description}</p>
             <div className='hr--light mt-1 display-flex justify-content-between align-items-center fix-height-40'>
                 <h3 className='fs-17 fw-800 text-align-right'>{price} Ft</h3>
                 <button

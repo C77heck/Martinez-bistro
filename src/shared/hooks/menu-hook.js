@@ -4,7 +4,7 @@ import { objectSorting, assignIdentifiers } from '../../utility/objectSorting';
 
 
 export const useMenu = () => {
-
+    const [orderableList, setOrderableList] = useState([]);
     const [menu, setMenu] = useState([]);
     const [types, setTypes] = useState({
         burgers: [],
@@ -40,6 +40,10 @@ export const useMenu = () => {
         localStorage.setItem('menu', JSON.stringify(storedMenu))
     }, []);
 
+    const setOrderable = (list) => {
+        setOrderableList(list);
+    }
+
 
     const removeItem = useCallback((identifier) => {
         //filter out the item being deleted
@@ -53,5 +57,5 @@ export const useMenu = () => {
     }, [])
 
 
-    return { menu, saveMenu, types, removeItem, addMenuItem }
+    return { menu, saveMenu, types, orderableList, removeItem, addMenuItem, setOrderable }
 }

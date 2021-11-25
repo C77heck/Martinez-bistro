@@ -53,6 +53,10 @@
     text-align: right;
 }
 
+.text-align-left {
+    text-align: left;
+}
+
 .uppercase {
     text-transform: uppercase;
 }
@@ -72,7 +76,7 @@
 }
 
 .basic-border {
-    border: solid 1.5px var(--color-border);
+    border: solid 2px var(--color-border);
 }
 
 .transition {
@@ -147,6 +151,10 @@
 .white-space-nowrap {
     white-space: nowrap;
     text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.overflow-hidden {
     overflow: hidden;
 }
 

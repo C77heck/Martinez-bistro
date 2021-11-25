@@ -12,12 +12,11 @@ export const useOrder = () => {
         if (items.lenght === 1) {
             return parseFloat(items[0].totalPrice);
         }
-        console.log(items.map(i => i.totalPrice));
+
         return items.map(i => parseFloat(i.totalPrice)).reduce((a, b) => a + b);
     }
 
     useEffect(() => {
-        console.log('useEffect fired', addedItems, calcTotal(addedItems));
         setTotalPrice(calcTotal(addedItems));
     }, [addedItems])
 

@@ -11,7 +11,7 @@ import { FilterLine } from "../components/Filter";
 import { foodTypes } from "../../admin/pages/EditMenu";
 
 export const Order = props => {
-    const { types, menu, saveMenu } = useContext(MenuContext);
+    const { menu, saveMenu, orderableList } = useContext(MenuContext);
     const { sendRequest, isLoading } = useHttpClient();
     const { menuExpiry } = useContext(ExpiryContext);
 
@@ -37,16 +37,21 @@ export const Order = props => {
 
     }, [saveMenu, menu, menuExpiry])
 
-    return <div className='full-screen m-3 mt-14 position-center flex-column'>
+    const itemsToMap = !orderableList.length ? menu : orderableList;
+
+    console.log(itemsToMap, orderableList.length);
+
+    return <div className='full-screen m-3 mt-14 display-flex align-items-center flex-column'>
         {isLoading && <LoadingSpinner asOverlay />}
+        <h1 className='fs-34 pb-2'>Étel Rendelés</h1>
+
         <FilterLine filters={foodTypes} />
 
         <div className='grid-width display-flex'>
-            <div className='max-width-200' />
+            <div className='fix-width-200' />
             <div>
-                <h1 className='fs-28'>Étel Rendelés</h1>
-                <div className='max-width-600'>
-                    {menu.map(m => <ItemCard key={m._id} menuItem={m} />)}
+                <div className='fix-width-600'>
+                    {itemsToMap.map(m => <ItemCard key={m._id} menuItem={m} />)}
                 </div>
             </div>
             <div className='min-width-400 display-flex justify-content-center'>

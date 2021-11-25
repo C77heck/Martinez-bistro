@@ -56,7 +56,7 @@ function App() {
   }, [])
 
 
-  const { menu, saveMenu, types, removeItem, addMenuItem } = useMenu();
+  const { menu, saveMenu, types, orderableList, removeItem, addMenuItem, setOrderable } = useMenu();
   const {
     signin,
     signout,
@@ -143,9 +143,11 @@ function App() {
             value={{
               menu: menu,
               types: types,
+              orderableList: orderableList,
               saveMenu: saveMenu,
               addMenuItem: addMenuItem,
-              removeItem: removeItem
+              removeItem: removeItem,
+              setOrderable: setOrderable,
             }}
           >
             <main><div className=''>{routes}</div></main>
