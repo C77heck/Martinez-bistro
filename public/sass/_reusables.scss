@@ -127,6 +127,10 @@
     align-items: center;
 }
 
+.align-items-baseline {
+    align-items: baseline;
+}
+
 .align-items-center {
     align-items: center;
 }
@@ -471,6 +475,13 @@
     }
     .#{pt- + $i} {
         padding-top: $i + rem !important;
+    }
+
+    .#{pl- + $i} {
+        padding-left: $i + rem !important;
+    }
+    .#{pr- + $i} {
+        padding-right: $i + rem !important;
     }
 
     .#{p- + $i} {

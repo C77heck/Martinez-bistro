@@ -15,9 +15,12 @@ ordering:
 2. add button to implement and a basket as well. checkout to do. where we will collect their data.
 3. do the responsiveness later.
 4. now we need to do the checkout page. 
-5. probably a registration will be needed. or a google captcha.
 6. make sure to validate the items sent via the database items and get the price from there... not from the frontend
 7. recaptcha for each orders!
 8. monitor the ordering amount coming through and block orders or delay them if they seem suspiciously large in volume.
 9. will need an admin page where we get the orders and a system where when he clicks on them they get archived but kept there for another 
 hour or so for security purposes.
+10. on the backend we should only take the id or name that we have sent along with the mount ordered. we must take a valid phone number
+this is to prevent bullshit orders. this way christian can call them.
+11. persist the orders through the local storage.
+12. phone number validation. an exact one.

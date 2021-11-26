@@ -99,3 +99,24 @@
         transform: translateY(2px);
     }
 }
+.question-button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+
+.question-circle {
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    border: 2px solid;
+    border-color: var(--color-border);
+
+    &--filling {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        transition: all 340ms;
+        background-color: var(--color-border);
+    }
+}

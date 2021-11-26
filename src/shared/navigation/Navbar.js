@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import { AuthContext } from '../context/auth-context';
 
-import { AdminLinks, Main, Menu } from './Navlinks';
+import { AdminLinks, Checkout, Main, Menu } from './Navlinks';
 
 
 const Navbar = props => {
@@ -39,6 +39,8 @@ const Navbar = props => {
             return <AdminLinks />
         } else if (location.pathname === '/order') {
             return <Main isMainPage={false} />
+        } else if (location.pathname === '/checkout') {
+            return <Checkout />
         }
 
     }

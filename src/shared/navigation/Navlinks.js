@@ -61,6 +61,24 @@ export const Main = (props) => {
     )
 }
 
+export const Checkout = (props) => {
+
+    return (
+        <ul className='navigation__list'>
+            <li className='navigation__item'>
+                <NavLink to='/order'>
+                    Kiszállítás
+                </NavLink>
+            </li>
+            <li className='navigation__item'>
+                <NavLink to='/'>
+                    Főoldal
+                </NavLink>
+            </li>
+        </ul >
+    )
+}
+
 export const Menu = () => {
     return (
         <ul className='navigation__list'>
@@ -106,9 +124,7 @@ export const Menu = () => {
                     offset={0}
                 >
                     Tapas
-
                 </Link>
-
             </li>
         </ul>
     )

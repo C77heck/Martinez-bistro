@@ -52,44 +52,6 @@ const CheckoutButton = props => {
     </div>
 }
 
-// TODO -> this button to be for the next page.
-const OrderButton = props => {
-    const { sendRequest, error, clearError } = useHttpClient();
-    const [show, setShow] = useState(false);
-    const [message, setMessage] = useState('');
-
-    const order = async () => {
-        try {
-            const responseData = await sendRequest(
-                process.env.REACT_APP_ADD_ITEM,
-                'POST',
-                JSON.stringify({
-                    items: props.items,
-                    total: props.total,
-                    deliverAt: props.deliverAt,
-                    name: props.name,
-                    address: props.address,
-                })
-            )
-            setMessage(responseData.message)
-            setShow(false)
-
-        } catch (err) {
-            console.log(err);
-        }
-    }
-
-    return <button
-        className='order-button'
-        onClick={order}
-    >
-        <span>Megrendelem</span>
-    </button>
-}
-
-
-
-
 const PickedFood = props => {
     const { totalPrice, name, amount } = props.item;
 

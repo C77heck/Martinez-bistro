@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import { Storage } from "../../utility/StorageHelper";
 
 export const useOrder = () => {
     const [addedItems, setAddedItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+    const storage = new Storage('order');
 
     const calcTotal = (items) => {
         if (!items.length) {
@@ -15,6 +17,12 @@ export const useOrder = () => {
 
         return items.map(i => parseFloat(i.totalPrice)).reduce((a, b) => a + b);
     }
+
+    useEffect(() => {
+        if (storage.has()) {
+            setAddedItems(storage.get());
+        }
+    }, [])
 
     useEffect(() => {
         setTotalPrice(calcTotal(addedItems));
@@ -34,7 +42,9 @@ export const useOrder = () => {
             return i;
         })
 
-        setAddedItems(alreadExists ? mappedItems : [...addedItems, amountAdded])
+        const finalItems = alreadExists ? mappedItems : [...addedItems, amountAdded];
+        storage.set(finalItems);
+        setAddedItems(finalItems);
     };
 
     const remove = (item) => {
@@ -50,7 +60,11 @@ export const useOrder = () => {
             return i;
         })
 
-        setAddedItems(isZeroAmount ? mappedItems.filter(i => i._id !== item._id) : mappedItems);
+        const finalItems = isZeroAmount ? mappedItems.filter(i => i._id !== item._id) : mappedItems;
+
+        storage.remove(finalItems);
+
+        setAddedItems(finalItems);
     };
 
     return { addedItems, totalPrice, add, remove };
