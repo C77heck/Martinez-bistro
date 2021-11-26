@@ -170,6 +170,9 @@
     &--dark {
         border-top: 1px var(--color-border) solid;
     }
+    &--basic {
+        border-top: 1px var(--color-primary) solid;
+    }
 }
 
 .heading-fourth {
@@ -415,6 +418,10 @@
 
 .max-height-fit-content {
     max-height: fit-content;
+}
+
+.margin-unset {
+    margin: unset;
 }
 
 @for $i from 1 through 1000 {

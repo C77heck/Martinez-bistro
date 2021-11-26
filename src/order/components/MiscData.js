@@ -21,29 +21,41 @@ export const MiscData = props => {
         },
     })
 
+    const handleInput = (e) => {
+        inputHandler(e)
+        props.getValues && props.getValues([inputState, checkbox]);
+    }
+
+    const manageCheckbox = (value) => {
+        setCheckbox({ ...checkbox, needTax: value })
+        props.getValues && props.getValues([inputState, checkbox]);
+    }
+
+
     return <div className='display-flex align-items-baseline w-100 flex-column'>
         <Checkbox
-            getValue={(value) => setCheckbox({ ...checkbox, needTax: value })}
+            getValue={(value) => manageCheckbox(value)}
             text={'Kérek áfás számlát'}
         />
         <Checkbox
-            getValue={(value) => setCheckbox({ ...checkbox, aszf: value })}
+            getValue={(value) => manageCheckbox(value)}
             text={'Nyilatkoznod kell az ÁSZF-ről! Az Általános Szerződési Feltételeket (ÁSZF) elolvastam, megértettem és elfogadom'}
         />
         <Checkbox
-            getValue={(value) => setCheckbox({ ...checkbox, gdpr: value })}
+            getValue={(value) => manageCheckbox(value)}
             text={'Nyilatkoznod kell az Adatkezelési szabályzatról! Az Adatkezelési tájékoztatót elolvastam, megértettem és elfogadom'}
         />
 
         <Input
             id='note'
             label='Megjegyzés'
-            onInput={inputHandler}
+            onInput={handleInput}
             value={inputState.inputs.note.value}
             validators={[]}
             type='text'
             element='textarea'
             contClass='w-100'
+            labelClass={'fs-17'}
         />
     </div>;
 }
