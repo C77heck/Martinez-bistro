@@ -7,15 +7,15 @@ export const Checkout = props => {
     // TODO -> card to display orderd items
     return <div className='full-screen max-width-vw-90 m-3 mt-14 display-flex align-items-center flex-column'>
         <div className='w-px-800 py-2 '>
-            <h2>Rendelés átvevője</h2>
+            <h2 className='fs-22 fw-800'>Rendelés átvevője</h2>
             <UserDetails />
         </div>
         <div className='w-px-800 py-2 '>
-            <h2>Rendelés átvételének időpontja</h2>
+            <h2 className='fs-22 fw-800'>Rendelés átvételének időpontja</h2>
             <UserDetails />
         </div>
         <div className='w-px-800 py-2 '>
-            <h2>Egyéb</h2>
+            <h2 className='fs-22 fw-800'>Egyéb</h2>
             <MiscData />
         </div>
         <div className='w-px-800 py-2 position-center'>

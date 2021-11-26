@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "../../shared/form-elements/Input";
 import { useForm } from "../../shared/hooks/form-hook";
 
@@ -21,18 +21,17 @@ export const MiscData = props => {
         },
     })
 
-
     return <div className='display-flex align-items-baseline w-100 flex-column'>
         <Checkbox
-            getValue={(value) => setCheckbox(value)}
-            text={'kérek áfás számlát'}
+            getValue={(value) => setCheckbox({ ...checkbox, needTax: value })}
+            text={'Kérek áfás számlát'}
         />
         <Checkbox
-            getValue={(value) => setCheckbox(value)}
+            getValue={(value) => setCheckbox({ ...checkbox, aszf: value })}
             text={'Nyilatkoznod kell az ÁSZF-ről! Az Általános Szerződési Feltételeket (ÁSZF) elolvastam, megértettem és elfogadom'}
         />
         <Checkbox
-            getValue={(value) => setCheckbox(value)}
+            getValue={(value) => setCheckbox({ ...checkbox, gdpr: value })}
             text={'Nyilatkoznod kell az Adatkezelési szabályzatról! Az Adatkezelési tájékoztatót elolvastam, megértettem és elfogadom'}
         />
 
@@ -44,6 +43,7 @@ export const MiscData = props => {
             validators={[]}
             type='text'
             element='textarea'
+            contClass='w-100'
         />
     </div>;
 }
@@ -54,6 +54,7 @@ const Checkbox = props => {
 
     const handleOnClick = () => {
         setIsActive(!isActive);
+        props.getValue(!isActive);
     }
     // TODO -> style it... also manag ethe data pasing.
     return <div>
