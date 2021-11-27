@@ -9,7 +9,7 @@ export const MiscData = props => {
             valid: false
         },
     });
-    const [checkbox, setCheckbox] = useState({
+    const [checkboxes, setCheckbox] = useState({
         needTax: {
             value: false,
         },
@@ -21,41 +21,40 @@ export const MiscData = props => {
         },
     })
 
-    const handleInput = (e) => {
-        inputHandler(e)
-        props.getValues && props.getValues([inputState, checkbox]);
+    const manageCheckbox = (value, name) => {
+        setCheckbox({ ...checkboxes, [name]: { value } })
     }
 
-    const manageCheckbox = (value) => {
-        setCheckbox({ ...checkbox, needTax: value })
-        props.getValues && props.getValues([inputState, checkbox]);
-    }
+    useEffect(() => {
+        props.getValues && props.getValues({ checkboxes, note: inputState.inputs.note.value });
+    }, [inputState, checkboxes, setCheckbox])
 
 
     return <div className='display-flex align-items-baseline w-100 flex-column'>
         <Checkbox
-            getValue={(value) => manageCheckbox(value)}
+            getValue={(value) => manageCheckbox(value, 'needTax')}
             text={'Kérek áfás számlát'}
         />
         <Checkbox
-            getValue={(value) => manageCheckbox(value)}
+            getValue={(value) => manageCheckbox(value, 'aszf')}
             text={'Nyilatkoznod kell az ÁSZF-ről! Az Általános Szerződési Feltételeket (ÁSZF) elolvastam, megértettem és elfogadom'}
         />
         <Checkbox
-            getValue={(value) => manageCheckbox(value)}
+            getValue={(value) => manageCheckbox(value, 'gdpr')}
             text={'Nyilatkoznod kell az Adatkezelési szabályzatról! Az Adatkezelési tájékoztatót elolvastam, megértettem és elfogadom'}
         />
 
         <Input
             id='note'
             label='Megjegyzés'
-            onInput={handleInput}
+            onInput={inputHandler}
             value={inputState.inputs.note.value}
             validators={[]}
             type='text'
             element='textarea'
             contClass='w-100'
             labelClass={'fs-17'}
+            className={'fs-19'}
         />
     </div>;
 }

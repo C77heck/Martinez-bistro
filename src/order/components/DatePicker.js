@@ -1,5 +1,5 @@
 import CustomSelect from "../../shared/form-elements/CustomSelect"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 const availableTimes = (start, finish) => {
     // 11 -> 20
     let pickupOptions = [];
@@ -18,8 +18,11 @@ export const DatePicker = props => {
     const onChangeHandler = e => {
         const value = e.target.value;
         setPickupTime(value)
-        props.getValues && props.getValues(pickupTime);
     }
+
+    useEffect(() => {
+        props.getValues && props.getValues(pickupTime);
+    }, [pickupTime, setPickupTime])
 
     return <div>
         <CustomSelect

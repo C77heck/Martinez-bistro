@@ -12,7 +12,5 @@ const getType = (type) => {
 
 export const Hr = props => {
 
-
-
     return <div className={`${getType(props.type)} w-${props.size}`} />
 }

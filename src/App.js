@@ -67,7 +67,7 @@ function App() {
     enableDrawer
   } = useAuth();
 
-  const { add, remove, addedItems, totalPrice } = useOrder();
+  const { add, remove, addedItems, totalPrice, clearOrder } = useOrder();
 
 
 
@@ -116,6 +116,7 @@ function App() {
         totalPrice: totalPrice,
         add: add,
         remove: remove,
+        clearOrder: clearOrder,
       }}
     >
       <ExpiryContext.Provider

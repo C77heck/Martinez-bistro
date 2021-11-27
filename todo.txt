@@ -24,3 +24,5 @@ hour or so for security purposes.
 this is to prevent bullshit orders. this way christian can call them.
 11. persist the orders through the local storage.
 12. phone number validation. an exact one.
+13. will need an order reference system.
+14. proper hungrarian phone validator. proper email validator.

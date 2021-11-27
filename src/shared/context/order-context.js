@@ -5,4 +5,5 @@ export const OrderContext = createContext({
     addedItems: [],
     add: () => { },
     remove: () => { },
+    clearOrder: () => { },
 })

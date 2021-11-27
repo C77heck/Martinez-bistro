@@ -1,18 +1,23 @@
 import { UserDetails } from "../components/UserDetails";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { MiscData } from '../components/MiscData';
 import { DatePicker } from "../components/DatePicker";
 import { Hr } from "../../shared/UIElements/Hr";
+import { OrderContext } from "../../shared/context/order-context";
+import MessageModal from "../../shared/UIElements/MessageModal";
+import { redirect } from "../../utility/helpers";
 
 export const Checkout = props => {
+    const { addedItems, clearOrder } = useContext(OrderContext)
     let data = {
         userData: [],
         pickup: '',
-        misc: []
+        misc: [],
+        addedItems,
     };
     const getValues = (values, prop) => {
-        console.log({ data, values, prop });
+        console.log({ data });
         data[prop] = values;
     }
     // TODO -> card to display orderd items
@@ -33,7 +38,7 @@ export const Checkout = props => {
         </div>
         <Hr type={'light'} size={80} />
         <div className='w-px-800 py-2 position-center'>
-            <OrderButton getData={() => data} />
+            <OrderButton getData={() => new OrderObject(data)} onSuccess={clearOrder} />
         </div>
     </div>;
 }
@@ -42,36 +47,58 @@ export const Checkout = props => {
 // TODO -> this button to be for the next page.
 const OrderButton = props => {
     const { sendRequest, error, clearError } = useHttpClient();
-    const [show, setShow] = useState(false);
     const [message, setMessage] = useState('');
 
+    // TODO -> Make sure they checked out the aszf and gdpr boxes...
     const order = async () => {
         try {
-            const getData = props.getData();
-            console.log(getData);
             const responseData = await sendRequest(
-                process.env.REACT_APP_ADD_ITEM,
+                process.env.REACT_APP_PLACE_ORDER,
                 'POST',
-                JSON.stringify({
-                    items: props.items,
-                    total: props.total,
-                    deliverAt: props.deliverAt,
-                    name: props.name,
-                    address: props.address,
-                })
+                JSON.stringify(props.getData())
             )
-            setMessage(responseData.message)
-            setShow(false)
 
+            if (props.onSuccess) {
+                props.onSuccess();
+            }
+
+            setMessage(responseData.message || 'Köszönjük a rendelésed')
         } catch (err) {
             console.log(err);
         }
     }
 
-    return <button
-        className='order-button'
-        onClick={order}
-    >
-        <span>Megrendelem</span>
-    </button>
+    return <div>
+        <MessageModal
+            onClear={() => redirect('/')}
+            message={message}
+            className='admin-message-modal'
+        />
+        <button
+            className='order-button'
+            onClick={order}
+        >
+            <span>Megrendelem</span>
+        </button>
+    </div>
+}
+
+
+class OrderObject {
+    items;
+    pickupDate;
+    name;
+    email;
+    phone;
+    tax;
+    note;
+    constructor(data) {
+        this.items = data.addedItems;
+        this.pickupDate = data.pickup;
+        this.name = data.userData.inputs.name.value;
+        this.email = data.userData.inputs.email.value;
+        this.phone = data.userData.inputs.phone.value;
+        this.tax = data.misc.checkboxes.needTax.value;
+        this.note = data.misc.note;
+    }
 }

@@ -23,7 +23,11 @@ export class Storage {
 
         return !!val ? JSON.parse(val) : false;
     }
-    remove() {
-        this.storage.removeItem(this.name)
+    remove(key) {
+        this.storage.removeItem(key)
+    }
+
+    clear() {
+        this.storage.clear()
     }
 }

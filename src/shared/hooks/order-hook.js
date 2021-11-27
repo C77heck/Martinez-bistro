@@ -62,10 +62,14 @@ export const useOrder = () => {
 
         const finalItems = isZeroAmount ? mappedItems.filter(i => i._id !== item._id) : mappedItems;
 
-        storage.remove(finalItems);
+        storage.set(finalItems);
 
         setAddedItems(finalItems);
     };
 
-    return { addedItems, totalPrice, add, remove };
+    const clearOrder = () => {
+        storage.clear()
+    }
+
+    return { addedItems, totalPrice, add, remove, clearOrder };
 };
