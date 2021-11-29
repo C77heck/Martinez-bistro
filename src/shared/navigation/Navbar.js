@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import { AuthContext } from '../context/auth-context';
 
-import { AdminLinks, Checkout, Main, Menu } from './Navlinks';
+import { AdminLinks, AdminLinksOrder, Checkout, Main, Menu } from './Navlinks';
 
 
 const Navbar = props => {
@@ -41,18 +41,27 @@ const Navbar = props => {
             return <Main isMainPage={false} />
         } else if (location.pathname === '/checkout') {
             return <Checkout />
+        } else if (location.pathname === '/orders') {
+            return <AdminLinksOrder />
         }
-
     }
+
     return (
         <div
             className={`${isScrolled ? 'navigation--scrolled' : ''} 
-        ${props.className} navigation ${isLoggedIn && location.pathname.match('admin') && 'navigation--loggedin'}`}>
+        ${props.className} navigation ${isLoggedIn && getNavBarColor(location.pathname) && 'navigation--loggedin'}`}>
             <nav className='navigation__content'>
                 {locations()}
             </nav>
         </div>
     )
+}
+
+const getNavBarColor = (pathname) => {
+    if (pathname.match('admin') || pathname.match('orders') || pathname.match('order-details')) {
+        return true;
+    }
+    return false;
 }
 
 

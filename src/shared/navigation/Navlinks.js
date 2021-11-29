@@ -133,19 +133,6 @@ export const Menu = () => {
 export const AdminLinks = () => {
     return (
         <ul className='navigation__list'>
-
-            <li className='navigation__item'>
-                <NavLink
-                    to='/admin'
-                >
-                    Admin
-                </NavLink>
-            </li>
-
-            <li className='navigation__item'>
-                <AuthButton />
-            </li>
-
             <li className='navigation__item'>
                 <NavLink
                     to='/'
@@ -153,8 +140,41 @@ export const AdminLinks = () => {
                     Főoldal
                 </NavLink>
             </li>
-
-
+            <li className='navigation__item'>
+                <AuthButton />
+            </li>
+            <li className='navigation__item'>
+                <NavLink
+                    to='/orders'
+                >
+                    Rendelések
+                </NavLink>
+            </li>
         </ul>
+    )
+}
+
+
+export const AdminLinksOrder = () => {
+    return (
+        <ul className='navigation__list'>
+            <li className='navigation__item'>
+                <NavLink
+                    to='/admin'
+                >
+                    Admin
+                </NavLink>
+            </li>
+            <li className='navigation__item'>
+                <AuthButton />
+            </li>
+            <li className='navigation__item'>
+                <NavLink
+                    to='/'
+                >
+                    Főoldal
+                </NavLink>
+            </li>
+        </ul >
     )
 }

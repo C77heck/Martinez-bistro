@@ -10,7 +10,7 @@ const MenuButton = (props) => {
         <AuthModal>
             <Link
                 className='admin__menu cursor-pointer'
-                to={isLoggedIn ? '/admin/menu' : undefined}
+                to={isLoggedIn ? '/admin/menu' : '/admin'}
             >
                 <span>Menü</span>
             </Link>

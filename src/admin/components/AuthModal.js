@@ -32,6 +32,7 @@ export const AuthModal = props => {
 
     const onSubmitHandler = async e => {
         e.preventDefault();
+        e.stopPropagation();
         try {
             const responseData = await sendRequest(
                 process.env.REACT_APP_SIGNIN,

@@ -8,6 +8,7 @@ import { OrderContext } from "../../shared/context/order-context";
 import MessageModal from "../../shared/UIElements/MessageModal";
 import { redirect } from "../../utility/helpers";
 import { ItemsPicked } from "../components/ItemsPicked";
+import ErrorModal from "../../shared/UIElements/ErrorModal";
 
 export const Checkout = props => {
     const { addedItems, clearOrder } = useContext(OrderContext)
@@ -18,7 +19,6 @@ export const Checkout = props => {
         addedItems,
     };
     const getValues = (values, prop) => {
-        console.log({ data });
         data[prop] = values;
     }
     // TODO -> card to display orderd items
@@ -53,10 +53,11 @@ export const Checkout = props => {
 const OrderButton = props => {
     const { sendRequest, error, clearError } = useHttpClient();
     const [message, setMessage] = useState('');
-
     // TODO -> Make sure they checked out the aszf and gdpr boxes...
     const order = async () => {
         try {
+            console.log(props.getData());
+
             const responseData = await sendRequest(
                 process.env.REACT_APP_PLACE_ORDER,
                 'POST',
@@ -73,6 +74,7 @@ const OrderButton = props => {
     }
 
     return <div>
+        <ErrorModal error={error} onClear={clearError} />
         <MessageModal
             onClear={() => redirect('/')}
             message={message}
@@ -97,7 +99,7 @@ class OrderObject {
     tax;
     note;
     constructor(data) {
-        this.items = data.addedItems;
+        this.items = JSON.stringify(data.addedItems);
         this.pickupDate = data.pickup;
         this.name = data.userData.inputs.name.value;
         this.email = data.userData.inputs.email.value;

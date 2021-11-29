@@ -24,6 +24,7 @@ import { useOrder } from './shared/hooks/order-hook';
 import { useHttpClient } from './shared/hooks/http-hook';
 import { Order } from './order/pages/Order';
 import { Checkout } from './order/pages/Checkout';
+import { Orders } from './admin/pages/Orders';
 
 
 function App() {
@@ -97,6 +98,11 @@ function App() {
           <Navbar className='navigation--scrolled' />
           <OpenDrawer />
           <Admin />
+        </Route>
+        <Route path='/orders' exact>
+          <Navbar className='navigation--scrolled' />
+          <OpenDrawer />
+          <Orders />
         </Route>
         <Route path='/admin/menu' exact>
           <Navbar className='navigation--scrolled' />
