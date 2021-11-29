@@ -99,7 +99,7 @@ class OrderObject {
     tax;
     note;
     constructor(data) {
-        this.items = JSON.stringify(data.addedItems);
+        this.items = JSON.stringify(data.addedItems.map(i => ({ id: i._id, amount: i.amount })));
         this.pickupDate = data.pickup;
         this.name = data.userData.inputs.name.value;
         this.email = data.userData.inputs.email.value;

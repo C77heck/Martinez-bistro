@@ -254,3 +254,15 @@
         list-style-type: decimal;
     }
 }
+
+.hover-background-white {
+    transition: all 200ms;
+    cursor: pointer;
+    &:hover {
+        background-color: white;
+        transform: scale(1.02);
+    }
+    &:active {
+        transform: scale(1);
+    }
+}
