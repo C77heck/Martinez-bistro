@@ -51,7 +51,11 @@ export const Order = props => {
             <div className='fix-width-200' />
             <div>
                 <div className='fix-width-600'>
-                    {itemsToMap.map(m => <ItemCard key={m._id} menuItem={m} />)}
+                    {itemsToMap.map(m => <ItemCard
+                        isCheckout={false}
+                        key={m._id}
+                        menuItem={m}
+                    />)}
                 </div>
             </div>
             <div className='min-width-400 display-flex justify-content-center'>

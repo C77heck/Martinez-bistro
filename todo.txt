@@ -16,7 +16,7 @@ ordering:
 3. do the responsiveness later.
 4. now we need to do the checkout page. 
 6. make sure to validate the items sent via the database items and get the price from there... not from the frontend
-7. recaptcha for each orders!
+7. recaptcha for each orders! and we must validate the captcha on the backend..
 8. monitor the ordering amount coming through and block orders or delay them if they seem suspiciously large in volume.
 9. will need an admin page where we get the orders and a system where when he clicks on them they get archived but kept there for another 
 hour or so for security purposes.
@@ -26,3 +26,4 @@ this is to prevent bullshit orders. this way christian can call them.
 12. phone number validation. an exact one.
 13. will need an order reference system.
 14. proper hungrarian phone validator. proper email validator.
+perhaps a list of food items they want to order. or something.to see the sums

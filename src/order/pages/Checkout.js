@@ -7,6 +7,7 @@ import { Hr } from "../../shared/UIElements/Hr";
 import { OrderContext } from "../../shared/context/order-context";
 import MessageModal from "../../shared/UIElements/MessageModal";
 import { redirect } from "../../utility/helpers";
+import { ItemsPicked } from "../components/ItemsPicked";
 
 export const Checkout = props => {
     const { addedItems, clearOrder } = useContext(OrderContext)
@@ -22,6 +23,10 @@ export const Checkout = props => {
     }
     // TODO -> card to display orderd items
     return <div className='full-screen max-width-vw-90 m-3 mt-14 display-flex align-items-center flex-column'>
+        <div className='w-px-800 py-2 '>
+            <h2 className='fs-22 fw-800'>Kiválasztott ételek</h2>
+            <ItemsPicked />
+        </div>
         <div className='w-px-800 py-2 '>
             <h2 className='fs-22 fw-800'>Rendelés átvevője</h2>
             <UserDetails getValues={(values) => getValues(values, 'userData')} />
@@ -57,7 +62,6 @@ const OrderButton = props => {
                 'POST',
                 JSON.stringify(props.getData())
             )
-
             if (props.onSuccess) {
                 props.onSuccess();
             }

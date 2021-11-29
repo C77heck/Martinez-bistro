@@ -3,7 +3,7 @@ import { OrderContext } from '../../shared/context/order-context';
 
 export const ItemCard = props => {
     const { name, description, price } = props.menuItem;
-    const { add } = useContext(OrderContext);
+    const { add, remove } = useContext(OrderContext);
 
 
     return <div className='display-flex food_cart'>
@@ -15,12 +15,17 @@ export const ItemCard = props => {
             <p className='fs-15 fix-height-42 overflow-hidden'>{description}</p>
             <div className='hr--light mt-1 display-flex justify-content-between align-items-center fix-height-40'>
                 <h3 className='fs-17 fw-800 text-align-right'>{price} Ft</h3>
-                <button
+                {!props.isCheckout ? <button
                     className='buy-button display-flex align-items-center justify-content-center'
                     onClick={() => add(props.menuItem)}
                 >
                     <span>Kosárba</span>
-                </button>
+                </button> : <button
+                    className='remove-button display-flex align-items-center justify-content-center'
+                    onClick={() => remove(props.menuItem)}
+                >
+                    <span>&#10006;</span>
+                </button>}
             </div>
         </div>
     </div>
