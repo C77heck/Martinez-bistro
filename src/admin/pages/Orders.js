@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../shared/context/auth-context";
 import { useHttpClient } from '../../shared/hooks/http-hook';
+import { Hr } from "../../shared/UIElements/Hr";
 import { priceFormat } from "../../utility/helpers";
 
 export const Orders = props => {
@@ -32,25 +33,41 @@ export const Orders = props => {
 
     return <div className='full-screen display-flex justify-content-center center'>
 
-        <div className='max-width-900 mt-10'>
-            <h2 className='fs-40 px-3' >Rendelések</h2>
-
-            {!!orders.length && orders.map(i => <OrderCard order={i} />)}
+        <div className='max-width-1000 w-100 mt-10'>
+            <h2 className='fs-40 color--light text-align-center' >Rendelések</h2>
+            <div className='display-flex flex-wrap justify-content-center'>
+                {!!orders.length && orders.map(i => <OrderCard order={i} />)}
+            </div>
         </div>
     </div>;
 }
 
 const OrderCard = props => {
     const { email, items, name, note, phone, pickupDate, status, tax } = props.order;
-    return <div className='display-flex food_cart hover-background-white p-2 m-3'>
-        <div className='food_details w-100'>
-            <h3 className='fs-17 fw-800'>Megrendelő neve: {name}</h3>
-            <h3 className='fs-15 fix-height-42 overflow-hidden'>E-mail cím: {email}</h3>
-            <h3 className='fs-15 fix-height-42 overflow-hidden'>Telefonszám: {phone}</h3>
-            <h3 className='fs-15 fix-height-42 overflow-hidden'>Végösszeg: {priceFormat(324132)}</h3>
-            <h3 className='fs-15 fix-height-42 overflow-hidden'>Áfás számla: {tax ? 'Igen' : 'Nem'}</h3>
-            <h3 className='fs-15 fix-height-42 overflow-hidden'>Felvétel időpontja: {pickupDate}</h3>
-            <h3 className='fs-15 fix-height-42 overflow-hidden'>Megjegyzés: {note}</h3>
+    return <div className='display-flex flex-column food_cart hover-background-white mr-2 fix-width-300 order-card'>
+        <div className='w-100 p-1 order-card--header'>
+            <h3 className='fs-25 fw-800 color--light'>Felvétel időpontja: <span className='fw-800 fs-25 color--dark'>
+                {pickupDate} </span></h3>
+        </div>
+        <div className='food_details w-100 p-2'>
+
+            <h3 className='fs-20 color--light'>Megrendelő neve: <span className='fw-800 fs-21 color--dark'>
+                {name} </span></h3>
+            <Hr type={'light'} size={80} className='my-1' />
+            <h3 className='fs-20 color--light'>E-mail: <span className='fw-800 fs-21 color--dark'>
+                {email} </span></h3>
+            <Hr type={'light'} size={80} className='msy-1 ' />
+            <h3 className='fs-20 color--light'>Telefonszám: <span className='fw-800 fs-21 color--dark'>
+                {phone}  </span></h3>
+            <Hr type={'light'} size={80} className='my-1' />
+            <h3 className='fs-20 color--light'>Végösszeg: <span className='fw-800 fs-21 color--dark'>
+                {priceFormat(324132)} </span></h3>
+            <Hr type={'light'} size={80} className='my-1' />
+            <h3 className='fs-20 color--light'>Áfás számla: <span className='fw-800 fs-21 color--dark'>
+                {tax ? 'Igen' : 'Nem'} </span></h3>
+            <Hr type={'light'} size={80} className='my-1' />
+            <h3 className='fs-20 color--light'>Megjegyzés: <span className='fw-800 fs-21 color--dark'>
+                {note}  </span></h3>
         </div>
     </div>;
 }

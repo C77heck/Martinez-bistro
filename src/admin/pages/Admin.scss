@@ -257,12 +257,20 @@
 
 .hover-background-white {
     transition: all 200ms;
+    background-color: var(--color-lighter) !important;
     cursor: pointer;
     &:hover {
+        border-color: var(--color-border-light);
         background-color: white;
         transform: scale(1.02);
     }
     &:active {
         transform: scale(1);
+    }
+}
+
+.order-card {
+    &--header {
+        background-color: var(--color-border-light);
     }
 }
