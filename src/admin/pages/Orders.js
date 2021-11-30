@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../shared/context/auth-context";
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { Hr } from "../../shared/UIElements/Hr";
-import { priceFormat } from "../../utility/helpers";
+import { priceFormat, redirect } from "../../utility/helpers";
 
 export const Orders = props => {
     const { sendRequest, error, clearError } = useHttpClient();
@@ -10,7 +10,7 @@ export const Orders = props => {
     const { isLoggedIn, token } = useContext(AuthContext);
 
     useEffect(() => {
-        console.log(!!token);
+        console.log(isLoggedIn && !!token);
         if (!!token) {
             fetchOrders()
         }
@@ -43,8 +43,11 @@ export const Orders = props => {
 }
 
 const OrderCard = props => {
-    const { email, items, name, note, phone, pickupDate, status, tax } = props.order;
-    return <div className='display-flex flex-column food_cart hover-background-white mr-2 fix-width-300 order-card'>
+    const { email, items, name, note, phone, pickupDate, status, tax, _id } = props.order;
+    return <div
+        onClick={() => redirect(`/order-details/${_id}`)}
+        className='display-flex flex-column food_cart hover-background-white mr-2 fix-width-300 order-card'
+    >
         <div className='w-100 p-1 order-card--header'>
             <h3 className='fs-25 fw-800 color--light'>Felvétel időpontja: <span className='fw-800 fs-25 color--dark'>
                 {pickupDate} </span></h3>

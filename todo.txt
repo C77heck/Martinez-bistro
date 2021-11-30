@@ -27,3 +27,5 @@ this is to prevent bullshit orders. this way christian can call them.
 13. will need an order reference system.
 14. proper hungrarian phone validator. proper email validator.
 perhaps a list of food items they want to order. or something.to see the sums
+15. something is not right between the communication of the api and the frontend. 
+orders dont get saved and also the fucking authentication seems to suck hard.
