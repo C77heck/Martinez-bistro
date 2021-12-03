@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-scroll';
-import { AuthButton } from '../../admin/components/AuthModal';
+import AuthModal, { AuthButton } from '../../admin/components/AuthModal';
+import { redirect } from '../../utility/helpers';
+import { AuthContext } from '../context/auth-context';
 
 export const Main = (props) => {
     const { isMainPage } = props;
@@ -144,11 +146,7 @@ export const AdminLinks = () => {
                 <AuthButton />
             </li>
             <li className='navigation__item'>
-                <NavLink
-                    to='/orders'
-                >
-                    Rendelések
-                </NavLink>
+                <AdminNavLink />
             </li>
         </ul>
     )
@@ -190,11 +188,7 @@ export const AdminLinksOrderDetails = () => {
                 </NavLink>
             </li>
             <li className='navigation__item'>
-                <NavLink
-                    to='/orders'
-                >
-                    Rendelések
-                </NavLink>
+                <AdminNavLink />
             </li>
             <li className='navigation__item'>
                 <AuthButton />
@@ -210,3 +204,12 @@ export const AdminLinksOrderDetails = () => {
     )
 }
 
+const AdminNavLink = props => {
+    const { isLoggedIn } = useContext(AuthContext);
+
+    return <AuthModal onSuccess={() => redirect('/orders')}>
+        {!isLoggedIn
+            ? <a href='#' id='auth-btn' >Rendelések</a>
+            : <NavLink to='/orders' >Rendelések</NavLink>}
+    </AuthModal>;
+}

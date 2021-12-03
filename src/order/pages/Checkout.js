@@ -56,13 +56,15 @@ const OrderButton = props => {
     // TODO -> Make sure they checked out the aszf and gdpr boxes...
     const order = async () => {
         try {
-            console.log(props.getData());
+            const data = JSON.stringify(props.getData(), null, {});
+            console.log({ data });
 
             const responseData = await sendRequest(
                 process.env.REACT_APP_PLACE_ORDER,
                 'POST',
-                JSON.stringify(props.getData())
+                data,
             )
+
             if (props.onSuccess) {
                 props.onSuccess();
             }
@@ -99,7 +101,7 @@ class OrderObject {
     tax;
     note;
     constructor(data) {
-        this.items = JSON.stringify(data.addedItems.map(i => ({ id: i._id, amount: i.amount })));
+        this.items = data.addedItems.map(i => ({ id: i._id, amount: i.amount }));
         this.pickupDate = data.pickup;
         this.name = data.userData.inputs.name.value;
         this.email = data.userData.inputs.email.value;

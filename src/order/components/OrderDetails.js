@@ -52,7 +52,7 @@ const CheckoutButton = props => {
     </div>
 }
 
-const PickedFood = props => {
+export const PickedFood = props => {
     const { totalPrice, name, amount } = props.item;
 
     return <div className='display-flex justify-content-between p-px-10'>

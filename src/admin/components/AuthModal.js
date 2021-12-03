@@ -49,6 +49,11 @@ export const AuthModal = props => {
             setShow(false)
             setMessage(responseData.message)
             enableDrawer(false)
+
+            if (props.onSuccess) {
+                props.onSuccess();
+            }
+
         } catch (err) {
             console.log(err)
         }
@@ -64,7 +69,9 @@ export const AuthModal = props => {
         enableDrawer(false)
     }
 
-    const onClickHandler = () => {
+    const onClickHandler = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         setShow(true);
         disableDrawer(true);
     }

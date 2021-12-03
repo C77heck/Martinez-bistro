@@ -20,8 +20,11 @@ const FindUs = () => {
     useEffect(() => {
         (async () => {
             const responseData = await sendRequest(process.env.REACT_APP_OPENING)
-            setOpening(responseData.opening)
-            localStorage.setItem('opening', JSON.stringify(responseData.opening));
+            console.log(responseData);
+            if (!!responseData) {
+                setOpening(responseData.opening)
+                localStorage.setItem('opening', JSON.stringify(responseData.opening));
+            }
         })()
     }, [openingExpiry])
 
