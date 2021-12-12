@@ -38,7 +38,6 @@ export const Orders = props => {
     }
 
     const selected = () => {
-        console.log('got called', type);
         switch (type) {
             case 'rejected':
                 return rejected;
@@ -48,26 +47,27 @@ export const Orders = props => {
                 return orders;
         }
     }
+    console.log(selected(), !!selected().length, { rejected, finished, orders });
     // TODO -> we need here a tab selector that controls which one gets mapped out.
-    return <div className='full-screen display-flex justify-content-center center flex-column'>
-        <div className='position-center py-2'>
+    return <div className='full-screen display-flex flex-column'>
+        <div className='position-center py-2 mt-18'>
             <div
-                className={`position-center basic-border border-radius-px-4 filter-element fs-19 ${type === 'finished' ? 'background--green' : ''}`}
+                className={`position-center basic-border border-radius-px-4 filter-element fs-19 ${type === 'finished' ? 'button-active' : ''}`}
                 onClick={() => setType('finished')}
             >Befejezett</div>
             <div
-                className={`position-center basic-border border-radius-px-4 filter-element fs-19 ${type === 'rejected' ? 'background--green' : ''}`}
+                className={`position-center basic-border border-radius-px-4 filter-element fs-19 ${type === 'rejected' ? 'button-active' : ''}`}
                 onClick={() => setType('rejected')}
             >Elutasítva</div>
             <div
-                className={`position-center basic-border border-radius-px-4 filter-element fs-19 ${type === 'orders' ? 'background--green' : ''}`}
+                className={`position-center basic-border border-radius-px-4 filter-element fs-19 ${type === 'orders' ? 'button-active' : ''}`}
                 onClick={() => setType('orders')}
             >Rendelések</div>
         </div>
-        <div className='max-width-1000 w-100 mt-10'>
+        <div className='max-width-1000 w-100 mt-3'>
             <h2 className='fs-40 color--light text-align-center' >Rendelések</h2>
             <div className='display-flex flex-wrap justify-content-center'>
-                {!!selected().length ? selected().map((i, index) => <OrderCard key={index} order={i} />) : <h2 className='fs-30 py-3'>Jelenleg nincs rendelés</h2>}
+                {!!selected().length ? selected().map((i, index) => <OrderCard key={index} order={i} />) : <h2 className='fs-30 py-3'>Üres lista</h2>}
 
             </div>
         </div>

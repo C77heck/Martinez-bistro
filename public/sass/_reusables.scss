@@ -1,3 +1,8 @@
+.button-active {
+    background-color: var(--color-green-light) !important;
+    color: var(--color-light) !important;
+    border-color: var(--color-green) !important;
+}
 .background {
     &--light {
         background-color: var(--color-light) !important;
