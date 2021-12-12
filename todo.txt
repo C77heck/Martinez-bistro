@@ -30,3 +30,4 @@ perhaps a list of food items they want to order. or something.to see the sums
 15. something is not right between the communication of the api and the frontend. 
 orders dont get saved and also the fucking authentication seems to suck hard.
 16. figure a way to get through the error as of now it seems not to be able to catch it..
+17. tabs to add for the ordering screen.

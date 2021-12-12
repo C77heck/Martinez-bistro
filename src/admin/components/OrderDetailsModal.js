@@ -81,15 +81,14 @@ const FinishButton = props => {
     const { isLoggedIn, token } = useContext(AuthContext);
     const finish = async () => {
         try {
-            const foodItems = await sendRequest(process.env.REACT_APP_GET_FINISH + props.id,
+            const foodItems = await sendRequest(process.env.REACT_APP_FINISH + props.id,
                 'PATCH',
                 {},
                 {
-                    Authorization: 'Bearer ' + token,
-                    'Content-Type': 'application/json'
+                    Authorization: 'Bearer ' + token
                 });
         } catch (e) {
-            console.log(e);
+            console.log(e, process.env.REACT_APP_FINISH);
         }
     };
 
@@ -108,11 +107,10 @@ const RejectButton = props => {
                 'PATCH',
                 {},
                 {
-                    Authorization: 'Bearer ' + token,
-                    'Content-Type': 'application/json'
+                    Authorization: 'Bearer ' + token
                 });
         } catch (e) {
-            console.log(e);
+            console.log(e, process.env.REACT_APP_REJECT);
         }
     };
 
