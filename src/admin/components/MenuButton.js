@@ -15,10 +15,7 @@ const MenuButton = (props) => {
                 <span>Menü</span>
             </Link>
         </AuthModal>
-
     </div>
-
-
 }
 
 export default MenuButton;

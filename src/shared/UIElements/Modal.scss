@@ -247,6 +247,36 @@
   }
 }
 
+// ORDER MODAL
+.modal--order {
+  width: 70vw;
+  left: 15vw;
+  @media screen and (max-width: $tablet-lg) {
+    width: 80vw;
+    left: 10vw;
+    top: 13vh;
+    z-index: 1001; //to be on top of the navbar button
+  }
+  @media screen and (max-width: $mobile) {
+    width: 90vw;
+    left: 5vw;
+    top: 4vh;
+    z-index: 1001; //to be on top of the navbar button
+  }
+  .modal {
+    &__header {
+      background-color: #298412;
+    }
+    &__content {
+      font-size: 2rem;
+      & input {
+        width: 80%;
+        margin: auto;
+      }
+    }
+  }
+}
+
 //CSS TRANSITION
 .modal-enter {
   transform: translateY(-10rem);

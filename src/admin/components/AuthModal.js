@@ -13,7 +13,6 @@ import { VALIDATOR_REQUIRE } from '../../utility/validators';
 
 export const AuthModal = props => {
     const { signin, isLoggedIn, disableDrawer, enableDrawer } = useContext(AuthContext);
-
     const [show, setShow] = useState(false);
     const { sendRequest, error, clearError } = useHttpClient();
     const [message, setMessage] = useState('')

@@ -63,6 +63,7 @@ const OrderButton = props => {
                 process.env.REACT_APP_PLACE_ORDER,
                 'POST',
                 data,
+                { 'Content-Type': 'application/json' }
             )
 
             if (props.onSuccess) {

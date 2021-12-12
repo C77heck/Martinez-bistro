@@ -27,11 +27,8 @@ export const validate = (value, validators, inputs) => {
   let isValid = true;
   for (const validator of validators) {
     if (validator.type === VALIDATOR_TYPE_PHONE) {
-      let val = value.trim();
-      let firstChar = val[0];
-      let restOfChar = val.slice(1)
-      isValid = /^\b0|\+/.test(firstChar) ? true : false;
-      isValid = /\D/.test(restOfChar) ? false : true;
+      isValid = /((?:\+?3|0)6)(?:-|\()?(\d{1,2})(?:-|\))?(\d{3})-?(\d{3,4})/.test(value.trim())
+      // /^(06)[0-9]{2}[0-9]{3}[0-9]{3,4}$/.test(value.trim())
     }
     if (validator.type === VALIDATOR_TYPE_REQUIRE) {
       isValid = isValid && value.trim().length > 0;

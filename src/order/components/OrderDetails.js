@@ -15,7 +15,7 @@ export const OrderDetails = props => {
             <h4 className='fs-16'>Ár</h4>
         </div>
         <div>
-            {addedItems.map(i => <PickedFood key={i._id} item={i} remove={remove} />)}
+            {addedItems.map(i => <PickedFood key={i._id} item={i} remove={remove} isCheckout={true} />)}
         </div>
         <div className='display-flex justify-content-around hr--light mt-2 pt-1 pb-1'>
             <h2 className='fs-22 fw-800'>Összesen:</h2>
@@ -65,8 +65,10 @@ export const PickedFood = props => {
         <div className='fix-width-50'>
             <h5 className='fs-16'>{priceFormat(totalPrice)}</h5>
         </div>
-        <div className='fix-width-20'>
-            <h5 onClick={() => props.remove(props.item)} className='fs-16 hover-primary active-translate'>&#10006;</h5>
-        </div>
+        {props.isCheckout && <div className='fix-width-20'>
+            <h5
+                onClick={() => props.remove(props.item)} className='fs-16 hover-primary active-translate'
+            >&#10006;</h5>
+        </div>}
     </div>;
 }

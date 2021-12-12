@@ -1,3 +1,14 @@
+.background {
+    &--light {
+        background-color: var(--color-light) !important;
+    }
+    &--green {
+        background-color: var(--color-green-light) !important;
+    }
+    &--red {
+        background-color: var(--color-red) !important;
+    }
+}
 .heading-primary {
     color: var(--color-text-dark);
     text-transform: uppercase;
@@ -154,7 +165,7 @@
     justify-content: space-between;
 }
 .justify-content-around {
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .white-space-nowrap {
     white-space: nowrap;
