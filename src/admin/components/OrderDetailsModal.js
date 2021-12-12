@@ -37,8 +37,7 @@ export const OrderDetailsModal = props => {
             console.log(e);
         }
     }
-
-    console.log(orderDetails);
+    console.log(status);
 
     return <Modal
         show={props.show}
@@ -68,10 +67,11 @@ export const OrderDetailsModal = props => {
                 <Hr type={'light'} size={80} className='my-1' />
                 <OrderText propertyName='Megjegyzés' value={orderDetails.note} />
             </div>
-            <div className='display-flex justify-content-around align-items-center'>
-                <FinishButton id={_id} />
-                <RejectButton id={_id} />
-            </div>
+            {!status.isRejected && !status.isDone
+                && <div className='display-flex justify-content-around align-items-center'>
+                    <FinishButton id={_id} />
+                    <RejectButton id={_id} />
+                </div>}
         </div>
     </Modal >;
 }
@@ -88,7 +88,7 @@ const FinishButton = props => {
                     Authorization: 'Bearer ' + token
                 });
         } catch (e) {
-            console.log(e, process.env.REACT_APP_FINISH);
+            window.location.reload();
         }
     };
 
@@ -110,7 +110,7 @@ const RejectButton = props => {
                     Authorization: 'Bearer ' + token
                 });
         } catch (e) {
-            console.log(e, process.env.REACT_APP_REJECT);
+            window.location.reload();
         }
     };
 
