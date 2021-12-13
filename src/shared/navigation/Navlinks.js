@@ -212,10 +212,13 @@ const OrderNavLink = props => {
     const getUniqueOrderId = async () => {
         try {
             const uniqueId = await sendRequest(process.env.REACT_APP_GET_UNIQUE_ORDER_ID)
+            if (!uniqueId) {
+                throw new Error();
+            }
             storage.set(uniqueId);
             redirect('/order');
         } catch (e) {
-            if (tries < 5) {
+            if (tries < 3) {
                 await getUniqueOrderId();
                 tries += 1;
             }

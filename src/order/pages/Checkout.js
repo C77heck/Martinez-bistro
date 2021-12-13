@@ -9,14 +9,17 @@ import MessageModal from "../../shared/UIElements/MessageModal";
 import { redirect } from "../../utility/helpers";
 import { ItemsPicked } from "../components/ItemsPicked";
 import ErrorModal from "../../shared/UIElements/ErrorModal";
+import { Storage } from '../../shared/helpers/storage';
 
 export const Checkout = props => {
     const { addedItems, clearOrder } = useContext(OrderContext)
+    const storage = new Storage('uniqueOrderId');
     let data = {
         userData: [],
         pickup: '',
         misc: [],
         addedItems,
+        uniqueId: storage.get()?.uniqueId,
     };
     const getValues = (values, prop) => {
         data[prop] = values;
@@ -56,6 +59,8 @@ const OrderButton = props => {
     const [customError, setCustomError] = useState('');
     // TODO -> Make sure they checked out the aszf and gdpr boxes...
     const order = async () => {
+        console.log(props.getData());
+
         try {
             const data = JSON.stringify(props.getData(), null, {});
             const responseData = await sendRequest(
@@ -72,12 +77,12 @@ const OrderButton = props => {
             setMessage(responseData.message || 'Köszönjük a rendelésed')
         } catch (err) {
             setCustomError('Kérlek bizonyosodj meg róla hogy helyes adatokat adtál meg, és hogy kitöltöttél minden mezőt');
+
             console.log(err, error);
         }
     }
 
     return <div>
-        <ErrorModal error={error} onClear={clearError} />
         <MessageModal
             onClear={() => redirect('/')}
             message={message}
@@ -106,6 +111,7 @@ class OrderObject {
     phone;
     tax;
     note;
+    uniqueId;
     constructor(data) {
         this.items = data.addedItems.map(i => ({ id: i._id, amount: i.amount }));
         this.pickupDate = data.pickup;
@@ -114,5 +120,6 @@ class OrderObject {
         this.phone = data.userData.inputs.phone.value;
         this.tax = data.misc.checkboxes.needTax.value;
         this.note = data.misc.note;
+        this.uniqueId = data.uniqueId;
     }
 }

@@ -17,7 +17,6 @@ export class Storage {
     }
 
     set(value) {
-        console.log({ value });
         this.storage.setItem(this.name, JSON.stringify(value, null));
     }
 
