@@ -53,12 +53,11 @@ export const Checkout = props => {
 const OrderButton = props => {
     const { sendRequest, error, clearError } = useHttpClient();
     const [message, setMessage] = useState('');
+    const [customError, setCustomError] = useState('');
     // TODO -> Make sure they checked out the aszf and gdpr boxes...
     const order = async () => {
         try {
             const data = JSON.stringify(props.getData(), null, {});
-            console.log({ data });
-
             const responseData = await sendRequest(
                 process.env.REACT_APP_PLACE_ORDER,
                 'POST',
@@ -72,7 +71,8 @@ const OrderButton = props => {
 
             setMessage(responseData.message || 'Köszönjük a rendelésed')
         } catch (err) {
-            console.log(err);
+            setCustomError('Kérlek bizonyosodj meg róla hogy helyes adatokat adtál meg, és hogy kitöltöttél minden mezőt');
+            console.log(err, error);
         }
     }
 
@@ -82,6 +82,11 @@ const OrderButton = props => {
             onClear={() => redirect('/')}
             message={message}
             className='admin-message-modal'
+        />
+        <MessageModal
+            onClear={() => setCustomError('')}
+            message={customError}
+            className='admin-error-modal'
         />
         <button
             className='order-button'

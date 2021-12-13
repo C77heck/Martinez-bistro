@@ -276,6 +276,20 @@
     }
   }
 }
+.note--modal {
+  top: 20vh;
+
+  .modal {
+    top: 20vh;
+    &__content {
+      font-size: 1.4rem;
+      & input {
+        width: 80%;
+        margin: auto;
+      }
+    }
+  }
+}
 
 //CSS TRANSITION
 .modal-enter {

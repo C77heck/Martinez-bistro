@@ -22,7 +22,7 @@ export const foodTypes = [
     { value: 'platillos mexicanos', english: 'mexicanos', id: 3 },
     { value: 'dupla tál', english: 'double', id: 4 },
     { value: 'nachos', english: 'nachos', id: 5 },
-    { value: 'arroz', english: 'arroz', id: 6 },
+    // { value: 'arroz', english: 'arroz', id: 6 },
     { value: 'dippers', english: 'dippers', id: 7 },
     { value: 'italok', english: 'drinks', id: 8 },
     { value: 'extrák', english: 'extras', id: 9 },

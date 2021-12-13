@@ -13,6 +13,9 @@
     &--red {
         background-color: var(--color-red) !important;
     }
+    &--oragne {
+        background-color: var(--color-border) !important;
+    }
 }
 .heading-primary {
     color: var(--color-text-dark);
@@ -443,7 +446,11 @@
 .margin-unset {
     margin: unset;
 }
-
+@for $i from 1 through 3000 {
+    .#{z- + $i} {
+        z-index: $i !important;
+    }
+}
 @for $i from 1 through 1000 {
     .#{btn-w- + $i} {
         width: $i + px !important;
@@ -472,9 +479,7 @@
     .#{min-width- + $i} {
         min-width: $i + px !important;
     }
-    .#{z- + $i} {
-        z-index: $i !important;
-    }
+
     .#{h-px- + $i} {
         height: $i + px !important;
     }
@@ -489,7 +494,7 @@
     }
 }
 
-@for $i from 1 through 100 {
+@for $i from 0 through 100 {
     .#{h- + $i} {
         height: $i * 1% !important;
     }

@@ -5,6 +5,8 @@ import { Link } from 'react-scroll';
 import AuthModal, { AuthButton } from '../../admin/components/AuthModal';
 import { redirect } from '../../utility/helpers';
 import { AuthContext } from '../context/auth-context';
+import { Storage } from '../helpers/storage';
+import { useHttpClient } from '../hooks/http-hook';
 
 export const Main = (props) => {
     const { isMainPage } = props;
@@ -16,11 +18,8 @@ export const Main = (props) => {
                     Étlap
                 </NavLink>
             </li>}
-            {isMainPage && <li className='navigation__item'>
-                <NavLink to='/order'>
-                    Kiszállítás
-                </NavLink>
-            </li>}
+            {isMainPage && <OrderNavLink />
+            }
             {!isMainPage && <li className='navigation__item'>
                 <NavLink to='/'>
                     Főoldal
@@ -67,11 +66,7 @@ export const Checkout = (props) => {
 
     return (
         <ul className='navigation__list'>
-            <li className='navigation__item'>
-                <NavLink to='/order'>
-                    Kiszállítás
-                </NavLink>
-            </li>
+            <OrderNavLink />
             <li className='navigation__item'>
                 <NavLink to='/'>
                     Főoldal
@@ -89,11 +84,7 @@ export const Menu = () => {
                     Főoldal
                 </NavLink>
             </li>
-            <li className='navigation__item'>
-                <NavLink to='/order'>
-                    Kiszállítás
-                </NavLink>
-            </li>
+            <OrderNavLink />
             <li className='navigation__item'>
                 <Link
                     to='mains'
@@ -212,4 +203,30 @@ const AdminNavLink = props => {
             ? <a href='#' id='auth-btn' >Rendelések</a>
             : <NavLink to='/orders' >Rendelések</NavLink>}
     </AuthModal>;
+}
+
+const OrderNavLink = props => {
+    const { sendRequest, error } = useHttpClient();
+    const storage = new Storage('uniqueOrderId');
+    let tries = 0;
+    const getUniqueOrderId = async () => {
+        try {
+            const uniqueId = await sendRequest(process.env.REACT_APP_GET_UNIQUE_ORDER_ID)
+            storage.set(uniqueId);
+            redirect('/order');
+        } catch (e) {
+            if (tries < 5) {
+                await getUniqueOrderId();
+                tries += 1;
+            }
+            console.log(e);
+        }
+    }
+
+
+    return <li className='navigation__item'>
+        <a onClick={getUniqueOrderId}>
+            Kiszállítás
+            </a>
+    </li >
 }

@@ -34,26 +34,49 @@
     padding: 0;
 }
 .admin-message-modal {
-    & .modal__header{
+    & .modal__header {
         background-color: rgb(248, 166, 14);
-
     }
     font-size: 2.5rem;
     color: var(--color-text-admin);
     @media screen and (max-width: $tablet-land) {
         font-size: 2.2rem;
-      }
-      @media screen and (max-width: $tablet) {
+    }
+    @media screen and (max-width: $tablet) {
         width: 68vw;
         left: 16vw;
-      }
-      @media screen and (max-width: $mobile) {
+    }
+    @media screen and (max-width: $mobile) {
         font-size: 1.8rem;
         width: 90vw;
-        left: 5vw
-      }
-      @media screen and (max-width: $mobile-sm) {
+        left: 5vw;
+    }
+    @media screen and (max-width: $mobile-sm) {
         width: 100vw;
         left: 0;
-      }
+    }
+}
+
+.admin-error-modal {
+    & .modal__header {
+        background-color: rgb(245, 61, 29);
+    }
+    font-size: 2.5rem;
+    color: rgb(250, 100, 74);
+    @media screen and (max-width: $tablet-land) {
+        font-size: 2.2rem;
+    }
+    @media screen and (max-width: $tablet) {
+        width: 68vw;
+        left: 16vw;
+    }
+    @media screen and (max-width: $mobile) {
+        font-size: 1.8rem;
+        width: 90vw;
+        left: 5vw;
+    }
+    @media screen and (max-width: $mobile-sm) {
+        width: 100vw;
+        left: 0;
+    }
 }

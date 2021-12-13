@@ -47,9 +47,8 @@ export const Orders = props => {
                 return orders;
         }
     }
-    console.log(selected(), !!selected().length, { rejected, finished, orders });
-    // TODO -> we need here a tab selector that controls which one gets mapped out.
-    return <div className='full-screen display-flex flex-column'>
+
+    return <div className='full-screen display-flex flex-column align-items-center'>
         <div className='position-center py-2 mt-18'>
             <div
                 className={`position-center basic-border border-radius-px-4 filter-element fs-19 ${type === 'finished' ? 'button-active' : ''}`}
@@ -68,7 +67,6 @@ export const Orders = props => {
             <h2 className='fs-40 color--light text-align-center' >Rendelések</h2>
             <div className='display-flex flex-wrap justify-content-center'>
                 {!!selected().length ? selected().map((i, index) => <OrderCard key={index} order={i} />) : <h2 className='fs-30 py-3'>Üres lista</h2>}
-
             </div>
         </div>
     </div>;
@@ -88,7 +86,7 @@ const OrderCard = props => {
 
     return <div
         onClick={onClickHandler}
-        className='display-flex flex-column food_cart hover-background-white mr-2 fix-width-300 order-card'
+        className='display-flex flex-column food_cart p-0 hover-background-white mr-2 fix-width-300 order-card'
     >
         <div className='w-100 p-1 order-card--header'>
             <h3 className='fs-25 fw-800 color--light'>Felvétel időpontja: <span className='fw-800 fs-25 color--dark'>
@@ -105,7 +103,7 @@ const OrderCard = props => {
             <Hr type={'light'} size={80} className='my-1' />
             <OrderText propertyName='Áfás számla' value={tax ? 'Igen' : 'Nem'} />
             <Hr type={'light'} size={80} className='my-1' />
-            <OrderText propertyName='Megjegyzés' value={shorten(note, 60)} />
+            <OrderText propertyName='Megjegyzés' value={shorten(note, 30)} />
         </div>
         <OrderDetailsModal
             show={show}
