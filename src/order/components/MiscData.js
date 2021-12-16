@@ -9,6 +9,7 @@ export const MiscData = props => {
             valid: false
         },
     });
+    const [isValid, setIsValid] = useState(false);
     const [checkboxes, setCheckbox] = useState({
         needTax: {
             value: false,
@@ -26,7 +27,7 @@ export const MiscData = props => {
     }
 
     useEffect(() => {
-        props.getValues && props.getValues({ checkboxes, note: inputState.inputs.note.value });
+        props.getValues && props.getValues({ checkboxes, note: inputState.inputs.note.value }, checkboxes.aszf.value && checkboxes.gdpr.value);
     }, [inputState, checkboxes, setCheckbox])
 
 

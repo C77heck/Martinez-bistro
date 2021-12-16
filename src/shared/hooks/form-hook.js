@@ -33,8 +33,8 @@ export const useForm = (inputs) => {
 
 
 
-//FORM VALIDITY LOGIC
-const [isFormValid, setIsFormValid] = useState(false)
+    //FORM VALIDITY LOGIC
+    const [isFormValid, setIsFormValid] = useState(false)
 
     useEffect(() => {
         let falsy = 0;
@@ -43,12 +43,8 @@ const [isFormValid, setIsFormValid] = useState(false)
                 falsy += 1;
             }
         }
-        if (falsy !== 0) {
-            setIsFormValid(true)
-        } else {
-            setIsFormValid(false)
-        }
 
+        setIsFormValid(!falsy)
     }, [inputState.inputs])
 
 

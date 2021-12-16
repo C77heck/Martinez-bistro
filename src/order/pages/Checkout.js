@@ -10,19 +10,21 @@ import { redirect } from "../../utility/helpers";
 import { ItemsPicked } from "../components/ItemsPicked";
 import ErrorModal from "../../shared/UIElements/ErrorModal";
 import { Storage } from '../../shared/helpers/storage';
+import { get } from "../../shared/helpers/util";
 
 export const Checkout = props => {
     const { addedItems, clearOrder } = useContext(OrderContext)
     const storage = new Storage('uniqueOrderId');
     let data = {
-        userData: [],
+        userData: {},
         pickup: '',
-        misc: [],
+        misc: {},
         addedItems,
         uniqueId: storage.get()?.uniqueId,
     };
-    const getValues = (values, prop) => {
-        data[prop] = values;
+    const getValues = (values, prop, isValid) => {
+        console.log('FIRED', data, prop, isValid);
+        data[prop] = { values, isValid };
     }
     // TODO -> card to display orderd items
     return <div className='full-screen max-width-vw-90 m-3 mt-14 display-flex align-items-center flex-column'>
@@ -32,17 +34,17 @@ export const Checkout = props => {
         </div>
         <div className='w-px-800 py-2 '>
             <h2 className='fs-22 fw-800'>Rendelés átvevője</h2>
-            <UserDetails getValues={(values) => getValues(values, 'userData')} />
+            <UserDetails getValues={(values, isValid) => getValues(values, 'userData', isValid)} />
         </div>
         <Hr type={'light'} size={80} />
         <div className='w-px-800 py-2 display-flex justify-content-start flex-column align-items-baseline'>
             <h2 className='fs-22 fw-800'>Rendelés átvételének időpontja</h2>
-            <DatePicker getValues={(values) => getValues(values, 'pickup')} />
+            <DatePicker getValues={(values, isValid) => getValues(values, 'pickup', isValid)} />
         </div>
         <Hr type={'light'} size={80} />
         <div className='w-px-800 py-2 '>
             <h2 className='fs-22 fw-800'>Egyéb</h2>
-            <MiscData getValues={(values) => getValues(values, 'misc')} />
+            <MiscData getValues={(values, isValid) => getValues(values, 'misc', isValid)} />
         </div>
         <Hr type={'light'} size={80} />
         <div className='w-px-800 py-2 position-center'>
@@ -59,8 +61,6 @@ const OrderButton = props => {
     const [customError, setCustomError] = useState('');
     // TODO -> Make sure they checked out the aszf and gdpr boxes...
     const order = async () => {
-        console.log(props.getData());
-
         try {
             const data = JSON.stringify(props.getData(), null, {});
             const responseData = await sendRequest(
@@ -76,7 +76,7 @@ const OrderButton = props => {
 
             setMessage(responseData.message || 'Köszönjük a rendelésed')
         } catch (err) {
-            setCustomError('Kérlek bizonyosodj meg róla hogy helyes adatokat adtál meg, és hogy kitöltöttél minden mezőt');
+            setCustomError(err.message);
 
             console.log(err, error);
         }
@@ -114,12 +114,26 @@ class OrderObject {
     uniqueId;
     constructor(data) {
         this.items = data.addedItems.map(i => ({ id: i._id, amount: i.amount }));
-        this.pickupDate = data.pickup;
-        this.name = data.userData.inputs.name.value;
-        this.email = data.userData.inputs.email.value;
-        this.phone = data.userData.inputs.phone.value;
-        this.tax = data.misc.checkboxes.needTax.value;
-        this.note = data.misc.note;
-        this.uniqueId = data.uniqueId;
+        this.pickupDate = getData(data, 'pickup', 'Kérünk válassz átvételi idő pontot');
+        this.name = getData(data, 'userData.inputs.name.value', 'Kérünk add meg a nevedet');
+        this.email = getData(data, 'userData.inputs.email.value', 'Kérünk add meg az email címed');
+        this.phone = getData(data, 'userData.inputs.phone.value', 'Kérünk add meg a telefon számodat');
+        this.tax = getData(data, 'misc.checkboxes.needTax.value', '', false);
+        this.note = getData(data, 'misc.note', '', false);
+        this.uniqueId = getData(data, 'uniqueId', 'RELOAD');
     }
+}
+
+const getData = (baseObject, prop, errorMessage, isRequired = true) => {
+    const value = get(baseObject, prop, '')
+    console.log(value);
+    if (!!value) {
+        return value;
+    }
+
+    if (isRequired) {
+        throw new Error(errorMessage, 400)
+    }
+
+    return '';
 }

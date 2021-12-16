@@ -5,7 +5,7 @@ import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE, VALIDATOR_PHONE } from "../../utili
 
 
 export const UserDetails = props => {
-    const [inputState, inputHandler] = useForm({
+    const [inputState, inputHandler, isFormValid] = useForm({
         name: {
             value: '',
             valid: false
@@ -21,7 +21,8 @@ export const UserDetails = props => {
     });
 
     useEffect(() => {
-        props.getValues && props.getValues(inputState);
+        console.log(isFormValid);
+        props.getValues && props.getValues(inputState, isFormValid);
     }, [inputState, inputHandler])
 
     return <div className='display-flex w-100 justify-content-between'>

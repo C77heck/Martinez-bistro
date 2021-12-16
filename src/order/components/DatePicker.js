@@ -21,7 +21,7 @@ export const DatePicker = props => {
     }
 
     useEffect(() => {
-        props.getValues && props.getValues(pickupTime);
+        props.getValues && props.getValues(pickupTime, !!pickupTime);
     }, [pickupTime, setPickupTime])
 
     return <div>
