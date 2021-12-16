@@ -29,7 +29,8 @@ export const Checkout = props => {
         setChanged(!changed);
     }
 
-    // TODO -> Figure the form validity logic.
+    // TODO -> Figure the form validity logic. something is wrong we do not get the data properly from the data
+    // object.
     useEffect(() => {
         let falsy = 0;
         for (const prop in data) {
