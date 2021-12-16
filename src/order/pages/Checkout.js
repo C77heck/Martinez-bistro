@@ -1,5 +1,5 @@
 import { UserDetails } from "../components/UserDetails";
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { MiscData } from '../components/MiscData';
 import { DatePicker } from "../components/DatePicker";
@@ -11,10 +11,12 @@ import { ItemsPicked } from "../components/ItemsPicked";
 import ErrorModal from "../../shared/UIElements/ErrorModal";
 import { Storage } from '../../shared/helpers/storage';
 import { get } from "../../shared/helpers/util";
-
+const propsToCheckForValidity = ['userData', 'pickup', 'misc']
 export const Checkout = props => {
     const { addedItems, clearOrder } = useContext(OrderContext)
     const storage = new Storage('uniqueOrderId');
+    const [isFormValid, setIsFormValid] = useState(false);
+    const [changed, setChanged] = useState(false);
     let data = {
         userData: {},
         pickup: '',
@@ -23,9 +25,25 @@ export const Checkout = props => {
         uniqueId: storage.get()?.uniqueId,
     };
     const getValues = (values, prop, isValid) => {
-        console.log('FIRED', data, prop, isValid);
         data[prop] = { values, isValid };
+        setChanged(!changed);
     }
+
+    // TODO -> Figure the form validity logic.
+    useEffect(() => {
+        let falsy = 0;
+        for (const prop in data) {
+            if (data.hasOwnProperty(prop) && propsToCheckForValidity.includes(prop)) {
+                console.log(prop, data);
+                if (!data[prop].isValid) {
+                    falsy += 1;
+                }
+            }
+        }
+
+        setIsFormValid(!falsy);
+    }, [data, changed])
+    console.log(isFormValid);
     // TODO -> card to display orderd items
     return <div className='full-screen max-width-vw-90 m-3 mt-14 display-flex align-items-center flex-column'>
         <div className='w-px-800 py-2 '>

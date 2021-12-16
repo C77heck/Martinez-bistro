@@ -21,7 +21,6 @@ export const UserDetails = props => {
     });
 
     useEffect(() => {
-        console.log(isFormValid);
         props.getValues && props.getValues(inputState, isFormValid);
     }, [inputState, inputHandler])
 
