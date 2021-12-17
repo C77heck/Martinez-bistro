@@ -45,31 +45,33 @@ export const Checkout = props => {
     }, [data])
 
     // TODO -> card to display orderd items
-    return <div className='full-screen max-width-vw-90 m-3 mt-14 display-flex align-items-center flex-column'>
-        <div className='w-px-800 py-2 '>
-            <h2 className='fs-22 fw-800'>Kiválasztott ételek</h2>
-            <ItemsPicked />
-        </div>
-        <div className='w-px-800 py-2 '>
-            <h2 className='fs-22 fw-800'>Rendelés átvevője</h2>
-            <UserDetails getValues={(values, isValid) => getValues(values, 'userData', isValid)} />
-        </div>
-        <Hr type={'light'} size={80} />
-        <div className='w-px-800 py-2 display-flex justify-content-start flex-column align-items-baseline'>
-            <h2 className='fs-22 fw-800'>Rendelés átvételének időpontja</h2>
-            <DatePicker getValues={(values, isValid) => getValues(values, 'pickup', isValid)} />
-        </div>
-        <Hr type={'light'} size={80} />
-        <div className='w-px-800 py-2 '>
-            <h2 className='fs-22 fw-800'>Egyéb</h2>
-            <MiscData getValues={(values, isValid) => getValues(values, 'misc', isValid)} />
-        </div>
-        <Hr type={'light'} size={80} />
-        <div className='w-px-800 py-2 position-center'>
-            <OrderButton
-                isFormValid={isFormValid}
-                getData={() => new OrderObject({ ...data, addedItems })} onSuccess={clearOrder}
-            />
+    return <div className='full-screen max-width-vw-100 m-md-3 mt-14 display-flex align-items-center flex-column'>
+        <div className='w-px-800 py-2 max-width-vw-98'>
+            <div className=''>
+                <h2 className='fs-22 fw-800'>Kiválasztott ételek</h2>
+                <ItemsPicked />
+            </div>
+            <div className=''>
+                <h2 className='fs-22 fw-800'>Rendelés átvevője</h2>
+                <UserDetails getValues={(values, isValid) => getValues(values, 'userData', isValid)} />
+            </div>
+            <Hr type={'light'} size={80} />
+            <div className='display-flex justify-content-start flex-column align-items-baseline'>
+                <h2 className='fs-22 fw-800'>Rendelés átvételének időpontja</h2>
+                <DatePicker getValues={(values, isValid) => getValues(values, 'pickup', isValid)} />
+            </div>
+            <Hr type={'light'} size={80} />
+            <div className=''>
+                <h2 className='fs-22 fw-800'>Egyéb</h2>
+                <MiscData getValues={(values, isValid) => getValues(values, 'misc', isValid)} />
+            </div>
+            <Hr type={'light'} size={80} />
+            <div className='position-center'>
+                <OrderButton
+                    isFormValid={isFormValid}
+                    getData={() => new OrderObject({ ...data, addedItems })} onSuccess={clearOrder}
+                />
+            </div>
         </div>
     </div>;
 }
