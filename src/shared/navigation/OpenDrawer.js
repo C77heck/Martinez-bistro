@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -40,67 +40,21 @@ const OpenDrawer = () => {
     const [show, setShow] = useState(false)
     const { location } = useHistory()
     const onClickHandler = e => {
+        // to prevent the sidedrawer from closing when clicking on login button
         if (e.target.id === 'auth-btn' || e.target.id === 'backdrop') {
-            //to prevent the sidedrawer from closing when clicking on login button
         } else {
             setShow(false)
         }
     }
 
-    const locationssd = () => {
-        if (location.pathname === '/') {
-            return (<React.Fragment>
-                <li className='navigation__item'>
-                    <Link to='/menu'>Étlapunk</Link>
-                </li>
-                <li className='navigation__item'>
-                    <a href='#footer'>Kapcsolat</a>
-                </li>
-                <li className='navigation__item'>
-                    <Link to='/order'>Rendelés</Link>
-                </li>
-                <li className='navigation__item'>
-                    <a href='#find-us'>Nyitva tartás</a>
-                </li>
-                <li className='navigation__item'>
-                    <a href='#chef'>Rólunk</a>
-                </li>
-            </React.Fragment>)
-        } else if (location.pathname === '/menu') {
-            return (<React.Fragment>
-                <li className='navigation__item'>
-                    <Link to='/'>Főoldal</Link>
-                </li>
-                <li className='navigation__item'>
-                    <a href='#mains'>Burgerek</a>
-                </li>
-                <li className='navigation__item'>
-                    <a href='#drinks'>Üdítők</a>
-                </li>
-                <li className='navigation__item'>
-                    <a href='#tapas'>Tapas</a>
-                </li>
-            </React.Fragment>)
-        } else if (location.pathname.match('/admin')) {
-            return (<React.Fragment>
-
-                <li className='navigation__item'>
-                    <Link
-                        to='/admin'
-                    >
-                        Admin
-                </Link>                </li>
-                <li className='navigation__item'>
-                    <Link to='/'>Főoldal </Link>
-                </li>
-                <li className='navigation__item'>
-                    <AuthButton />
-                </li>
-
-            </React.Fragment>)
+    useEffect(() => {
+        const menuWrapper = document.querySelector('.MobileNavBarWrapper');
+        if (show) {
+            !!menuWrapper && menuWrapper.addEventListener('click', closeDrawer);
+        } else {
+            !!menuWrapper && menuWrapper.removeEventListener('click', closeDrawer);
         }
-
-    }
+    }, [show]);
 
     const closeDrawer = () => {
         console.log('got clicked');
@@ -110,22 +64,37 @@ const OpenDrawer = () => {
     // TODO -> Sort out the styling of these on mobile so no need for a different way to display it.
     const locations = () => {
         if (location.pathname === '/') {
-            return <Main isMainPage={true} />
+            return <div
+                onClick={closeDrawer}
+                className={'w-100 position-center MobileNavBarWrapper'}
+            ><Main isMainPage={true} /></div>
         } else if (location.pathname === '/menu') {
             return <div
                 onClick={closeDrawer}
-                className={'w-100 position-center'}
+                className={'w-100 position-center MobileNavBarWrapper'}
             ><Menu /></div>
         } else if (location.pathname.match('/admin')) {
             return <AdminLinks />
         } else if (location.pathname === '/order') {
-            return <Main isMainPage={false} />
+            return <div
+                onClick={closeDrawer}
+                className={'w-100 position-center MobileNavBarWrapper'}
+            ><Main isMainPage={false} /></div>
         } else if (location.pathname === '/checkout') {
-            return <Checkout />
+            return <div
+                onClick={closeDrawer}
+                className={'w-100 position-center MobileNavBarWrapper'}
+            ><Checkout /></div>
         } else if (location.pathname === '/orders') {
-            return <AdminLinksOrder />
+            return <div
+                onClick={closeDrawer}
+                className={'w-100 position-center MobileNavBarWrapper'}
+            ><AdminLinksOrder /></div>
         } else if (location.pathname.match('/order-details')) {
-            return <AdminLinksOrderDetails />
+            return <div
+                onClick={closeDrawer}
+                className={'w-100 position-center MobileNavBarWrapper'}
+            ><AdminLinksOrderDetails /></div>
         }
     }
 
@@ -146,4 +115,3 @@ const OpenDrawer = () => {
 
 export default OpenDrawer;
 
-//<NavLinks />

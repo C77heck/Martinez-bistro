@@ -5,7 +5,6 @@ import { AuthContext } from '../context/auth-context';
 
 import { AdminLinks, AdminLinksOrder, AdminLinksOrderDetails, Checkout, Main, Menu } from './Navlinks';
 
-
 const Navbar = props => {
 
     const { isLoggedIn } = useContext(AuthContext);
