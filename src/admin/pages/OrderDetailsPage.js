@@ -61,7 +61,6 @@ export const OrderDetailsPage = props => {
             // window.location.reload();
         }
     }
-    console.log({ order, items });
 
     return <div className='full-screen display-flex justify-content-center center'>
         <div className='max-width-1000 w-100 mt-10'>

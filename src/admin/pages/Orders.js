@@ -14,7 +14,6 @@ export const Orders = props => {
     const { isLoggedIn, token } = useContext(AuthContext);
 
     useEffect(() => {
-        console.log(isLoggedIn && !!token);
         if (!!token) {
             fetchOrders()
         }

@@ -20,7 +20,6 @@ export const Checkout = props => {
         userData: {},
         pickup: '',
         misc: {},
-        addedItems,
         uniqueId: storage.get()?.uniqueId,
     });
     const getValues = (values, prop, isValid) => {
@@ -69,7 +68,7 @@ export const Checkout = props => {
         <div className='w-px-800 py-2 position-center'>
             <OrderButton
                 isFormValid={isFormValid}
-                getData={() => new OrderObject(data)} onSuccess={clearOrder}
+                getData={() => new OrderObject({ ...data, addedItems })} onSuccess={clearOrder}
             />
         </div>
     </div>;
@@ -97,21 +96,22 @@ const OrderButton = props => {
                 data,
                 { 'Content-Type': 'application/json' }
             )
-            console.log({ responseData });
+            if (!responseData) {
+                throw new Error('Hiba történt! Kérem próbálja újra késöbb');
+            }
             if (props.onSuccess) {
                 props.onSuccess();
             }
 
             setMessage(get(responseData, 'message', 'Köszönjük a rendelésed'))
         } catch (err) {
-            console.log(err, err.message);
             switch (get(err, 'message', '')) {
                 case 'FATAL_ERROR':
                     setCustomError('Sajnáljuk de a rendelés leadás nem sikertült, kérünk próbáld újra.')
                     setRedir(true);
                     break;
                 default:
-                    setCustomError(get(err, 'message', ''));
+                    setCustomError(get(err, 'message', 'Sajnáljuk de a rendelés leadás nem sikertült, kérünk próbáld újra.'));
                     break;
             }
         }
@@ -160,9 +160,9 @@ class OrderObject {
         this.phone = getData(data, 'userData.values.inputs.phone.value', 'Kérünk add meg a telefon számodat');
         this.email = getData(data, 'userData.values.inputs.email.value', 'Kérünk add meg az email címed');
         this.pickupDate = getData(data, 'pickup.values', 'Kérünk válassz átvételi idő pontot');
-        this.tax = getData(data, 'misc.values.checkboxes.needTax.value', '', false);
-        this.tax = getData(data, 'misc.values.checkboxes.gdpr.value', 'Nem egyeztél bele az adatvédelmi szabályzatunkba');
-        this.tax = getData(data, 'misc.values.checkboxes.aszf.value', 'Nem egyeztél bele az általános szerződési feltételekbe');
+        this.tax = !!getData(data, 'misc.values.checkboxes.needTax.value', '', false);
+        this.gdpr = getData(data, 'misc.values.checkboxes.gdpr.value', 'Nem egyeztél bele az adatvédelmi szabályzatunkba');
+        this.aszf = getData(data, 'misc.values.checkboxes.aszf.value', 'Nem egyeztél bele az általános szerződési feltételekbe');
         this.note = getData(data, 'misc.values.note', '', false);
         this.uniqueId = getData(data, 'uniqueId', 'FATAL_ERROR');
     }
@@ -170,7 +170,6 @@ class OrderObject {
 
 const getData = (baseObject, prop, errorMessage, isRequired = true) => {
     const value = get(baseObject, prop, '')
-    console.log({ baseObject, prop, errorMessage, value });
     if (!!value) {
         return value;
     }

@@ -39,7 +39,6 @@ export const OrderDetailsModal = props => {
             console.log(e, error);
         }
     }
-    console.log(status);
 
     return <Modal
         show={props.show}

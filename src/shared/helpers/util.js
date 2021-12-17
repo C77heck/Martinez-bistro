@@ -1,4 +1,4 @@
-
+// TODO -> this needs some improvement on the extraction of falsy values like 0, false and the like.
 /**
  * @description alternative to lodash get function.
  * @param obj object to extract data from
@@ -9,9 +9,10 @@
 export const get = (obj, path, defaultVal = '') => {
     const props = path.replace(/\./g, ' ').replace(/\[|\]/g, ' ').split(' ');
     let val = obj;
+
     for (const prop of props) {
 
-        if (!prop) {
+        if (!prop || typeof val === 'string') {
             continue;
         }
 
