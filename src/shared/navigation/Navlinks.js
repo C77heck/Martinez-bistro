@@ -229,7 +229,7 @@ const OrderNavLink = props => {
 
     return <li className='navigation__item'>
         <a onClick={getUniqueOrderId}>
-            Kiszállítás
+            Rendelés
             </a>
     </li >
 }

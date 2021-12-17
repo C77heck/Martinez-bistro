@@ -8,6 +8,7 @@ import { CSSTransition } from 'react-transition-group';
 import { useHistory } from 'react-router-dom';
 import { AuthButton } from '../../admin/components/AuthModal';
 import { AuthContext } from '../context/auth-context';
+import { AdminLinks, AdminLinksOrder, AdminLinksOrderDetails, Checkout, Main, Menu } from './Navlinks';
 
 
 const SideDrawer = props => {
@@ -46,7 +47,7 @@ const OpenDrawer = () => {
         }
     }
 
-    const locations = () => {
+    const locationssd = () => {
         if (location.pathname === '/') {
             return (<React.Fragment>
                 <li className='navigation__item'>
@@ -56,7 +57,7 @@ const OpenDrawer = () => {
                     <a href='#footer'>Kapcsolat</a>
                 </li>
                 <li className='navigation__item'>
-                    <Link to='/order'>Kiszállítás</Link>
+                    <Link to='/order'>Rendelés</Link>
                 </li>
                 <li className='navigation__item'>
                     <a href='#find-us'>Nyitva tartás</a>
@@ -68,11 +69,7 @@ const OpenDrawer = () => {
         } else if (location.pathname === '/menu') {
             return (<React.Fragment>
                 <li className='navigation__item'>
-                    <Link
-                        to='/'
-                    >
-                        Főoldal
-                </Link>
+                    <Link to='/'>Főoldal</Link>
                 </li>
                 <li className='navigation__item'>
                     <a href='#mains'>Burgerek</a>
@@ -94,11 +91,7 @@ const OpenDrawer = () => {
                         Admin
                 </Link>                </li>
                 <li className='navigation__item'>
-                    <Link
-                        to='/'
-                    >
-                        Főoldal
-                </Link>
+                    <Link to='/'>Főoldal </Link>
                 </li>
                 <li className='navigation__item'>
                     <AuthButton />
@@ -108,15 +101,38 @@ const OpenDrawer = () => {
         }
 
     }
+
+    const closeDrawer = () => {
+        console.log('got clicked');
+        setShow(false)
+    };
+
+    // TODO -> Sort out the styling of these on mobile so no need for a different way to display it.
+    const locations = () => {
+        if (location.pathname === '/') {
+            return <Main isMainPage={true} />
+        } else if (location.pathname === '/menu') {
+            return <div
+                onClick={closeDrawer}
+                className={'w-100 position-center'}
+            ><Menu /></div>
+        } else if (location.pathname.match('/admin')) {
+            return <AdminLinks />
+        } else if (location.pathname === '/order') {
+            return <Main isMainPage={false} />
+        } else if (location.pathname === '/checkout') {
+            return <Checkout />
+        } else if (location.pathname === '/orders') {
+            return <AdminLinksOrder />
+        } else if (location.pathname.match('/order-details')) {
+            return <AdminLinksOrderDetails />
+        }
+    }
+
     return (
         <React.Fragment>
             <SideDrawer show={show} onClick={!drawer ? onClickHandler : undefined}>
-                <ul
-                    id='navigation-items'
-                    className='navigation__list'>
-                    {locations()}
-                </ul>
-
+                {locations()}
             </SideDrawer>
             <button
                 className='drawer'
