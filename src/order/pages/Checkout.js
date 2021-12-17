@@ -16,17 +16,18 @@ export const Checkout = props => {
     const { addedItems, clearOrder } = useContext(OrderContext)
     const storage = new Storage('uniqueOrderId');
     const [isFormValid, setIsFormValid] = useState(false);
-    const [changed, setChanged] = useState(false);
-    let data = {
+    const [data, setData] = useState({
         userData: {},
         pickup: '',
         misc: {},
         addedItems,
         uniqueId: storage.get()?.uniqueId,
-    };
+    });
     const getValues = (values, prop, isValid) => {
-        data[prop] = { values, isValid };
-        setChanged(!changed);
+        setData({
+            ...data,
+            [prop]: { values, isValid },
+        })
     }
 
     // TODO -> Figure the form validity logic. something is wrong we do not get the data properly from the data
@@ -35,7 +36,6 @@ export const Checkout = props => {
         let falsy = 0;
         for (const prop in data) {
             if (data.hasOwnProperty(prop) && propsToCheckForValidity.includes(prop)) {
-                console.log(prop, data);
                 if (!data[prop].isValid) {
                     falsy += 1;
                 }
@@ -43,8 +43,8 @@ export const Checkout = props => {
         }
 
         setIsFormValid(!falsy);
-    }, [data, changed])
-    console.log(isFormValid);
+    }, [data])
+
     // TODO -> card to display orderd items
     return <div className='full-screen max-width-vw-90 m-3 mt-14 display-flex align-items-center flex-column'>
         <div className='w-px-800 py-2 '>
@@ -67,7 +67,10 @@ export const Checkout = props => {
         </div>
         <Hr type={'light'} size={80} />
         <div className='w-px-800 py-2 position-center'>
-            <OrderButton getData={() => new OrderObject(data)} onSuccess={clearOrder} />
+            <OrderButton
+                isFormValid={isFormValid}
+                getData={() => new OrderObject(data)} onSuccess={clearOrder}
+            />
         </div>
     </div>;
 }
@@ -78,26 +81,39 @@ const OrderButton = props => {
     const { sendRequest, error, clearError } = useHttpClient();
     const [message, setMessage] = useState('');
     const [customError, setCustomError] = useState('');
+    const [redir, setRedir] = useState(false);
     // TODO -> Make sure they checked out the aszf and gdpr boxes...
     const order = async () => {
         try {
             const data = JSON.stringify(props.getData(), null, {});
+
+            if (!props.isFormValid) {
+                throw new Error('Kérlek győzödj meg róla, hogy helyes adatokat adtál meg.');
+            }
+
             const responseData = await sendRequest(
                 process.env.REACT_APP_PLACE_ORDER,
                 'POST',
                 data,
                 { 'Content-Type': 'application/json' }
             )
-
+            console.log({ responseData });
             if (props.onSuccess) {
                 props.onSuccess();
             }
 
-            setMessage(responseData.message || 'Köszönjük a rendelésed')
+            setMessage(get(responseData, 'message', 'Köszönjük a rendelésed'))
         } catch (err) {
-            setCustomError(err.message);
-
-            console.log(err, error);
+            console.log(err, err.message);
+            switch (get(err, 'message', '')) {
+                case 'FATAL_ERROR':
+                    setCustomError('Sajnáljuk de a rendelés leadás nem sikertült, kérünk próbáld újra.')
+                    setRedir(true);
+                    break;
+                default:
+                    setCustomError(get(err, 'message', ''));
+                    break;
+            }
         }
     }
 
@@ -108,7 +124,12 @@ const OrderButton = props => {
             className='admin-message-modal'
         />
         <MessageModal
-            onClear={() => setCustomError('')}
+            onClear={() => {
+                setCustomError('');
+                if (redir) {
+                    redirect('/')
+                }
+            }}
             message={customError}
             className='admin-error-modal'
         />
@@ -129,23 +150,27 @@ class OrderObject {
     email;
     phone;
     tax;
+    gdpr;
+    aszf;
     note;
     uniqueId;
     constructor(data) {
         this.items = data.addedItems.map(i => ({ id: i._id, amount: i.amount }));
-        this.pickupDate = getData(data, 'pickup', 'Kérünk válassz átvételi idő pontot');
-        this.name = getData(data, 'userData.inputs.name.value', 'Kérünk add meg a nevedet');
-        this.email = getData(data, 'userData.inputs.email.value', 'Kérünk add meg az email címed');
-        this.phone = getData(data, 'userData.inputs.phone.value', 'Kérünk add meg a telefon számodat');
-        this.tax = getData(data, 'misc.checkboxes.needTax.value', '', false);
-        this.note = getData(data, 'misc.note', '', false);
-        this.uniqueId = getData(data, 'uniqueId', 'RELOAD');
+        this.name = getData(data, 'userData.values.inputs.name.value', 'Kérünk add meg a nevedet');
+        this.phone = getData(data, 'userData.values.inputs.phone.value', 'Kérünk add meg a telefon számodat');
+        this.email = getData(data, 'userData.values.inputs.email.value', 'Kérünk add meg az email címed');
+        this.pickupDate = getData(data, 'pickup.values', 'Kérünk válassz átvételi idő pontot');
+        this.tax = getData(data, 'misc.values.checkboxes.needTax.value', '', false);
+        this.tax = getData(data, 'misc.values.checkboxes.gdpr.value', 'Nem egyeztél bele az adatvédelmi szabályzatunkba');
+        this.tax = getData(data, 'misc.values.checkboxes.aszf.value', 'Nem egyeztél bele az általános szerződési feltételekbe');
+        this.note = getData(data, 'misc.values.note', '', false);
+        this.uniqueId = getData(data, 'uniqueId', 'FATAL_ERROR');
     }
 }
 
 const getData = (baseObject, prop, errorMessage, isRequired = true) => {
     const value = get(baseObject, prop, '')
-    console.log(value);
+    console.log({ baseObject, prop, errorMessage, value });
     if (!!value) {
         return value;
     }

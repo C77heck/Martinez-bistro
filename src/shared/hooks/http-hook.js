@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
+import { get } from '../helpers/util';
 
 export const useHttpClient = () => {
 
@@ -25,12 +26,12 @@ export const useHttpClient = () => {
             activeHttpRequests.current = activeHttpRequests.current.filter(reqCtrl => reqCtrl !== httpAbortCtrll)
             /* this code is to filter the abort controllers out if the request didn't have to be cancelled */
             if (!response.ok) {
-                throw new Error(responseData.message);
+                throw new Error(get(responseData, 'message', err || 'Sajnáljuk de valami nem sikerült.'));
             }
             setIsLoading(false)
             return responseData;
         } catch (err) {
-            setError(err.message)
+            setError(get(err, 'message', err || 'Sajnáljuk de valami nem sikerült.'))
             setIsLoading(false);
         }
     }, [])
