@@ -105,7 +105,7 @@ const OpenDrawer = () => {
             </SideDrawer>
             <button
                 className='drawer'
-                onClick={() => { setShow(true) }}
+                onClick={() => setShow(!show)}
             >
                 <span className='drawer__icon'>&nbsp;</span>
             </button>

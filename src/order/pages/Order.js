@@ -1,12 +1,11 @@
 import React, { useEffect, useContext } from "react";
-import { useHistory } from 'react-router-dom';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 import { addId } from '../../utility/addId';
 import { MenuContext } from '../../shared/context/menu-context';
 import { ExpiryContext } from '../../shared/context/expiry-context';
 import { ItemCard } from "../components/ItemCard";
-import { OrderDetails } from "../components/OrderDetails";
+import { DesktopOrderDetails, MobileOrderDetails } from "../components/OrderDetails";
 import { FilterLine } from "../components/Filter";
 import { foodTypes } from "../../admin/pages/EditMenu";
 
@@ -14,7 +13,8 @@ export const Order = props => {
     const { menu, saveMenu, orderableList } = useContext(MenuContext);
     const { sendRequest, isLoading } = useHttpClient();
     const { menuExpiry } = useContext(ExpiryContext);
-
+    const isMobile = window.innerWidth < 700;
+    console.log({ isMobile, size: window.innerWidth });
     useEffect(() => {
         const storedMenu = JSON.parse(localStorage.getItem('menu')) || [];
         if (menu.length > 0) {// to map items when the admin changes things like type
@@ -39,13 +39,21 @@ export const Order = props => {
 
     const itemsToMap = !orderableList.length ? menu : orderableList;
 
-    return <div className='full-screen m-3 mt-14 display-flex align-items-center flex-column'>
+    return <div className='full-screen m-sm-3 mt-14 display-flex align-items-center flex-column'>
         {isLoading && <LoadingSpinner asOverlay />}
         <h1 className='fs-34 pb-2'>Étel Rendelés</h1>
 
         <FilterLine filters={foodTypes} />
-
-        <div className='grid-width display-flex'>
+        {isMobile ? <div className='w-100 position-center margin-auto mb-25'>
+            <div className='max-width-vw-98'>
+                {itemsToMap.map(m => <ItemCard
+                    isCheckout={false}
+                    key={m._id}
+                    menuItem={m}
+                />)}
+            </div>
+            <MobileOrderDetails />
+        </div> : <div className='grid-width display-flex'>
             <div className='fix-width-200' />
             <div>
                 <div className='fix-width-600'>
@@ -57,8 +65,8 @@ export const Order = props => {
                 </div>
             </div>
             <div className='min-width-400 display-flex justify-content-center'>
-                <OrderDetails />
+                <DesktopOrderDetails />
             </div>
-        </div>
+        </div>}
     </div>;
 }

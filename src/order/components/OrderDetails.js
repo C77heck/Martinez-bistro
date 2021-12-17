@@ -1,10 +1,40 @@
-import { useHttpClient } from '../../shared/hooks/http-hook';
 import { priceFormat, redirect } from '../../utility/helpers';
 import { useState, useContext } from 'react';
 import { OrderContext } from '../../shared/context/order-context';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
+import Backdrop from '../../shared/UIElements/Backdrop';
 
-export const OrderDetails = props => {
+export const MobileOrderDetails = props => {
+    const [show, setShow] = useState(false);
+    const { remove, addedItems, totalPrice } = useContext(OrderContext);
+
+    return <div className='mobile-order-details'>
+        <h2
+            className='fs-22 text-align-center'
+            onClick={() => setShow(!show)}
+        >Kiválasztott termékek</h2>
+        {show && <Backdrop onClick={() => setShow(false)} className={'z-0'} />}
+        {show && <div className={'order-details-mobile flex-column'}>
+            <div className='display-flex justify-content-around w-100 basket-header mb-1'>
+                <h4 className='fs-16'>Termék</h4>
+                <h4 className='fs-16'>Ár</h4>
+            </div>
+            <div>
+                {addedItems.map(i => <PickedFood key={i._id} item={i} remove={remove} isCheckout={true} />)}
+            </div>
+        </div>}
+
+        <div className='display-flex justify-content-around hr--light mt-2 pt-1 pb-1'>
+            <h2 className='fs-22 fw-800'>Összesen:</h2>
+            <h2 className='fs-22 fw-800'>{priceFormat(totalPrice)}</h2>
+        </div>
+        <div className='position-center fix-height-0'>
+            <CheckoutButton link={'/checkout'} items={addedItems} />
+        </div>
+    </div>
+}
+
+export const DesktopOrderDetails = props => {
     const { remove, addedItems, totalPrice } = useContext(OrderContext);
     const neededHeight = (addedItems.length * 28) + 230;
 

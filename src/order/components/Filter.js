@@ -3,7 +3,7 @@ import { MenuContext } from "../../shared/context/menu-context"
 
 export const FilterLine = props => {
 
-    return <div className='position-center py-2'>
+    return <div className='position-center py-2 flex-wrap'>
         {props.filters.map((i, index) => <Filter key={index} filter={i} />)}
     </div>
 }

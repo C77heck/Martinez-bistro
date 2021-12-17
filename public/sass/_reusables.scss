@@ -355,7 +355,10 @@
 }
 
 .full-screen {
-    min-width: 90vw;
+    @media (min-width: 700) {
+        min-width: 90vw;
+    }
+    width: 100%;
     min-height: 120vh;
 }
 
@@ -446,7 +449,7 @@
 .margin-unset {
     margin: unset;
 }
-@for $i from 1 through 3000 {
+@for $i from 0 through 3000 {
     .#{z- + $i} {
         z-index: $i !important;
     }
@@ -538,6 +541,11 @@
 
     .#{m- + $i} {
         margin: $i + rem !important;
+    }
+    .#{m-sm- + $i} {
+        @media (min-width: 500px) {
+            margin: $i + rem !important;
+        }
     }
 
     .#{mx- + $i} {
