@@ -46,7 +46,7 @@ const Layout = props => {
                     <h2 className='heading-secondary'>
                         Burgerek
                 </h2>
-                    <h4 className='heading-fourth'> </h4>
+                    {types.burgers && <h4 className='heading-fourth'> </h4>}
 
                     {types.burgers && types.burgers.map(i => {
                         return (
@@ -74,9 +74,7 @@ const Layout = props => {
 
                 <div className='layout__item'>
                     {location.pathname === '/admin/menu' ? <AddItem foodType='platillos' /> : null}
-                    <h2 className='heading-secondary'>
-                        Platillos tex-mex
-                </h2>
+                    {types.platillos && <h2 className='heading-secondary'>Platillos tex-mex</h2>}
                     {types.platillos && types.platillos.map(i => {
                         return (
                             <div
@@ -104,9 +102,7 @@ const Layout = props => {
                 <div className='layout__item'>
                     {location.pathname === '/admin/menu' ? <AddItem foodType='mexicanos' /> : null}
 
-                    <h2 className='heading-secondary'>
-                        Platillos Mexicanos
-                </h2>
+                    {types.mexicanos && <h2 className='heading-secondary'>Platillos Mexicanos</h2>}
 
                     {types.mexicanos && types.mexicanos.map(i => {
                         return (
@@ -159,7 +155,7 @@ const Layout = props => {
                         )
                     })}
 
-                    <h4 className='heading-fourth'>Arroz empanizado</h4>
+                    {types.arroz && <h4 className='heading-fourth'>Arroz empanizado</h4>}
                     {types.arroz && types.arroz.map(i => {
                         return (
                             <div
@@ -181,7 +177,7 @@ const Layout = props => {
                         )
                     })}
 
-                    <h4 className='heading-fourth'>Dippers</h4>
+                    {types.dippers && <h4 className='heading-fourth'>Dippers</h4>}
                     {types.dippers && types.dippers.map(i => {
                         return (
                             <div
@@ -206,9 +202,7 @@ const Layout = props => {
                 <div className='layout__item'>
                     {location.pathname === '/admin/menu' ? <AddItem foodType='double' /> : null}
 
-                    <h2 className='heading-secondary'>
-                        PoCo LoCo két személyes tál
-                </h2>
+                    {types.double && <h2 className='heading-secondary'>PoCo LoCo két személyes tál</h2>}
                     {types.double && types.double.map(i => {
                         return (
                             <div
@@ -234,7 +228,7 @@ const Layout = props => {
                 </div>
                 <div className='layout__item'>
                     {location.pathname === '/admin/menu' ? <AddItem foodType='desserts' /> : null}
-                    <h4 className='heading-fourth'>Desszert</h4>
+                    {types.desserts && <h4 className='heading-fourth'>Desszert</h4>}
                     {types.desserts && types.desserts.map(i => {
                         return (
                             <div
@@ -261,10 +255,7 @@ const Layout = props => {
 
                 <div className='layout__item'>
                     {location.pathname === '/admin/menu' ? <AddItem foodType='extras' /> : null}
-                    <h2 className='heading-secondary'>
-                        Extrák
-                </h2>
-
+                    {types.extras && <h2 className='heading-secondary'>Extrák</h2>}
                     {types.extras && types.extras.map(i => {
                         return (
                             <div
@@ -287,9 +278,7 @@ const Layout = props => {
                 </div>
                 <div id='drinks' className='layout__item'>
                     {location.pathname === '/admin/menu' ? <AddItem foodType='drinks' /> : null}
-                    <h2 className='heading-secondary'>
-                        Üdítők
-                </h2>
+                    {types.drinks && <h2 className='heading-secondary'>Üdítők</h2>}
                     {types.drinks && types.drinks.map(i => {
                         return (
                             <div
