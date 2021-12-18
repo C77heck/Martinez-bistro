@@ -1,12 +1,13 @@
-import { useState, useCallback, useEffect, useRef } from 'react'
+import { useState, useCallback, useEffect, useRef, useContext } from 'react'
+import { AuthContext } from '../context/auth-context';
 import { get } from '../helpers/util';
 import { useAuth } from './auth-hook';
 
 export const useHttpClient = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
-    const [isAdminValidated, setIsAdminValidated] = useState(true);
     const activeHttpRequests = useRef([])
+    const { getIsAdminValidated } = useContext(AuthContext);
 
     const sendRequest = useCallback(async (url, method = 'GET', body = null, headers = {}) => {
         const httpAbortCtrll = new AbortController();
@@ -32,7 +33,7 @@ export const useHttpClient = () => {
         } catch (err) {
             switch (err.message || '') {
                 case 'FAILED_ADMIN_VALIDATION':
-                    setIsAdminValidated(false);
+                    getIsAdminValidated(false);
                     break;
                 default:
                     setError(get(err, 'message', err || 'Sajnáljuk de valami nem sikerült.'))
@@ -55,5 +56,5 @@ export const useHttpClient = () => {
             activeHttpRequests.current.forEach(abortCtrl => abortCtrl.abort())
         }
     }, [])
-    return { sendRequest, isLoading, error, clearError, applicationError, isAdminValidated }
+    return { sendRequest, isLoading, error, clearError, applicationError }
 }

@@ -36,7 +36,7 @@ function App() {
     menuExpiry,
     updateExpiry
   } = useExpiry();
-  const { sendRequest, isAdminValidated } = useHttpClient();
+  const { sendRequest } = useHttpClient();
 
   useEffect(() => {
     //we grab the current expiry times to use down below...
@@ -62,8 +62,10 @@ function App() {
     token,
     userId,
     drawer,
+    isAdminValidated,
+    getIsAdminValidated,
     disableDrawer,
-    enableDrawer
+    enableDrawer,
   } = useAuth();
 
   const { add, remove, addedItems, totalPrice, clearOrder } = useOrder();
@@ -144,6 +146,7 @@ function App() {
             drawer: drawer,
             isLoggedIn: !!token,
             isAdminValidated: isAdminValidated,
+            getIsAdminValidated: getIsAdminValidated,
             signin: signin,
             signout: signout,
             enableDrawer: enableDrawer,

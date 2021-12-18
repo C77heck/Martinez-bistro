@@ -5,7 +5,7 @@ import { Link } from 'react-scroll';
 import AuthModal, { AuthButton } from '../../admin/components/AuthModal';
 import { redirect } from '../../utility/helpers';
 import { AuthContext } from '../context/auth-context';
-import { Storage } from '../helpers/storage';
+import { Storage } from '../utility/StorageHelper';
 import { useHttpClient } from '../hooks/http-hook';
 
 export const Main = (props) => {

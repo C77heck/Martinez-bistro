@@ -1,8 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { Storage } from '../../utility/StorageHelper';
 import { useHttpClient } from './http-hook';
-
 
 let timer;
 
@@ -15,7 +14,11 @@ export const useAuth = () => {
     const [expiration, setExpiration] = useState()
     const [userId, setUserId] = useState(false)
     const [drawer, setDrawer] = useState(false)
+    const [isAdminValidated, setIsAdminValidated] = useState(true);
 
+    const getIsAdminValidated = (isValid) => {
+        setIsAdminValidated(isValid);
+    }
     const signin = useCallback((userData, expiration) => {
 
         setToken(userData.token);
@@ -43,10 +46,13 @@ export const useAuth = () => {
         setUserId(null)
         setExpiration(null)
         try {
-            const userID = JSON.parse(localStorage.getItem('userData')).userId;
-            localStorage.removeItem('userData')
-            await sendRequest(process.env.REACT_APP_SIGNOUT + userID)
-            history.push('/')
+            const userData = new Storage('userData');
+            if (userData.has('userId')) {
+                await sendRequest(process.env.REACT_APP_SIGNOUT + userData.get('userID'))
+                userData.clear();
+            }
+
+            Redirect('/')
         } catch (err) {
             console.log(err)
         }
@@ -77,5 +83,5 @@ export const useAuth = () => {
     //     }
     // }, [token, signout, expiration, userId])
 
-    return { signin, signout, token, userId, drawer, disableDrawer, enableDrawer }
+    return { signin, signout, token, userId, drawer, disableDrawer, enableDrawer, isAdminValidated, getIsAdminValidated }
 }

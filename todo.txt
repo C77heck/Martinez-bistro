@@ -36,3 +36,4 @@ orders dont get saved and also the fucking authentication seems to suck hard.
 also to prompt for a login or something. also reject access to certain pages without a valid token. perhaps build a check for it.
 
 make sure to figure how to access the invalidation situation with the send request and logout the admin. very fuckign important.
+eithre create a context setter function and a container for it or catch the data in the the auth hook
