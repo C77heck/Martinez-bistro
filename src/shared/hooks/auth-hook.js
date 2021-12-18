@@ -1,6 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-
 import { Storage } from '../../utility/StorageHelper';
 import { useHttpClient } from './http-hook';
 

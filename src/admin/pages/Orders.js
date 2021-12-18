@@ -4,18 +4,20 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import { Hr } from "../../shared/UIElements/Hr";
 import { priceFormat, shorten } from "../../utility/helpers";
 import { OrderDetailsModal } from "../components/OrderDetailsModal";
+import { timer } from 'rxjs';
+import { AdminValidationPixel } from "../components/AdminValidationPixel";
 
 export const Orders = props => {
-    const { sendRequest, error, clearError } = useHttpClient();
+    const { sendRequest, error } = useHttpClient();
+    const { token } = useContext(AuthContext);
     const [orders, setOrders] = useState([]);
     const [rejected, setRejected] = useState([]);
     const [finished, setFinished] = useState([]);
     const [type, setType] = useState('orders');
-    const { isLoggedIn, token } = useContext(AuthContext);
 
     useEffect(() => {
         if (!!token) {
-            fetchOrders()
+            timer(0, 10000).subscribe(() => fetchOrders())
         }
     }, [token])
 
@@ -26,13 +28,12 @@ export const Orders = props => {
                 Authorization: 'Bearer ' + token,
                 'Content-Type': 'application/json'
             });
-
             const { finished, rejected, orders } = sortOrders(responseData?.orders || []);
             setOrders(orders);
             setRejected(rejected);
             setFinished(finished);
         } catch (e) {
-            console.log(e);
+            console.log({ e, error });
         }
     }
 
@@ -48,6 +49,7 @@ export const Orders = props => {
     }
 
     return <div className='full-screen display-flex flex-column align-items-center'>
+        <AdminValidationPixel />
         <div className='position-center py-2 mt-18'>
             <div
                 className={`position-center basic-border border-radius-px-4 filter-element fs-19 ${type === 'finished' ? 'button-active' : ''}`}
@@ -72,7 +74,6 @@ export const Orders = props => {
 }
 
 const OrderCard = props => {
-    console.log(props.order);
     const { email, items, name, note, phone, pickupDate, status, tax, _id } = props.order;
     const [show, setShow] = useState(false);
     const [totalPrice, setTotalPrice] = useState(0);

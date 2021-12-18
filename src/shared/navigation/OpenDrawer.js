@@ -57,7 +57,6 @@ const OpenDrawer = () => {
     }, [show]);
 
     const closeDrawer = () => {
-        console.log('got clicked');
         setShow(false)
     };
 
