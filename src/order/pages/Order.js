@@ -39,7 +39,7 @@ export const Order = props => {
 
     const itemsToMap = !orderableList.length ? menu : orderableList;
 
-    return <div className='full-screen m-sm-3 mt-14 display-flex align-items-center flex-column'>
+    return <div className='full-screen m-md-3 mt-14 display-flex align-items-center flex-column'>
         {isLoading && <LoadingSpinner asOverlay />}
         <h1 className='fs-34 pb-2'>Étel Rendelés</h1>
 

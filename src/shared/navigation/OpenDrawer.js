@@ -74,7 +74,7 @@ const OpenDrawer = () => {
                 className={'w-100 position-center MobileNavBarWrapper'}
             ><Menu /></div>
         } else if (location.pathname.match('/admin')) {
-            return <AdminLinks />
+            return <AdminLinks backdropClasses={'z-300'} />
         } else if (location.pathname === '/order') {
             return <div
                 onClick={closeDrawer}

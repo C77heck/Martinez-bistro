@@ -89,7 +89,7 @@ export const AuthModal = props => {
                 onCancel={onCancelHandler}
                 onSubmit={onSubmitHandler}
                 className='modal--auth'
-                backdropClasses='z-300'
+                backdropClasses={props.backdropClasses}
             >
                 <Input
                     id='name'

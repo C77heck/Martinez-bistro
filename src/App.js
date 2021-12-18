@@ -105,10 +105,10 @@ function App() {
         </Route>
         <Route path='/order-details/:id' exact>
           <Navbar className='navigation--scrolled' />
+          <OpenDrawer />
           <OrderDetailsPage />
         </Route>
         <Route path='/admin/menu' exact>
-          <Navbar className='navigation--scrolled' />
           <Navbar className='navigation--scrolled' />
           <OpenDrawer />
           <EditMenu />

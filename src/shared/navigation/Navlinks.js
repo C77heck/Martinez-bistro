@@ -123,7 +123,7 @@ export const Menu = () => {
     )
 }
 
-export const AdminLinks = () => {
+export const AdminLinks = props => {
     return (
         <ul className='navigation__list'>
             <li className='navigation__item'>
@@ -134,10 +134,10 @@ export const AdminLinks = () => {
                 </NavLink>
             </li>
             <li className='navigation__item'>
-                <AuthButton />
+                <AuthButton backdropClasses={props.backdropClasses} />
             </li>
             <li className='navigation__item'>
-                <AdminNavLink />
+                <AdminNavLink backdropClasses={props.backdropClasses} />
             </li>
         </ul>
     )
@@ -198,7 +198,10 @@ export const AdminLinksOrderDetails = () => {
 const AdminNavLink = props => {
     const { isLoggedIn } = useContext(AuthContext);
 
-    return <AuthModal onSuccess={() => redirect('/orders')}>
+    return <AuthModal
+        onSuccess={() => redirect('/orders')}
+        backdropClasses={props.backdropClasses}
+    >
         {!isLoggedIn
             ? <a href='#' id='auth-btn' >Rendelések</a>
             : <NavLink to='/orders' >Rendelések</NavLink>}
