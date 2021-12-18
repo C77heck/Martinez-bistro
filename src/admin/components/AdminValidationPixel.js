@@ -3,11 +3,14 @@ import { AuthContext } from "../../shared/context/auth-context";
 import { useHttpClient } from '../../shared/hooks/http-hook';
 
 export const AdminValidationPixel = () => {
-    const { isAdminValidated } = useHttpClient();
-    const { token, signout } = useContext(AuthContext);
-
+    const { token, signout, isAdminValidated } = useContext(AuthContext);
+    console.log(1, isAdminValidated);
     useEffect(() => {
-        if (!!token && !isAdminValidated) {
+        console.log(2);
+
+        if (!isAdminValidated) {
+            console.log(3);
+
             signout();
         }
     }, [isAdminValidated])

@@ -7,6 +7,7 @@ export const AuthContext = createContext({
   token: null,
   drawer: false,
   isLoggedIn: false,
+  isAdminValidated: true,
   signin: () => { },
   signout: () => { },
   disableDrawer: () => { },

@@ -34,3 +34,5 @@ orders dont get saved and also the fucking authentication seems to suck hard.
 18. we need to be able to refresh the list based on rejection and finsihing an order.res 
 19. we need to be able to get admin validation failures from the backend so that we can automatically signout the user
 also to prompt for a login or something. also reject access to certain pages without a valid token. perhaps build a check for it.
+
+make sure to figure how to access the invalidation situation with the send request and logout the admin. very fuckign important.

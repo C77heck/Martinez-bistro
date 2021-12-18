@@ -14,7 +14,7 @@ export const Order = props => {
     const { sendRequest, isLoading } = useHttpClient();
     const { menuExpiry } = useContext(ExpiryContext);
     const isMobile = window.innerWidth < 700;
-    console.log({ isMobile, size: window.innerWidth });
+
     useEffect(() => {
         const storedMenu = JSON.parse(localStorage.getItem('menu')) || [];
         if (menu.length > 0) {// to map items when the admin changes things like type

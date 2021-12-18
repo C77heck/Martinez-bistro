@@ -36,7 +36,7 @@ function App() {
     menuExpiry,
     updateExpiry
   } = useExpiry();
-  const { sendRequest } = useHttpClient();
+  const { sendRequest, isAdminValidated } = useHttpClient();
 
   useEffect(() => {
     //we grab the current expiry times to use down below...
@@ -143,6 +143,7 @@ function App() {
             token: token,
             drawer: drawer,
             isLoggedIn: !!token,
+            isAdminValidated: isAdminValidated,
             signin: signin,
             signout: signout,
             enableDrawer: enableDrawer,
