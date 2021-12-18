@@ -1,3 +1,4 @@
+import { get } from '../utility/helpers';
 /**
  * eases up to use the session and the local storage in code.
  * abstracts away the JSON usage
@@ -23,6 +24,18 @@ export class Storage {
 
         return !!val ? JSON.parse(val) : false;
     }
+
+    getItem(prop) {
+        const val = this.storage.getItem(this.name);
+
+        if (!!val) {
+            const parsedVal = JSON.parse(val);
+
+            return !!parsedVal[prop] ? parsedVal[prop] : false;
+        }
+        return false;
+    }
+
     remove(key) {
         this.storage.removeItem(key)
     }

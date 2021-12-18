@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
+import { redirect } from '../../utility/helpers';
 import { Storage } from '../../utility/StorageHelper';
 import { useHttpClient } from './http-hook';
 
@@ -46,15 +47,15 @@ export const useAuth = () => {
         setUserId(null)
         setExpiration(null)
         try {
-            const userData = new Storage('userData');
-            if (userData.has('userId')) {
-                await sendRequest(process.env.REACT_APP_SIGNOUT + userData.get('userID'))
-                userData.clear();
+            if (storage.has('userId')) {
+                await sendRequest(process.env.REACT_APP_SIGNOUT + storage.getItem('userID'))
+                storage.clear();
             }
 
-            Redirect('/')
+            redirect('/admin')
         } catch (err) {
             console.log(err)
+            redirect('/admin')
         }
         return true;
     }, [sendRequest, history]);

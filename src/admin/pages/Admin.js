@@ -4,6 +4,7 @@ import EditAboutUs from '../components/EditAboutUs';
 import EditNews from '../components/EditNews';
 import EditOpening from '../components/EditOpening';
 import MenuButton from '../components/MenuButton';
+import { AdminValidationPixel } from "../components/AdminValidationPixel";
 
 const Admin = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -13,6 +14,7 @@ const Admin = () => {
     return (
         <React.Fragment>
             {isLoading && <LoadingSpinner asOverlay />}
+            <AdminValidationPixel />
             <div className='admin'>
                 <h2>beállítások:</h2>
                 <div className='admin__inner-border'>

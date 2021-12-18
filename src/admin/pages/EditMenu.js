@@ -1,6 +1,4 @@
 import React, { useContext, useState } from 'react';
-
-
 import Menu from '../../menu/page/Menu';
 import { useForm } from '../../shared/hooks/form-hook';
 import { VALIDATOR_REQUIRE } from '../../utility/validators';
@@ -13,7 +11,7 @@ import { MenuContext } from '../../shared/context/menu-context';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
 import { AuthContext } from '../../shared/context/auth-context';
 import { AuthModal } from '../components/AuthModal';
-
+import { AdminValidationPixel } from "../components/AdminValidationPixel";
 
 
 export const foodTypes = [
@@ -159,6 +157,7 @@ const EditMenu = () => {
     const onClearHandler = () => { setShow(false) }
     return (
         <React.Fragment>
+            <AdminValidationPixel />
             <ErrorModal error={error} onClear={clearError} />
             <MessageModal
                 onClear={() => { setMessage('') }}

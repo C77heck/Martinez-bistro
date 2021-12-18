@@ -8,8 +8,7 @@ import { OrderContext } from "../../shared/context/order-context";
 import MessageModal from "../../shared/UIElements/MessageModal";
 import { redirect } from "../../utility/helpers";
 import { ItemsPicked } from "../components/ItemsPicked";
-import ErrorModal from "../../shared/UIElements/ErrorModal";
-import { Storage } from '../../shared/helpers/storage';
+import { Storage } from '../../utility/StorageHelper';
 import { get } from "../../shared/helpers/util";
 const propsToCheckForValidity = ['userData', 'pickup', 'misc']
 export const Checkout = props => {
