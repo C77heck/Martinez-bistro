@@ -230,6 +230,8 @@ const OrderNavLink = props => {
     }
 
 
+    return null;
+
     return <li className='navigation__item'>
         <a onClick={getUniqueOrderId}>
             Rendelés
