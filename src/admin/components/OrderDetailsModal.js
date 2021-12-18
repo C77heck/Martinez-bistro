@@ -35,6 +35,7 @@ export const OrderDetailsModal = props => {
             setTotal(totalPrice);
             setItems(fItems);
             setOrderDetails(foodItems.order);
+            !!props.getTotal && props.getTotal(totalPrice);
         } catch (e) {
             console.log(e, error);
         }

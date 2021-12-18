@@ -72,8 +72,10 @@ export const Orders = props => {
 }
 
 const OrderCard = props => {
+    console.log(props.order);
     const { email, items, name, note, phone, pickupDate, status, tax, _id } = props.order;
     const [show, setShow] = useState(false);
+    const [totalPrice, setTotalPrice] = useState(0);
     const onCancelHandler = (e) => {
         e.stopPropagation();
         setShow(false);
@@ -81,6 +83,9 @@ const OrderCard = props => {
     const onClickHandler = (e) => {
         e.stopPropagation();
         setShow(true);
+    }
+    const getTotal = (price) => {
+        setTotalPrice(price);
     }
 
     return <div
@@ -98,7 +103,7 @@ const OrderCard = props => {
             <Hr type={'light'} size={80} className='my-1' />
             <OrderText propertyName='Telefonszám' value={phone} />
             <Hr type={'light'} size={80} className='my-1' />
-            <OrderText propertyName='Végösszeg' value={priceFormat(324132)} />
+            <OrderText propertyName='Végösszeg' value={priceFormat(totalPrice)} />
             <Hr type={'light'} size={80} className='my-1' />
             <OrderText propertyName='Áfás számla' value={tax ? 'Igen' : 'Nem'} />
             <Hr type={'light'} size={80} className='my-1' />
@@ -108,6 +113,7 @@ const OrderCard = props => {
             show={show}
             onClear={onCancelHandler}
             order={props.order}
+            getTotal={getTotal}
         />
     </div>;
 }
