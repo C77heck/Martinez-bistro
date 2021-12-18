@@ -8,12 +8,19 @@ import { ItemCard } from "../components/ItemCard";
 import { DesktopOrderDetails, MobileOrderDetails } from "../components/OrderDetails";
 import { FilterLine } from "../components/Filter";
 import { foodTypes } from "../../admin/pages/EditMenu";
-
+import { redirect } from "../../utility/helpers";
+import { getIsRestuarantClosed } from '../../shared/navigation/Navlinks';
 export const Order = props => {
     const { menu, saveMenu, orderableList } = useContext(MenuContext);
     const { sendRequest, isLoading } = useHttpClient();
     const { menuExpiry } = useContext(ExpiryContext);
     const isMobile = window.innerWidth < 700;
+
+    useEffect(() => {
+        if (getIsRestuarantClosed()) {
+            redirect('/');
+        }
+    }, [])
 
     useEffect(() => {
         const storedMenu = JSON.parse(localStorage.getItem('menu')) || [];

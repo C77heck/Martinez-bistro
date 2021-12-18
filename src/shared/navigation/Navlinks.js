@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-scroll';
@@ -7,6 +7,7 @@ import { redirect } from '../../utility/helpers';
 import { AuthContext } from '../context/auth-context';
 import { Storage } from '../../utility/StorageHelper';
 import { useHttpClient } from '../hooks/http-hook';
+import MessageModal from '../UIElements/MessageModal';
 
 export const Main = (props) => {
     const { isMainPage } = props;
@@ -209,32 +210,45 @@ const AdminNavLink = props => {
 }
 
 const OrderNavLink = props => {
+    const [message, setMessage] = useState('');
     const { sendRequest, error } = useHttpClient();
     const storage = new Storage('uniqueOrderId');
+    const isRestaurantClosed = getIsRestuarantClosed();
     let tries = 0;
     const getUniqueOrderId = async () => {
-        try {
-            const uniqueId = await sendRequest(process.env.REACT_APP_GET_UNIQUE_ORDER_ID)
-            if (!uniqueId) {
-                throw new Error();
+        if (isRestaurantClosed) {
+            setMessage('Sajnáljuk, de ma zárva vagyunk.');
+        } else {
+            try {
+                const uniqueId = await sendRequest(process.env.REACT_APP_GET_UNIQUE_ORDER_ID)
+                if (!uniqueId) {
+                    throw new Error();
+                }
+                storage.set(uniqueId);
+                redirect('/order');
+            } catch (e) {
+                if (tries < 3) {
+                    await getUniqueOrderId();
+                    tries += 1;
+                }
+                console.log(e);
             }
-            storage.set(uniqueId);
-            redirect('/order');
-        } catch (e) {
-            if (tries < 3) {
-                await getUniqueOrderId();
-                tries += 1;
-            }
-            console.log(e);
         }
     }
 
+    return <React.Fragment>
+        <MessageModal
+            onClear={() => { setMessage('') }}
+            message={message}
+            className='admin-message-modal'
+        />
+        <li className='navigation__item'><a onClick={getUniqueOrderId}>Rendelés</a></li>
+    </React.Fragment>
+}
 
-    return null;
+export const getIsRestuarantClosed = () => {
+    const date = new Date();
+    const day = date.getDay();
 
-    return <li className='navigation__item'>
-        <a onClick={getUniqueOrderId}>
-            Rendelés
-            </a>
-    </li >
+    return day === 0 || day === 1;
 }
