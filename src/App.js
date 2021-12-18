@@ -157,7 +157,7 @@ function App() {
               setOrderable: setOrderable,
             }}
           >
-            <main><div className=''>{routes}</div></main>
+            <main><div className='center'>{routes}</div></main>
           </MenuContext.Provider>
         </AuthContext.Provider>
       </ExpiryContext.Provider>

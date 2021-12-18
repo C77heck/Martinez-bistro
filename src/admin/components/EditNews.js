@@ -212,7 +212,7 @@ const EditNews = () => {
             <AuthModal>
                 <div>
                     <button
-                        className='admin__story'
+                        className='admin__story cursor-pointer'
                         onClick={!isLoggedIn ? undefined : modalHandler}
                     >
                         Hírek

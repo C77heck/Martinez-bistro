@@ -145,7 +145,7 @@ const EditAboutUs = () => {
             <AuthModal>
                 <div>
                     <button
-                        className='admin__about-us'
+                        className='admin__about-us cursor-pointer'
                         onClick={!isLoggedIn ? undefined : modalHandler}
                     >
                         Rólunk
