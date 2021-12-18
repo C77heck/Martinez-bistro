@@ -55,17 +55,17 @@ export const Checkout = props => {
                 <h2 className='fs-22 fw-800'>Rendelés átvevője</h2>
                 <UserDetails getValues={(values, isValid) => getValues(values, 'userData', isValid)} />
             </div>
-            <Hr type={'light'} size={80} />
+            <Hr className={'margin-auto'} type={'light'} size={80} />
             <div className='display-flex justify-content-start flex-column align-items-baseline'>
                 <h2 className='fs-22 fw-800'>Rendelés átvételének időpontja</h2>
                 <DatePicker getValues={(values, isValid) => getValues(values, 'pickup', isValid)} />
             </div>
-            <Hr type={'light'} size={80} />
+            <Hr className={'margin-auto'} type={'light'} size={80} />
             <div className=''>
                 <h2 className='fs-22 fw-800'>Egyéb</h2>
                 <MiscData getValues={(values, isValid) => getValues(values, 'misc', isValid)} />
             </div>
-            <Hr type={'light'} size={80} />
+
             <div className='position-center'>
                 <OrderButton
                     isFormValid={isFormValid}

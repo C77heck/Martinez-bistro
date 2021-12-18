@@ -10,7 +10,7 @@
   border-radius: 3rem;
   overflow: hidden;
   @media screen and (max-width: $mobile) {
-    top: 4vh;
+    top: 22vh;
   }
   &__header {
     height: 2rem;
@@ -34,7 +34,7 @@
   &--opening {
     width: 30vw;
     left: 35vw;
-    top: 14vh;
+    top: 22vh;
     @media screen and (max-width: $tablet-land) {
       width: 40vw;
       left: 30vw;
@@ -45,7 +45,7 @@
     }
     @media screen and (max-width: $mobile) {
       width: 80vw;
-      top: 4vh;
+      top: 22vh;
       left: 10vw;
       z-index: 1001; //to be on top of the navbar button
     }
@@ -116,7 +116,7 @@
   @media screen and (max-width: $mobile) {
     width: 70vw;
     left: 15vw;
-    top: 4vh;
+    top: 22vh;
     z-index: 1001; //to be on top of the navbar button
   }
   @media screen and (max-width: $mobile-sm) {
@@ -155,7 +155,7 @@
   @media screen and (max-width: $mobile) {
     width: 70vw;
     left: 15vw;
-    top: 4vh;
+    top: 22vh;
     z-index: 1001; //to be on top of the navbar button
   }
   @media screen and (max-width: $mobile-sm) {
@@ -179,7 +179,7 @@
   @media screen and (max-width: $mobile) {
     width: 90vw;
     left: 5vw;
-    top: 4vh;
+    top: 22vh;
     z-index: 1001; //to be on top of the navbar button
   }
   .modal {
@@ -211,7 +211,7 @@
   @media screen and (max-width: $mobile) {
     overflow: scroll;
     height: 77vh;
-    top: 4vh;
+    top: 22vh;
     z-index: 1001; //to be on top of the navbar button
   }
   @media screen and (max-width: $mobile-sm) {
@@ -260,7 +260,7 @@
   @media screen and (max-width: $mobile) {
     width: 90vw;
     left: 5vw;
-    top: 4vh;
+    top: 22vh;
     z-index: 1001; //to be on top of the navbar button
   }
   .modal {

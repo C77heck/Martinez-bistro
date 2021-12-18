@@ -24,7 +24,7 @@ export const UserDetails = props => {
         props.getValues && props.getValues(inputState, isFormValid);
     }, [inputState, inputHandler])
 
-    return <div className='display-flex w-100 justify-content-between'>
+    return <div className='display-flex w-100 justify-content-between flex-sm-row flex-column'>
         <Input
             id='name'
             label='Név'
@@ -33,7 +33,7 @@ export const UserDetails = props => {
             errorText='Kérlek add meg az neved.'
             validators={[VALIDATOR_REQUIRE()]}
             type='text'
-            contClass='w-30'
+            contClass='w-100 w-sm-30'
             className='h-px-35 border-radius-px-4 fs-19'
             labelClass='fs-17'
         />
@@ -45,7 +45,7 @@ export const UserDetails = props => {
             errorText='Kérlek add meg a telefonszámodat.'
             validators={[VALIDATOR_PHONE()]}
             type='text'
-            contClass='w-30'
+            contClass='w-100 w-sm-30'
             className='h-px-35 border-radius-px-4 fs-19'
             labelClass='fs-17'
         />
@@ -56,7 +56,7 @@ export const UserDetails = props => {
             value={inputState.inputs.email.value}
             validators={[VALIDATOR_EMAIL()]}
             type='text'
-            contClass='w-30'
+            contClass='w-100 w-sm-30'
             className='h-px-35 border-radius-px-4 fs-19'
             labelClass='fs-17'
         />

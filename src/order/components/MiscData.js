@@ -77,7 +77,7 @@ const Checkbox = props => {
             <div className={'display-flex question-circle justify-content-center align-items-center'}>
                 <div className={`question-circle--filling background-color--secondary-1 ${!isActive && 'scale-0'}`} />
             </div>
-            <span className={'typo-small-inter fw-700 pl-1'}>{props.text}</span>
+            <span className={'text-align-left fw-700 pl-1 w-90'}>{props.text}</span>
         </button>
     </div>;
 }

@@ -90,6 +90,7 @@ function App() {
         </Route>
         <Route path='/checkout' exact>
           <Navbar className='navigation--scrolled' />
+          <OpenDrawer />
           <Checkout />
         </Route>
         <Route path='/admin' exact>
