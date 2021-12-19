@@ -143,7 +143,7 @@ export const AuthButton = props => {
         }
     }
     return (
-        <AuthModal >
+        <AuthModal backdropClasses={props.backdropClasses}>
             <a
                 href='#'
                 id='auth-btn'
