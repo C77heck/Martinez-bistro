@@ -15,9 +15,9 @@ export const Order = props => {
     const { sendRequest, isLoading } = useHttpClient();
     const { menuExpiry } = useContext(ExpiryContext);
     const isMobile = window.innerWidth < 700;
-
+    const isRestaurantClosed = getIsRestuarantClosed();
     useEffect(() => {
-        if (getIsRestuarantClosed()) {
+        if (isRestaurantClosed) {
             redirect('/');
         }
     }, [])

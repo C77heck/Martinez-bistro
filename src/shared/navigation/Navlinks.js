@@ -247,6 +247,7 @@ const OrderNavLink = props => {
 }
 
 export const getIsRestuarantClosed = () => {
+    return false;
     const date = new Date();
     const day = date.getDay();
 
