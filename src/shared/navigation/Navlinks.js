@@ -241,8 +241,9 @@ const OrderNavLink = props => {
             onClear={() => { setMessage('') }}
             message={message}
             className='admin-message-modal'
+            backdropClasses={'z-300'}
         />
-        <li className='navigation__item'><a onClick={getUniqueOrderId}>Rendelés</a></li>
+        <li className='navigation__item'><a id='order' onClick={getUniqueOrderId}>Rendelés</a></li>
     </React.Fragment>
 }
 

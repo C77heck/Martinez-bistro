@@ -41,9 +41,16 @@ const OpenDrawer = () => {
     const { location } = useHistory()
     const onClickHandler = e => {
         // to prevent the sidedrawer from closing when clicking on login button
-        if (e.target.id === 'auth-btn' || e.target.id === 'backdrop') {
-        } else {
-            setShow(false)
+        switch (e.target.id) {
+            case 'auth-btn':
+                break;
+            case 'backdrop':
+                break;
+            case 'order':
+                break;
+            default:
+                setShow(false)
+                break;
         }
     }
 
@@ -56,42 +63,52 @@ const OpenDrawer = () => {
         }
     }, [show]);
 
-    const closeDrawer = () => {
-        setShow(false)
+    const closeDrawer = (e) => {
+        switch (e.target.id) {
+            case 'auth-btn':
+                break;
+            case 'backdrop':
+                break;
+            case 'order':
+                break;
+            default:
+                setShow(false)
+                break;
+        }
     };
 
     // TODO -> Sort out the styling of these on mobile so no need for a different way to display it.
     const locations = () => {
         if (location.pathname === '/') {
             return <div
-                onClick={closeDrawer}
+                onClick={onClickHandler}
                 className={'w-100 position-center MobileNavBarWrapper'}
             ><Main isMainPage={true} /></div>
         } else if (location.pathname === '/menu') {
             return <div
-                onClick={closeDrawer}
+                onClick={onClickHandler}
                 className={'w-100 position-center MobileNavBarWrapper'}
             ><Menu /></div>
         } else if (location.pathname.match('/admin')) {
             return <AdminLinks backdropClasses={'z-300'} />
         } else if (location.pathname === '/order') {
             return <div
-                onClick={closeDrawer}
+                onClick={onClickHandler}
                 className={'w-100 position-center MobileNavBarWrapper'}
             ><Main isMainPage={false} /></div>
         } else if (location.pathname === '/checkout') {
             return <div
-                onClick={closeDrawer}
+                onClick={onClickHandler}
                 className={'w-100 position-center MobileNavBarWrapper'}
             ><Checkout /></div>
         } else if (location.pathname === '/orders') {
             return <div
-                onClick={closeDrawer}
+                onClick={onClickHandler}
                 className={'w-100 position-center MobileNavBarWrapper'}
             ><AdminLinksOrder /></div>
         } else if (location.pathname.match('/order-details')) {
             return <div
-                onClick={closeDrawer}
+                onClick={onClickHandler}
                 className={'w-100 position-center MobileNavBarWrapper'}
             ><AdminLinksOrderDetails /></div>
         }
