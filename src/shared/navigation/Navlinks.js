@@ -12,7 +12,6 @@ import MessageModal from '../UIElements/MessageModal';
 export const OrderNavLinks = props => {
     return (
         <ul className='navigation__list'>
-            <OrderNavLink />
             <li className='navigation__item'>
                 <NavLink to='/'>
                     Főoldal
