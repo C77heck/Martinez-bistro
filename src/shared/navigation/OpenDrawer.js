@@ -8,7 +8,7 @@ import { CSSTransition } from 'react-transition-group';
 import { useHistory } from 'react-router-dom';
 import { AuthButton } from '../../admin/components/AuthModal';
 import { AuthContext } from '../context/auth-context';
-import { AdminLinks, AdminLinksOrder, AdminLinksOrderDetails, Checkout, Main, Menu } from './Navlinks';
+import { AdminLinks, AdminLinksOrder, AdminLinksOrderDetails, Checkout, Main, Menu, OrderNavLinks } from './Navlinks';
 
 
 const SideDrawer = props => {
@@ -95,7 +95,7 @@ const OpenDrawer = () => {
             return <div
                 onClick={onClickHandler}
                 className={'w-100 position-center MobileNavBarWrapper'}
-            ><Main isMainPage={false} /></div>
+            ><OrderNavLinks /></div>
         } else if (location.pathname === '/checkout') {
             return <div
                 onClick={onClickHandler}

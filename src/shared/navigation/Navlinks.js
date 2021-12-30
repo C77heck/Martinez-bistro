@@ -9,6 +9,23 @@ import { Storage } from '../../utility/StorageHelper';
 import { useHttpClient } from '../hooks/http-hook';
 import MessageModal from '../UIElements/MessageModal';
 
+export const OrderNavLinks = props => {
+    return (
+        <ul className='navigation__list'>
+            <OrderNavLink />
+            <li className='navigation__item'>
+                <NavLink to='/'>
+                    Főoldal
+                </NavLink>
+            </li>
+            <li className='navigation__item'>
+                <NavLink to='/menu'>
+                    Étlap
+                </NavLink>
+            </li>
+        </ul >
+    )
+}
 export const Main = (props) => {
     const { isMainPage } = props;
 
