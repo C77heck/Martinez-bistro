@@ -20,7 +20,7 @@ export const FoodItem = (props) => {
                 >
                     <div className='food-item'>
                         <p className='paragraph paragraph--menu flex-basis-70'>{i.name}</p>
-                        <p className='paragraph paragraph--menu white-space-nowrap flex-basis-30'>{i.price}</p>
+                        <p className='paragraph paragraph--menu white-space-nowrap flex-basis-30 text-align-right'>{i.price} Ft</p>
                         {
                             location.pathname === '/admin/menu' && <div
                                 id={i.identifier}
