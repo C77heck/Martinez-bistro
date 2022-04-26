@@ -1,38 +1,45 @@
-import React, { useContext, useState } from 'react';
+import React, {useContext, useState} from 'react';
 
 
 import Menu from '../../menu/page/Menu';
-import { useForm } from '../../shared/hooks/form-hook';
-import { VALIDATOR_REQUIRE } from '../../utility/validators';
+import {useForm} from '../../shared/hooks/form-hook';
+import {VALIDATOR_REQUIRE} from '../../utility/validators';
 import EditModal from '../components/EditModal';
 import Input from '../../shared/form-elements/Input';
 import CustomSelect from '../../shared/form-elements/CustomSelect';
-import { useHttpClient } from '../../shared/hooks/http-hook';
+import {useHttpClient} from '../../shared/hooks/http-hook';
 import MessageModal from '../../shared/UIElements/MessageModal';
-import { MenuContext } from '../../shared/context/menu-context';
+import {MenuContext} from '../../shared/context/menu-context';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
-import { AuthContext } from '../../shared/context/auth-context';
-import { AuthModal } from '../components/AuthModal';
-
+import {AuthContext} from '../../shared/context/auth-context';
+import {AuthModal} from '../components/AuthModal';
 
 
 export const foodTypes = [
-    { value: 'burger', english: 'burgers', id: 1 },
-    { value: 'platillos', english: 'platillos', id: 2 },
-    { value: 'platillos mexicanos', english: 'mexicanos', id: 3 },
-    { value: 'dupla tál', english: 'double', id: 4 },
-    { value: 'nachos', english: 'nachos', id: 5 },
-    { value: 'arroz', english: 'arroz', id: 6 },
-    { value: 'dippers', english: 'dippers', id: 7 },
-    { value: 'italok', english: 'drinks', id: 8 },
-    { value: 'extrák', english: 'extras', id: 9 },
-    { value: 'desszertek', english: 'desserts', id: 10 }
+    {value: 'Entradas-előételek', english: 'entries', id: 1},
+    {value: 'Sopas-levesek', english: 'soups', id: 2},
+    {value: 'burger', english: 'burgers', id: 3},
+    {value: 'platillos', english: 'platillos', id: 4},
+    {value: 'platillos mexicanos', english: 'mexicanos', id: 5},
+    {value: 'platillos hungaros ', english: 'hungarian-dishes', id: 13},
+    {value: 'dupla tál', english: 'double', id: 6},
+    {value: 'nachos', english: 'nachos', id: 7},
+    {value: 'arroz', english: 'arroz', id: 8},
+    {value: 'dippers', english: 'dippers', id: 9},
+    {value: 'extrák', english: 'extras', id: 11},
+    {value: 'desszertek', english: 'desserts', id: 12},
+    {value: 'Bevidas - Italok', english: 'drinks', id: 10},
+    {value: 'cafes-kávék', english: 'coffees', id: 13},
+    {value: 'servesas-sörök', english: 'beers', id: 14},
+    {value: 'cerveza de tarro- csapolt  sörök', english: 'tap-beers', id: 15},
+    {value: 'cocteles - koktélok', english: 'cocktails', id: 16},
+    {value: 'caballitos - rövid ital', english: 'shots', id: 17},
 ];
 
 const EditMenu = () => {
 
-    const { isLoggedIn } = useContext(AuthContext);
-    const { sendRequest, error, clearError } = useHttpClient();
+    const {isLoggedIn} = useContext(AuthContext);
+    const {sendRequest, error, clearError} = useHttpClient();
     const [inputState, inputHandler, isFormValid, setFormData] = useForm({
         name: {
             value: '',
@@ -54,8 +61,8 @@ const EditMenu = () => {
     const [show, setShow] = useState(false);
     const [message, setMessage] = useState();
     const [foodType, setFoodType] = useState('');
-    const { menu, saveMenu, removeItem } = useContext(MenuContext);
-    const { token } = useContext(AuthContext);
+    const {menu, saveMenu, removeItem} = useContext(MenuContext);
+    const {token} = useContext(AuthContext);
     const onClickHandler = e => {
         setShow(true);
         menu.map(i => {
@@ -157,13 +164,16 @@ const EditMenu = () => {
     };
 
 
-
-    const onClearHandler = () => { setShow(false) }
+    const onClearHandler = () => {
+        setShow(false)
+    }
     return (
         <React.Fragment>
-            <ErrorModal error={error} onClear={clearError} />
+            <ErrorModal error={error} onClear={clearError}/>
             <MessageModal
-                onClear={() => { setMessage('') }}
+                onClear={() => {
+                    setMessage('')
+                }}
                 message={message}
                 className='admin-message-modal'
             />
