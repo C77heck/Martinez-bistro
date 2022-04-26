@@ -1,5 +1,4 @@
 export const objectSorting = (array) => {
-
     const res = {};
     /* dynamically create object properties with array data structure */
     array.forEach(i => {
