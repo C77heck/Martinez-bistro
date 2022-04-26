@@ -19,11 +19,11 @@ export const FoodItem = (props) => {
                     onClick={props.onClick}
                 >
                     <div className='food-item'>
-                        <div className={'flex-basis-70'}>
+                        <div className={'flex-basis-80'}>
                             <p className='paragraph paragraph--menu'>{i.name}</p>
                             <p className={''}>{i.description}</p>
                         </div>
-                        <div className={'flex-basis-30'}>
+                        <div className={'flex-basis-20'}>
                             <p className='paragraph paragraph--menu white-space-nowrap flex-basis-30 text-align-right'>{i.price} Ft</p>
                         </div>
 
