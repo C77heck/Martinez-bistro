@@ -12,10 +12,11 @@ import {FoodItem} from './FoodItem';
 export const objectToArray = (object, foodTypes) => {
     const array = [];
     for (const prop in object) {
-        array.push({title: foodTypes.filter(type => type.english === prop)[0]?.value || '', types: object[prop]});
+        const type = foodTypes.filter(type => type.english === prop)[0];
+        array.push({id: type?.id || 30, title: type?.value || '', types: object[prop]});
     }
 
-    return array;
+    return array.sort((a, b) => a.id - b.id);
 }
 
 const Layout = props => {
