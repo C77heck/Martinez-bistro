@@ -6,6 +6,17 @@ import {addId} from '../../utility/addId';
 import {MenuContext} from '../../shared/context/menu-context';
 import AddItem from '../../admin/components/AddItem';
 import {ExpiryContext} from '../../shared/context/expiry-context';
+import {foodTypes} from '../../admin/pages/EditMenu';
+import {FoodItem} from './FoodItem';
+
+export const objectToArray = (object, foodTypes) => {
+    const array = [];
+    for (const prop in object) {
+        array.push({title: foodTypes.filter(type => type.english === prop)[0]?.value || '', types: object[prop]});
+    }
+
+    return array;
+}
 
 const Layout = props => {
     const {types, menu, saveMenu} = useContext(MenuContext);
@@ -35,13 +46,13 @@ const Layout = props => {
         }
 
     }, [saveMenu, menu, menuExpiry])
+    const menuTypes = objectToArray(types, foodTypes);
 
     return (
         <React.Fragment>
-
             {isLoading && <LoadingSpinner asOverlay/>}
             <div className='layout'>
-
+                {menuTypes.map(item => <FoodItem title={item.title} types={item.types} onClick={props.onClick}/>)}
             </div>
         </React.Fragment>
 

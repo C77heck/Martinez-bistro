@@ -4,7 +4,7 @@
  * @param obj object to extract data from
  * @param path the path which the user attempts to access the data
  * @param defaultVal default value that the user wants to be returned in case the no value accessible.
- * @returns  
+ * @returns
  */
 export const get = (obj, path, defaultVal = '') => {
     const props = path.replace(/\./g, ' ').replace(/\[|\]/g, ' ').split(' ');
@@ -29,3 +29,4 @@ export const get = (obj, path, defaultVal = '') => {
 
     return defaultVal;
 }
+
