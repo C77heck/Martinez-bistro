@@ -19,8 +19,14 @@ export const FoodItem = (props) => {
                     onClick={props.onClick}
                 >
                     <div className='food-item'>
-                        <p className='paragraph paragraph--menu flex-basis-70'>{i.name}</p>
-                        <p className='paragraph paragraph--menu white-space-nowrap flex-basis-30 text-align-right'>{i.price} Ft</p>
+                        <div className={'flex-basis-70'}>
+                            <p className='paragraph paragraph--menu'>{i.name}</p>
+                            <p className={''}>{i.description}</p>
+                        </div>
+                        <div className={'flex-basis-30'}>
+                            <p className='paragraph paragraph--menu white-space-nowrap flex-basis-30 text-align-right'>{i.price} Ft</p>
+                        </div>
+
                         {
                             location.pathname === '/admin/menu' && <div
                                 id={i.identifier}
@@ -28,7 +34,6 @@ export const FoodItem = (props) => {
                             />
                         }
                     </div>
-                    <p>{i.description}</p>
                 </div>
             )
         })}
