@@ -36,7 +36,7 @@ const Layout = props => {
             (async () => {
                 try {
                     const responseData = await sendRequest(process.env.REACT_APP_MENU);
-                    //adding special id so we can match item up to the targeted element
+                    // adding special id so we can match item up to the targeted element
                     const addedSpecialId = addId(responseData.menu);
                     // then we process it in menu context with a hook function. see menu-hook for logic
                     saveMenu(addedSpecialId);
