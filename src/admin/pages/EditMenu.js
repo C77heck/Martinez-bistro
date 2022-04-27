@@ -14,26 +14,32 @@ import {AuthModal} from '../components/AuthModal';
 import {AdminValidationPixel} from "../components/AdminValidationPixel";
 
 
-export const foodTypes = [
-    {value: 'Entradas-előételek', english: 'entries', id: 1},
-    {value: 'Sopas-levesek', english: 'soups', id: 2},
-    {value: 'burger', english: 'burgers', id: 3},
-    {value: 'platillos', english: 'platillos', id: 4},
-    {value: 'platillos mexicanos', english: 'mexicanos', id: 5},
-    {value: 'platillos hungaros ', english: 'hungarian-dishes', id: 6},
-    {value: 'dupla tál', english: 'double', id: 7},
-    {value: 'nachos', english: 'nachos', id: 8},
-    {value: 'arroz', english: 'arroz', id: 9},
-    {value: 'dippers', english: 'dippers', id: 10},
-    {value: 'extrák', english: 'extras', id: 11},
-    {value: 'desszertek', english: 'desserts', id: 12},
-    {value: 'Bevidas - Italok', english: 'drinks', id: 13},
-    {value: 'cafes-kávék', english: 'coffees', id: 14},
-    {value: 'servesas-sörök', english: 'beers', id: 15},
-    {value: 'cerveza de tarro- csapolt  sörök', english: 'tap-beers', id: 16},
-    {value: 'cocteles - koktélok', english: 'cocktails', id: 17},
-    {value: 'caballitos - rövid ital', english: 'shots', id: 18},
-];
+export const foodTypes = (() => {
+    return [
+        {value: 'Entradas - előételek', english: 'entries'},
+        {value: 'Sopas - levesek', english: 'soups'},
+        {value: 'Hamburgesas-burgerek', english: 'burgers'},
+        {value: 'Platillos tex-mex - tex-mex ételek', english: 'platillos'},
+        {value: 'platillos mexicanos-mexikói ételek', english: 'mexicanos'},
+        {value: 'platillos hungaros - magyar ételek', english: 'hungarian-dishes'},
+        {value: 'dupla tál', english: 'double'},
+        {value: 'nachos', english: 'nachos'},
+        {value: 'arroz', english: 'arroz'},
+        {value: 'dippers', english: 'dippers'},
+        {value: 'extrák', english: 'extras'},
+        {value: 'desszertek', english: 'desserts'},
+        {value: 'Bevidas - Italok', english: 'drinks'},
+        {value: 'cafes - kávék', english: 'coffees'},
+        {value: 'servesas - sörök', english: 'beers'},
+        {value: 'cerveza de tarro - csapolt  sörök', english: 'tap-beers'},
+        {value: 'cocteles - koktélok', english: 'cocktails'},
+        {value: 'caballitos - rövid ital', english: 'shots'},
+    ].map((item, index) => {
+        item['id'] = index + 1;
+
+        return item;
+    })
+})();
 
 export const getFoodTypesInEnglish = () => {
     const types = {};
