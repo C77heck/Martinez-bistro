@@ -1,22 +1,19 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, {useContext, useEffect, useState} from 'react';
+import {useHistory} from 'react-router-dom';
 
-import { AuthContext } from '../context/auth-context';
+import {AuthContext} from '../context/auth-context';
 
-import { AdminLinks, Main, Menu } from './Navlinks';
+import {AdminLinks, Main, Menu} from './Navlinks';
 
 
 const Navbar = props => {
 
-    const { isLoggedIn } = useContext(AuthContext);
+    const {isLoggedIn} = useContext(AuthContext);
 
-    const { location } = useHistory();
+    const {location} = useHistory();
 
     const [isScrolled, setIsScrolled] = useState(false)
-
-
-
-    /*  we are changing the navbar styling when the user scrolled 
+    /*  we are changing the navbar styling when the user scrolled
      down and reverse it when the user comes all the way back to the top */
     useEffect(() => {
         const displayButton = () => {
@@ -32,11 +29,11 @@ const Navbar = props => {
 
     const locations = () => {
         if (location.pathname === '/') {
-            return <Main />
+            return <Main/>
         } else if (location.pathname === '/menu') {
-            return <Menu />
+            return <Menu/>
         } else if (location.pathname.match('/admin')) {
-            return <AdminLinks />
+            return <AdminLinks/>
         }
     }
     return (

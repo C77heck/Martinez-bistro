@@ -7,6 +7,8 @@ export const AuthContext = createContext({
   token: null,
   drawer: false,
   isLoggedIn: false,
+  sessionId: false,
+  setUpAnalytics: () => { },
   signin: () => { },
   signout: () => { },
   disableDrawer: () => { },

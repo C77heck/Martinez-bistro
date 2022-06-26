@@ -1,8 +1,8 @@
-import { useEffect, useState, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import {useCallback, useEffect, useState} from 'react';
+import {useHistory} from 'react-router-dom';
 
 
-import { useHttpClient } from './http-hook';
+import {useHttpClient} from './http-hook';
 
 
 let timer;
@@ -11,11 +11,14 @@ export const useAuth = () => {
 
     const history = useHistory()
 
-    const { sendRequest } = useHttpClient();
+    const {sendRequest} = useHttpClient();
     const [token, setToken] = useState(false);
     const [expiration, setExpiration] = useState()
     const [userId, setUserId] = useState(false)
     const [drawer, setDrawer] = useState(false)
+    const [sessionId, setSessionId] = useState(false)
+
+    const setUpAnalytics = (sessionId) => setSessionId(sessionId);
 
     const signin = useCallback((userData, expiration) => {
 
@@ -54,9 +57,9 @@ export const useAuth = () => {
             console.log(err)
         }
         return true;
-    }, [sendRequest,history]);
+    }, [sendRequest, history]);
 
-    //AUTOMATED SINGIN/SIGNOUT BASED ON EXPIRATION TIME. 
+    //AUTOMATED SINGIN/SIGNOUT BASED ON EXPIRATION TIME.
     useEffect(() => {
         const storedData = JSON.parse(localStorage.getItem('userData'));
         if (
@@ -79,5 +82,5 @@ export const useAuth = () => {
         }
     }, [token, signout, expiration, userId])
 
-    return { signin, signout, token, userId, drawer, disableDrawer, enableDrawer }
+    return {signin, signout, token, userId, drawer, disableDrawer, enableDrawer, sessionId, setUpAnalytics}
 }
