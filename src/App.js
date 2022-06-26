@@ -135,7 +135,6 @@ function App() {
                 </MenuContext.Provider>
             </AuthContext.Provider>
         </ExpiryContext.Provider>
-
     );
 }
 

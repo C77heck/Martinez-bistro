@@ -21,7 +21,6 @@ export const useAuth = () => {
     const setUpAnalytics = (sessionId) => setSessionId(sessionId);
 
     const signin = useCallback((userData, expiration) => {
-
         setToken(userData.token);
         setUserId(userData.userId);
         const tokenExpiration = expiration || new Date().getTime() + 1000 * 60 * 30;// half an hour expiration time
