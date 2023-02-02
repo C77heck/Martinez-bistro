@@ -32,7 +32,6 @@ function App() {
     const {sendRequest} = useHttpClient();
 
     useEffect(() => {
-        //we grab the current expiry times to use down below...
         const storedExpiry = JSON.parse(localStorage.getItem('expiry')) || {
             menu: 0,
             opening: 0,
