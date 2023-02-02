@@ -1,0 +1,162 @@
+.food_cart {
+    margin: 1.5rem;
+    padding: 10px;
+    border: 2px var(--color-border) solid;
+    border-radius: 4px;
+    background-color: var(--color-light);
+    &__image {
+        overflow: hidden;
+        border: 1px var(--color-primary) solid;
+        border-radius: 4px;
+        margin-right: 2rem;
+
+        & img {
+            max-width: 100%;
+        }
+    }
+}
+
+.buy-button {
+    border: none;
+    border-radius: 10px;
+    background-color: var(--color-border);
+    color: var(--color-light);
+    transition: all 200ms;
+    outline: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 98px;
+    height: 30px;
+    align-self: flex-end;
+    & span {
+        font-weight: 800;
+    }
+    &:hover {
+        background-color: var(--color-border-light);
+        color: var(--color-border);
+    }
+
+    &:active {
+        transform: translateX(3px);
+    }
+}
+
+.remove-button {
+    border: none;
+    border-radius: 10px;
+    background-color: var(--color-border);
+    color: var(--color-light);
+    transition: all 200ms;
+    outline: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+    align-self: flex-end;
+    & span {
+        font-weight: 800;
+    }
+    &:hover {
+        background-color: var(--color-border-light);
+        color: var(--color-border);
+    }
+
+    &:active {
+        transform: translateX(3px);
+    }
+}
+
+.grid-width {
+    max-width: 1200px;
+}
+
+.order-details {
+    background-color: #fcfdfb;
+    border: 2px solid var(--color-border);
+    border-radius: 4px;
+    padding: 1rem;
+    position: sticky;
+    top: 12rem;
+    margin-top: 6rem;
+}
+
+.basket-header {
+    background-color: #dbd8d8;
+}
+.order-button {
+    border: none;
+    border-radius: 10px;
+    background-color: var(--color-primary);
+    color: var(--color-lighter);
+    transition: all 200ms;
+    outline: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 198px;
+    height: 40px;
+    align-self: flex-end;
+    & span {
+        font-weight: 800;
+    }
+    &:hover {
+        opacity: 0.7;
+    }
+
+    &:active {
+        transform: translateY(3px);
+    }
+}
+
+.filter-element {
+    padding: 5px 1rem;
+    background-color: var(--color-border-light);
+    transition: all 210ms;
+    color: var(--color-border-darker);
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--color-border);
+        color: var(--color-light);
+    }
+
+    &:active {
+        transform: translateY(2px);
+    }
+}
+.question-button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+
+.question-circle {
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    border: 2px solid;
+    border-color: var(--color-border);
+
+    &--filling {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        transition: all 340ms;
+        background-color: var(--color-border);
+    }
+}
+
+.mobile-order-details {
+    background-color: #fcfdfb;
+    border-top: 2px solid var(--color-border);
+    border-bottom: 2px solid var(--color-border);
+    padding: 1rem;
+    position: fixed;
+    bottom: 0rem;
+    width: 100%;
+}
+.order-details-mobile {
+    border: 2px solid var(--color-border);
+    border-radius: 4px;
+    padding: 1rem;
+}

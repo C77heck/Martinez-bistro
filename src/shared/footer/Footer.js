@@ -19,7 +19,7 @@ const Footer = () => {
                     <a
                         target='_blanc'
                         href='https://www.google.com/maps/place/El+poco+loco/@46.506658,18.4116852,15z/data=!4m5!3m4!1s0x0:0x253f81b5695e6d50!8m2!3d46.506658!4d18.4116852'
-                        >
+                    >
                         <img src='/img/map.jpg' alt='map' className='map-img' />
                     </a>
                 </div>
@@ -32,8 +32,8 @@ const Footer = () => {
                 </div>
 
                 <ul className='footer__list'>
-                    <li className='footer__list__items' ><Home /> Hőgyész, Ady Endre u. 16, 7191</li>
-                    <li className='footer__list__items' ><Email />EMAIL@EMAIL.COM</li>
+                    <li className='footer__list__items' ><Home /> Kossuth Lajos tér 13, 7191</li>
+                    <li className='footer__list__items' ><Email />martinezchristian1010@gmail.com</li>
                     <li className='footer__list__items' >Copyright &copy; by El Poco Loco</li>
                 </ul>
             </div>

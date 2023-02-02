@@ -45,27 +45,26 @@ const Input = props => {
         valid={isValid.toString()}
         className={props.className}
     />) : (
-            <input
-                style={props.style}
-                id={props.id}
-                placeholder={props.placeholder}
-                onChange={onChangeHandler}
-                type={props.type}
-                value={props.value}
-                name={props.id}
-                className={props.className}
-                validators={props.validators}
-                valid={isValid.toString()}
-                password={props.password}
-
-            />)
+        <input
+            style={props.style}
+            id={props.id}
+            placeholder={props.placeholder}
+            onChange={onChangeHandler}
+            type={props.type}
+            value={props.value}
+            name={props.id}
+            className={props.className}
+            validators={props.validators}
+            valid={isValid.toString()}
+            password={props.password}
+        />)
 
     return (
         <div
             className={` ${props.contClass} input-control ${!isValid ? 'input-control--invalid' : 'other'}`}
             style={props.containerStyle}
         >
-            <label style={props.labelStyle} htmlFor={props.id}>{props.label}</label>
+            <label style={props.labelStyle} htmlFor={props.id} className={props.labelClass}>{props.label}</label>
             {element}
             <div className='error-text' >
                 <p > {!isValid && props.errorText} </p>
@@ -76,6 +75,5 @@ const Input = props => {
     )
 
 }
-
 
 export default Input;

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Redirect } from 'react-router';
 import { AuthContext } from '../../shared/context/auth-context';
 import Input from '../../shared/form-elements/Input';
 import { useForm } from '../../shared/hooks/form-hook';
@@ -6,12 +7,12 @@ import { useHttpClient } from '../../shared/hooks/http-hook';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
 import MessageModal from '../../shared/UIElements/MessageModal';
 import Modal from '../../shared/UIElements/Modal';
+import { redirect } from '../../utility/helpers';
 import { VALIDATOR_REQUIRE } from '../../utility/validators';
 
 
 export const AuthModal = props => {
     const { signin, isLoggedIn, disableDrawer, enableDrawer } = useContext(AuthContext);
-
     const [show, setShow] = useState(false);
     const { sendRequest, error, clearError } = useHttpClient();
     const [message, setMessage] = useState('')
@@ -30,6 +31,7 @@ export const AuthModal = props => {
 
     const onSubmitHandler = async e => {
         e.preventDefault();
+        e.stopPropagation();
         try {
             const responseData = await sendRequest(
                 process.env.REACT_APP_SIGNIN,
@@ -46,6 +48,11 @@ export const AuthModal = props => {
             setShow(false)
             setMessage(responseData.message)
             enableDrawer(false)
+
+            if (props.onSuccess) {
+                props.onSuccess();
+            }
+
         } catch (err) {
             console.log(err)
         }
@@ -61,7 +68,9 @@ export const AuthModal = props => {
         enableDrawer(false)
     }
 
-    const onClickHandler = () => {
+    const onClickHandler = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         setShow(true);
         disableDrawer(true);
     }
@@ -80,6 +89,7 @@ export const AuthModal = props => {
                 onCancel={onCancelHandler}
                 onSubmit={onSubmitHandler}
                 className='modal--auth'
+                backdropClasses={props.backdropClasses}
             >
                 <Input
                     id='name'
@@ -122,14 +132,18 @@ export const AuthButton = props => {
     const signoutHandler = async e => {
         e.preventDefault();
         try {
-            const responseData = await sendRequest(process.env.REACT_APP_SIGNOUT + userId)
+            const responseData = await sendRequest(`${process.env.REACT_APP_SIGNOUT}/${userId}`)
             signout()
+            redirect('/admin');
+
             setMessage(responseData.message)
         } catch (err) {
+            setMessage(err)
+            console.log(err)
         }
     }
     return (
-        <AuthModal >
+        <AuthModal backdropClasses={props.backdropClasses}>
             <a
                 href='#'
                 id='auth-btn'

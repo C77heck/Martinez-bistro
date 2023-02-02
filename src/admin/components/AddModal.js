@@ -3,6 +3,7 @@ import React from 'react';
 import Modal from '../../shared/UIElements/Modal';
 
 const AddModal = props => {
+
     return (
         <Modal
             show={props.show}

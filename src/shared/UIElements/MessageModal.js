@@ -10,6 +10,7 @@ const MessageModal = props => {
             onCancel={props.onClear}
             header={props.header}
             show={!!props.message}
+            backdropClasses={props.backdropClasses}
         >
             <h2>{props.message}</h2>
             {props.children}

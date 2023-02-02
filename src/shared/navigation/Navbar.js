@@ -3,8 +3,8 @@ import {useHistory} from 'react-router-dom';
 
 import {AuthContext} from '../context/auth-context';
 
-import {AdminLinks, Main, Menu} from './Navlinks';
-
+import {AdminLinks, AdminLinksOrder, AdminLinksOrderDetails, Checkout, Main, Menu, OrderNavLinks} from './Navlinks';
+import {Analytics} from "./Analytics";
 
 const Navbar = props => {
 
@@ -13,6 +13,8 @@ const Navbar = props => {
     const {location} = useHistory();
 
     const [isScrolled, setIsScrolled] = useState(false)
+
+
     /*  we are changing the navbar styling when the user scrolled
      down and reverse it when the user comes all the way back to the top */
     useEffect(() => {
@@ -29,22 +31,39 @@ const Navbar = props => {
 
     const locations = () => {
         if (location.pathname === '/') {
-            return <Main/>
+            return <Main isMainPage={true}/>
         } else if (location.pathname === '/menu') {
             return <Menu/>
         } else if (location.pathname.match('/admin')) {
             return <AdminLinks/>
+        } else if (location.pathname === '/order') {
+            return <OrderNavLinks/>
+        } else if (location.pathname === '/checkout') {
+            return <Checkout/>
+        } else if (location.pathname === '/orders') {
+            return <AdminLinksOrder/>
+        } else if (location.pathname.match('/order-details')) {
+            return <AdminLinksOrderDetails/>
         }
     }
+
     return (
         <div
             className={`${isScrolled ? 'navigation--scrolled' : ''} 
-        ${props.className} navigation ${isLoggedIn && location.pathname.match('admin') && 'navigation--loggedin'}`}>
+        ${props.className} navigation ${isLoggedIn && getNavBarColor(location.pathname) && 'navigation--loggedin'}`}>
+            <Analytics/>
             <nav className='navigation__content'>
                 {locations()}
             </nav>
         </div>
     )
+}
+
+const getNavBarColor = (pathname) => {
+    if (pathname.match('admin') || pathname.match('orders') || pathname.match('order-details')) {
+        return true;
+    }
+    return false;
 }
 
 

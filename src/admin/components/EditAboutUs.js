@@ -68,7 +68,6 @@ const EditAboutUs = () => {
     const onSubmitHandler = async e => {
         e.preventDefault();
         try {
-         
             const responseData = await sendRequest(
                 process.env.REACT_APP_QUOTE,
                 'PATCH',
@@ -146,7 +145,7 @@ const EditAboutUs = () => {
             <AuthModal>
                 <div>
                     <button
-                        className='admin__about-us'
+                        className='admin__about-us cursor-pointer'
                         onClick={!isLoggedIn ? undefined : modalHandler}
                     >
                         Rólunk

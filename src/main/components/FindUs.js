@@ -18,17 +18,14 @@ const FindUs = () => {
     const { openingExpiry } = useContext(ExpiryContext);
 
     useEffect(() => {
-        const storedData = [JSON.parse(localStorage.getItem('opening'))]
-        if (storedData[0] !== null && !openingExpiry) {
-            setOpening(storedData[0])
-        } else {
-            (async () => {
-                const responseData = await sendRequest(process.env.REACT_APP_OPENING)
+        (async () => {
+            const responseData = await sendRequest(process.env.REACT_APP_OPENING)
+
+            if (!!responseData) {
                 setOpening(responseData.opening)
                 localStorage.setItem('opening', JSON.stringify(responseData.opening));
-            })()
-        }
-
+            }
+        })()
     }, [openingExpiry])
 
 

@@ -15,7 +15,7 @@ import { AuthModal } from './AuthModal';
 
 
 
-const EditOpening = () => {
+const EditOpening = (props) => {
     const {
         sendRequest,
         error,
@@ -88,8 +88,9 @@ const EditOpening = () => {
 
     const onSubmitHandler = async e => {
         e.preventDefault();
-
         try {
+            props.isLoading(true);
+
             const responseData = await sendRequest(
                 process.env.REACT_APP_OPENING,
                 'PATCH',
@@ -115,9 +116,12 @@ const EditOpening = () => {
                 }
             )
             setMessage(responseData.message)
+            props.isLoading(false);
+
             setShow(false)
 
         } catch (err) {
+            props.isLoading(false);
             console.log(err)
         }
 
@@ -286,7 +290,7 @@ const EditOpening = () => {
             <AuthModal>
                 <div>
                     <button
-                        className='admin__opening'
+                        className='admin__opening cursor-pointer'
                         onClick={!isLoggedIn ? undefined : modalHandler}
                     >
                         Nyitás

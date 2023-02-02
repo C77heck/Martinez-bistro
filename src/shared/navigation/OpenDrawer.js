@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -8,6 +8,7 @@ import { CSSTransition } from 'react-transition-group';
 import { useHistory } from 'react-router-dom';
 import { AuthButton } from '../../admin/components/AuthModal';
 import { AuthContext } from '../context/auth-context';
+import { AdminLinks, AdminLinksOrder, AdminLinksOrderDetails, Checkout, Main, Menu, OrderNavLinks } from './Navlinks';
 
 
 const SideDrawer = props => {
@@ -39,89 +40,88 @@ const OpenDrawer = () => {
     const [show, setShow] = useState(false)
     const { location } = useHistory()
     const onClickHandler = e => {
-        if (e.target.id === 'auth-btn' || e.target.id === 'backdrop') {
-            //to prevent the sidedrawer from closing when clicking on login button
-        } else {
-            setShow(false)
+        // to prevent the sidedrawer from closing when clicking on login button
+        switch (e.target.id) {
+            case 'auth-btn':
+                break;
+            case 'backdrop':
+                break;
+            case 'order':
+                break;
+            default:
+                setShow(false)
+                break;
         }
     }
 
+    useEffect(() => {
+        const menuWrapper = document.querySelector('.MobileNavBarWrapper');
+        if (show) {
+            !!menuWrapper && menuWrapper.addEventListener('click', closeDrawer);
+        } else {
+            !!menuWrapper && menuWrapper.removeEventListener('click', closeDrawer);
+        }
+    }, [show]);
+
+    const closeDrawer = (e) => {
+        switch (e.target.id) {
+            case 'auth-btn':
+                break;
+            case 'backdrop':
+                break;
+            case 'order':
+                break;
+            default:
+                setShow(false)
+                break;
+        }
+    };
+
+    // TODO -> Sort out the styling of these on mobile so no need for a different way to display it.
     const locations = () => {
         if (location.pathname === '/') {
-            return (<React.Fragment>
-                <li className='navigation__item'>
-                    <Link
-                        to='/menu'
-                    >
-                        Étlapunkat
-                </Link>
-                </li>
-                <li className='navigation__item'>
-                    <a href='#footer'>Kapcsolat</a>
-                </li>
-                <li className='navigation__item'>
-                    <a href='#find-us'>Nyitva tartás</a>
-                </li>
-                <li className='navigation__item'>
-                    <a href='#chef'>Rólunk</a>
-                </li>
-            </React.Fragment>)
+            return <div
+                onClick={onClickHandler}
+                className={'w-100 position-center MobileNavBarWrapper'}
+            ><Main isMainPage={true} /></div>
         } else if (location.pathname === '/menu') {
-            return (<React.Fragment>
-                <li className='navigation__item'>
-                    <Link
-                        to='/'
-                    >
-                        Főoldal
-                </Link>
-                </li>
-                <li className='navigation__item'>
-                    <a href='#mains'>Burgerek</a>
-                </li>
-                <li className='navigation__item'>
-                    <a href='#drinks'>Üdítők</a>
-                </li>
-                <li className='navigation__item'>
-                    <a href='#tapas'>Tapas</a>
-                </li>
-            </React.Fragment>)
+            return <div
+                onClick={onClickHandler}
+                className={'w-100 position-center MobileNavBarWrapper'}
+            ><Menu /></div>
         } else if (location.pathname.match('/admin')) {
-            return (<React.Fragment>
-
-                <li className='navigation__item'>
-                    <Link
-                        to='/admin'
-                    >
-                        Admin
-                </Link>                </li>
-                <li className='navigation__item'>
-                    <Link
-                        to='/'
-                    >
-                        Főoldal
-                </Link>
-                </li>
-                <li className='navigation__item'>
-                    <AuthButton />
-                </li>
-
-            </React.Fragment>)
+            return <AdminLinks backdropClasses={'z-300'} />
+        } else if (location.pathname === '/order') {
+            return <div
+                onClick={onClickHandler}
+                className={'w-100 position-center MobileNavBarWrapper'}
+            ><OrderNavLinks /></div>
+        } else if (location.pathname === '/checkout') {
+            return <div
+                onClick={onClickHandler}
+                className={'w-100 position-center MobileNavBarWrapper'}
+            ><Checkout /></div>
+        } else if (location.pathname === '/orders') {
+            return <div
+                onClick={onClickHandler}
+                className={'w-100 position-center MobileNavBarWrapper'}
+            ><AdminLinksOrder /></div>
+        } else if (location.pathname.match('/order-details')) {
+            return <div
+                onClick={onClickHandler}
+                className={'w-100 position-center MobileNavBarWrapper'}
+            ><AdminLinksOrderDetails /></div>
         }
-
     }
+
     return (
         <React.Fragment>
             <SideDrawer show={show} onClick={!drawer ? onClickHandler : undefined}>
-                <ul
-                    id='navigation-items'
-                    className='navigation__list'>
-                    {locations()}
-                </ul>
-
+                {locations()}
             </SideDrawer>
             <button
                 className='drawer'
-                onClick={() => { setShow(true) }}
+                onClick={() => setShow(!show)}
             >
                 <span className='drawer__icon'>&nbsp;</span>
             </button>
@@ -131,4 +131,3 @@ const OpenDrawer = () => {
 
 export default OpenDrawer;
 
-//<NavLinks />

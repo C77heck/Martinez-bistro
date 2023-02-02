@@ -24,25 +24,18 @@ const Testimonial = () => {
         window.addEventListener("resize", resizeWatcher);
     })
     useEffect(() => {
-        const storedData = [JSON.parse(localStorage.getItem('testimonial'))];
-        if (storedData[0] !== null && !testimonialExpiry) {
-            setTestimonial(storedData[0]);
-        } else {
-            (async () => {
-                try {
-                    const responseData = await sendRequest(process.env.REACT_APP_QUOTE)
-                    setTestimonial({
-                        quote: responseData.testimonial.quote,
-                        text: responseData.testimonial.text
-                    })
-                    localStorage.setItem('testimonial', JSON.stringify(responseData.testimonial));
-                } catch (err) {
+        (async () => {
+            try {
+                const responseData = await sendRequest(process.env.REACT_APP_QUOTE)
+                setTestimonial({
+                    quote: responseData.testimonial.quote,
+                    text: responseData.testimonial.text
+                })
+                localStorage.setItem('testimonial', JSON.stringify(responseData.testimonial));
+            } catch (err) {
 
-                }
-
-            })()
-        }
-
+            }
+        })()
     }, [testimonialExpiry])
 
     return (
@@ -50,7 +43,7 @@ const Testimonial = () => {
             <div className='testimonial__left'>
                 <h2 className='heading-secondary'>"{testimonial.quote}"</h2>
                 <h4 className='heading-italic'>Christian Martinez Séf</h4>
-                <p className='paragraph paragraph--testimonial'>{testimonial.text.length > 0 ? testimonial.text :
+                <p className='paragraph paragraph--testimonial pr-4'>{testimonial.text.length > 0 ? testimonial.text :
                     ' egyedi, vendégeink által sokat dicsért ízvilágával igyekszik a gasztronómia szerelmeseinek kedvében járni.Éttermünkben igyekszünk ' +
                     'helyi alapanyagokból, a környékre jellemző ízekkel megismertetni vendégeinket. Büszkék vagyunk arra, hogy konyhánkon a helyben terítékre ' +
                     'hozott vadból frissen, sousvideált és smooker BBQ ételek készülnek. Szezonálisan igyekszünk bemutatni a tájegység ízeit. Leveseket, főételeket' +

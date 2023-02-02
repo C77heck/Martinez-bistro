@@ -1,76 +1,92 @@
 .button {
-  font: inherit;
-  padding: .5rem 1.5rem;
-  border: none;
-  border-radius: 4px;
-  background: rgb(221, 115, 54);
-  color: white;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 250ms;
+    font: inherit;
+    padding: .5rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    background: rgb(221, 115, 54);
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 250ms;
 }
 
 .button:hover, .button:active {
-  background: #cec220;
-  border-color: #cec220;
+    background: #cec220;
+    border-color: #cec220;
 }
 
 .button--inverse {
-  background: transparent;
-  color: #ff0055;
+    background: transparent;
+    color: #ff0055;
 }
 
 .button--inverse:hover, .button--inverse:active {
-  color: white;
-  background: #ff0055;
+    color: white;
+    background: #ff0055;
 }
 
 .button--danger {
-  background: #830000;
-  border-color: #830000;
+    background: #830000;
+    border-color: #830000;
 }
 
 .button--danger:hover, .button--danger:active {
-  background: #f34343;
-  border-color: #f34343;
+    background: #f34343;
+    border-color: #f34343;
 }
 
 .button:disabled, .button:hover:disabled, .button:active:disabled {
-  background: #ccc;
-  color: #979797;
-  border-color: #ccc;
-  cursor: not-allowed;
+    background: #ccc;
+    color: #979797;
+    border-color: #ccc;
+    cursor: not-allowed;
 }
 
 .button--small {
-  font-size: .8rem;
+    font-size: .8rem;
 }
 
 .button--big {
-  font-size: 1.5rem;
+    font-size: 1.5rem;
 }
 
 /* rework this file */
-.btn--blue{
-  background: #2a4485;
+.btn--blue {
+    background: #2a4485;
 }
-.btn--blue:hover{
-  background: #7777dd;
+
+.btn--blue:hover {
+    background: #7777dd;
 }
-.btn--red{
-  background: #cb1e1e;
+
+.btn--red {
+    background: #cb1e1e;
 }
-.btn--red:hover{
-  background: #c999a8;
+
+.btn--red:hover {
+    background: #c999a8;
 }
-.btn--green{
-  background: #3dcf37;
+
+.btn--green {
+    background: #3dcf37;
 }
-.btn--green:hover{
-  background: #84a48e;
+
+.btn--green:hover {
+    background: #84a48e;
 }
-.btn--submit{
-display: block;
-margin: auto;
+
+.btn--outline {
+    border: solid grey 1px;
+    color: grey;
+    background: transparent;
+}
+
+.btn--outline:hover {
+    background: #e0dddd;
+}
+
+.btn--submit {
+    display: block;
+    margin: auto;
 }

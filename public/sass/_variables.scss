@@ -3,34 +3,30 @@
     --color-primary: #eebd35;
     --color-primary-light: #d0a217cc;
     --color-primary-dark: #cc6238;
-
-
-    --color-primary-contrast: #a9e0c6cc;
-
-    --color-border-light: #e1551e7c;
-
+    --color-light: rgb(235, 232, 232);
+    --color-lighter: rgb(248, 244, 244);
+    --color-border: #e1551e7c;
+    --color-border-light: #f5b49e;
+    --color-border-darker: #ef713a;
     --color-text-lighter: #e2ca73;
     --color-text-light: #376622;
     --color-text-dark: #175633;
-
     --color-text-admin: #225304;
-
-    --color-navbar: #158900;
-
-
-
-
+    --color-green-light: #1da106;
+    --color-green: #52cf3c;
+    --color-red: rgba(223, 63, 63, 0.836);
+    --color-navbar: #066a17;
     --color-footer-light: #e1551e;
     --color-footer-dark: #175633;
-
     --color-grey-light-1: #faf9f9;
     --color-grey-light-2: #f4f2f2;
     --color-grey-light-3: #f0eeee;
     --color-grey-light-4: #ccc;
+    --color-grey-light-5: #a19e9e;
 
-    --color-grey-dark-1: #333;
-    --color-grey-dark-2: #777;
-    --color-grey-dark-3: #999;
+    --text-color--dark: #54556c;
+    --text-color--light: #777;
+    --text-color--base: #8d8a3b;
 
     // BOX SHADOW
     --text-shadow-dark: 1rem 1rem rgb(13 11 11, 0.3);
@@ -49,6 +45,14 @@ $color-mobile-dark: #ff5933cc;
 $color-transparent-light: rgba(228, 241, 45, 0.76);
 $color-transparent-dark: rgba(218, 172, 21, 0.82);
 
+.color {
+    &--light {
+        color: var(--text-color--light);
+    }
+    &--dark {
+        color: var(--text-color--dark);
+    }
+}
 
 // @MEDIA
 $desktop-lg: 112.5em; // 1800
@@ -56,10 +60,8 @@ $desktop: 100em; // 1600
 $desktop-sm: 90em; // 1440
 $tablet-land: 75em; // 1200
 $tablet-lg: 68.75em; // 1100
-$tablet: 56.25em; // 900
-$tablet-sm: 48.5em; //776
+$tablet: 56.25em; // 800
+$tablet-sm: 48.5em; //740
 $mobile: 37.5em; // 600
 $mobile-sm: 31.25em; // 500
 $mobile-extra-sm: 24em; // 360
-
-

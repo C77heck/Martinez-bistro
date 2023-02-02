@@ -1,9 +1,7 @@
 import React, {useEffect} from 'react';
 
 import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
-
 import LandingPage from './main/page/LandingPage';
-
 import './App.scss';
 import Navbar from './shared/navigation/Navbar';
 import OpenDrawer from './shared/navigation/OpenDrawer';
@@ -15,9 +13,13 @@ import {MenuContext} from './shared/context/menu-context';
 import {useAuth} from './shared/hooks/auth-hook';
 import {AuthContext} from './shared/context/auth-context';
 import {ExpiryContext} from './shared/context/expiry-context';
+import {OrderContext} from './shared/context/order-context';
 import {useExpiry} from './shared/hooks/expiry-hook';
+import {useOrder} from './shared/hooks/order-hook';
 import {useHttpClient} from './shared/hooks/http-hook';
-
+import {Order} from './order/pages/Order';
+import {Checkout} from './order/pages/Checkout';
+import {Orders} from './admin/pages/Orders';
 
 function App() {
     const {
@@ -44,30 +46,31 @@ function App() {
                 fetch fresher data if needed */
                 const responseData = await sendRequest(process.env.REACT_APP_EXPIRY)
                 updateExpiry(responseData.expiries, storedExpiry)
-
             } catch (err) {
 
             }
         })()
-
-
     }, [])
 
-
-    const {menu, saveMenu, types, removeItem, addMenuItem} = useMenu();
+    const {menu, saveMenu, types, orderableList, removeItem, addMenuItem, setOrderable} = useMenu();
     const {
         signin,
         signout,
         token,
         userId,
         drawer,
+        isAdminValidated,
+        getIsAdminValidated,
         disableDrawer,
         enableDrawer,
         sessionId,
-        setUpAnalytics,
+        setUpAnalytics
     } = useAuth();
-    let routes;
-    routes = (
+
+    const {add, remove, addedItems, totalPrice, clearOrder} = useOrder();
+
+
+    const routes = (
         <Router>
             <Switch>
                 <Route path='/' exact>
@@ -80,14 +83,27 @@ function App() {
                     <OpenDrawer/>
                     <Menu/>
                 </Route>
-
+                <Route path='/order' exact>
+                    <Navbar className='navigation--scrolled'/>
+                    <OpenDrawer/>
+                    <Order/>
+                </Route>
+                <Route path='/checkout' exact>
+                    <Navbar className='navigation--scrolled'/>
+                    <OpenDrawer/>
+                    <Checkout/>
+                </Route>
                 <Route path='/admin' exact>
                     <Navbar className='navigation--scrolled'/>
                     <OpenDrawer/>
                     <Admin/>
                 </Route>
-                <Route path='/admin/menu' exact>
+                <Route path='/orders' exact>
                     <Navbar className='navigation--scrolled'/>
+                    <OpenDrawer/>
+                    <Orders/>
+                </Route>
+                <Route path='/admin/menu' exact>
                     <Navbar className='navigation--scrolled'/>
                     <OpenDrawer/>
                     <EditMenu/>
@@ -98,43 +114,58 @@ function App() {
     )
 
     return (
-        <ExpiryContext.Provider
+        <OrderContext.Provider
             value={{
-                menuExpiry: menuExpiry,
-                testimonialExpiry: testimonialExpiry,
-                openingExpiry: openingExpiry,
-                storyExpiry: storyExpiry,
-                updateExpiry: updateExpiry
-            }}>
-            <AuthContext.Provider
+                addedItems: addedItems,
+                totalPrice: totalPrice,
+                add: add,
+                remove: remove,
+                clearOrder: clearOrder,
+            }}
+        >
+            <ExpiryContext.Provider
                 value={{
-                    userId: userId,
-                    token: token,
-                    drawer: drawer,
-                    isLoggedIn: !!token,
-                    signin: signin,
-                    signout: signout,
-                    enableDrawer: enableDrawer,
-                    disableDrawer: disableDrawer,
-                    sessionId: sessionId,
-                    setUpAnalytics: setUpAnalytics,
+                    menuExpiry: menuExpiry,
+                    testimonialExpiry: testimonialExpiry,
+                    openingExpiry: openingExpiry,
+                    storyExpiry: storyExpiry,
+                    updateExpiry: updateExpiry
                 }}
             >
-                <MenuContext.Provider
+                <AuthContext.Provider
                     value={{
-                        menu: menu,
-                        types: types,
-                        saveMenu: saveMenu,
-                        addMenuItem: addMenuItem,
-                        removeItem: removeItem
+                        userId: userId,
+                        token: token,
+                        drawer: drawer,
+                        isLoggedIn: !!token,
+                        isAdminValidated: isAdminValidated,
+                        getIsAdminValidated: getIsAdminValidated,
+                        signin: signin,
+                        signout: signout,
+                        enableDrawer: enableDrawer,
+                        disableDrawer: disableDrawer,
+                        sessionId: sessionId,
+                        setUpAnalytics: setUpAnalytics,
                     }}
                 >
-                    <main>
-                        <div className='center'>{routes}</div>
-                    </main>
-                </MenuContext.Provider>
-            </AuthContext.Provider>
-        </ExpiryContext.Provider>
+                    <MenuContext.Provider
+                        value={{
+                            menu: menu,
+                            types: types,
+                            orderableList: orderableList,
+                            saveMenu: saveMenu,
+                            addMenuItem: addMenuItem,
+                            removeItem: removeItem,
+                            setOrderable: setOrderable,
+                        }}
+                    >
+                        <main>
+                            <div className='center'>{routes}</div>
+                        </main>
+                    </MenuContext.Provider>
+                </AuthContext.Provider>
+            </ExpiryContext.Provider>
+        </OrderContext.Provider>
     );
 }
 

@@ -30,12 +30,14 @@
         color: #463939;
         font-size: 140%;
     }
+
     &__item {
         position: relative;
         background-color: rgba(255, 255, 255, 0.527);
         padding: 2rem;
         box-shadow: 0 1rem 2.5rem rgb(14, 10, 10);
-        & .food-item p {
+
+        & .food-item .paragraph--menu {
             color: var(--color-text-dark);
 
             font-size: 140%;
@@ -44,10 +46,12 @@
                 font-size: 130%;
             }
         }
+
         .food-item {
             display: flex;
             justify-content: space-between;
-            & p {
+
+            & .paragraph--menu {
                 font-size: 210%;
                 @media screen and (max-width: $mobile) {
                     font-size: 177%;
@@ -69,9 +73,11 @@
         font-size: 4.5rem;
     }
 }
+
 .menu-item-wrapper {
     position: relative;
 }
+
 .menu-admin-view {
     z-index: 5;
     background-color: transparent;

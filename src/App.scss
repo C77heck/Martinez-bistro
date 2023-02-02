@@ -5,6 +5,7 @@
 
 @import "./shared/UIElements/LoadingSpinner";
 @import "./shared/UIElements/ErrorModal";
+
 @import "./shared/UIElements/Modal";
 @import "./shared/UIElements/MessageModal";
 
@@ -15,5 +16,10 @@
 
 @import "./main/page/LandingPage";
 @import "./menu/page/Menu";
+@import "./order/pages/Order.scss";
 
 @import "./SVG/svg";
+
+.text-align-right {
+    text-align: right;
+}

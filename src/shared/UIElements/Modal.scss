@@ -1,7 +1,7 @@
 .modal {
   z-index: 100;
   position: fixed;
-  top: 22vh;
+  top: 15vh;
   left: 23vw;
   width: 54vw;
   background: white;
@@ -10,7 +10,7 @@
   border-radius: 3rem;
   overflow: hidden;
   @media screen and (max-width: $mobile) {
-    top: 4vh;
+    top: 22vh;
   }
   &__header {
     height: 2rem;
@@ -34,7 +34,7 @@
   &--opening {
     width: 30vw;
     left: 35vw;
-
+    top: 22vh;
     @media screen and (max-width: $tablet-land) {
       width: 40vw;
       left: 30vw;
@@ -45,7 +45,7 @@
     }
     @media screen and (max-width: $mobile) {
       width: 80vw;
-      top: 4vh;
+      top: 22vh;
       left: 10vw;
       z-index: 1001; //to be on top of the navbar button
     }
@@ -116,7 +116,7 @@
   @media screen and (max-width: $mobile) {
     width: 70vw;
     left: 15vw;
-    top: 4vh;
+    top: 22vh;
     z-index: 1001; //to be on top of the navbar button
   }
   @media screen and (max-width: $mobile-sm) {
@@ -155,7 +155,7 @@
   @media screen and (max-width: $mobile) {
     width: 70vw;
     left: 15vw;
-    top: 4vh;
+    top: 22vh;
     z-index: 1001; //to be on top of the navbar button
   }
   @media screen and (max-width: $mobile-sm) {
@@ -179,7 +179,7 @@
   @media screen and (max-width: $mobile) {
     width: 90vw;
     left: 5vw;
-    top: 4vh;
+    top: 22vh;
     z-index: 1001; //to be on top of the navbar button
   }
   .modal {
@@ -198,22 +198,20 @@
 
 .modal--news {
   top: 9vh;
-  width: 30vw;
-  left: 35vw;
+  width: 70vw;
+  left: 15vw;
   @media screen and (max-width: $tablet-land) {
-    width: 40vw;
-    left: 30vw;
+    width: 80vw;
+    left: 10vw;
   }
   @media screen and (max-width: $tablet) {
-    width: 50vw;
-    left: 25vw;
+    width: 90vw;
+    left: 5vw;
   }
   @media screen and (max-width: $mobile) {
     overflow: scroll;
     height: 77vh;
-    width: 70vw;
-    left: 15vw;
-    top: 4vh;
+    top: 22vh;
     z-index: 1001; //to be on top of the navbar button
   }
   @media screen and (max-width: $mobile-sm) {
@@ -245,6 +243,50 @@
     }
     & button {
       background: #75c22e;
+    }
+  }
+}
+
+// ORDER MODAL
+.modal--order {
+  width: 70vw;
+  left: 15vw;
+  @media screen and (max-width: $tablet-lg) {
+    width: 80vw;
+    left: 10vw;
+    top: 13vh;
+    z-index: 1001; //to be on top of the navbar button
+  }
+  @media screen and (max-width: $mobile) {
+    width: 90vw;
+    left: 5vw;
+    top: 22vh;
+    z-index: 1001; //to be on top of the navbar button
+  }
+  .modal {
+    &__header {
+      background-color: #298412;
+    }
+    &__content {
+      font-size: 2rem;
+      & input {
+        width: 80%;
+        margin: auto;
+      }
+    }
+  }
+}
+.note--modal {
+  top: 20vh;
+
+  .modal {
+    top: 20vh;
+    &__content {
+      font-size: 1.4rem;
+      & input {
+        width: 80%;
+        margin: auto;
+      }
     }
   }
 }

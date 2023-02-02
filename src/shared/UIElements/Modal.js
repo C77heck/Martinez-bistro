@@ -41,7 +41,7 @@ const ModalOverlay = props => {
 const Modal = props => {
 
     return <React.Fragment>
-        {props.show && <Backdrop onClick={props.onCancel} />}
+        {props.show && <Backdrop onClick={props.onCancel} className={props.backdropClasses} />}
         <ModalOverlay {...props} />
         {/* this spread operator syntax sends over the props from Modal to modaloverlay */}
     </React.Fragment>

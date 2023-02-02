@@ -1,5 +1,4 @@
 .admin {
-    font-family: sans-serif;
     width: 80%;
     margin: auto;
     min-height: 100vh;
@@ -10,7 +9,6 @@
     & h2 {
         font-size: 7.5rem;
         color: var(--color-text-admin);
-        margin-top: -29vh;
     }
     &__inner-border {
         padding-top: 12vh;
@@ -24,7 +22,6 @@
         & h2 {
             font-size: 9vw;
             margin-top: 12rem;
-
         }
         &__inner-border {
             padding-top: 12vh;
@@ -41,7 +38,6 @@
             font-size: 3.8rem;
             margin-top: 12rem;
         }
-
     }
     & button,
     & a {
@@ -255,5 +251,25 @@
 .top-section__help {
     & li {
         list-style-type: decimal;
+    }
+}
+
+.hover-background-white {
+    transition: all 200ms;
+    background-color: var(--color-lighter) !important;
+    cursor: pointer;
+    &:hover {
+        border-color: var(--color-border-light);
+        background-color: white;
+        transform: scale(1.02);
+    }
+    &:active {
+        transform: scale(1);
+    }
+}
+
+.order-card {
+    &--header {
+        background-color: var(--color-border-light);
     }
 }
