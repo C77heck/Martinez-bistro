@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="24a99004-18c2-4819-8d4e-8d0f3d375a23" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/shared/hooks/http-mock-client-hook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.development" beforeDir="false" afterPath="$PROJECT_DIR$/.env.development" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/components/AboutUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/components/AboutUs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/components/FindUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/components/FindUs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/components/Testimonial.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/components/Testimonial.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/page/LandingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/page/LandingPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/menu/components/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/components/Layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/hooks/http-hook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/hooks/http-hook.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shared/navigation/Navlinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/navigation/Navlinks.js" afterDir="false" />
-    </list>
+    <list default="true" id="24a99004-18c2-4819-8d4e-8d0f3d375a23" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,7 +71,7 @@
       <workItem from="1681317652913" duration="78000" />
       <workItem from="1683176393331" duration="1388000" />
       <workItem from="1683532009320" duration="2000" />
-      <workItem from="1686554420481" duration="1492000" />
+      <workItem from="1686554420481" duration="1800000" />
     </task>
     <servers />
   </component>
