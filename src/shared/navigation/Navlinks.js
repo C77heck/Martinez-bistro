@@ -1,12 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, {useContext, useState} from 'react';
 
-import { NavLink } from 'react-router-dom';
-import { Link } from 'react-scroll';
-import AuthModal, { AuthButton } from '../../admin/components/AuthModal';
-import { redirect } from '../../utility/helpers';
-import { AuthContext } from '../context/auth-context';
-import { Storage } from '../../utility/StorageHelper';
-import { useHttpClient } from '../hooks/http-hook';
+import {NavLink} from 'react-router-dom';
+import {Link} from 'react-scroll';
+import AuthModal, {AuthButton} from '../../admin/components/AuthModal';
+import {redirect} from '../../utility/helpers';
+import {AuthContext} from '../context/auth-context';
+import {Storage} from '../../utility/StorageHelper';
+import {useHttpClient} from '../hooks/http-hook';
 import MessageModal from '../UIElements/MessageModal';
 
 export const OrderNavLinks = props => {
@@ -22,11 +22,11 @@ export const OrderNavLinks = props => {
                     Étlap
                 </NavLink>
             </li>
-        </ul >
+        </ul>
     )
 }
 export const Main = (props) => {
-    const { isMainPage } = props;
+    const {isMainPage} = props;
 
     return (
         <ul className='navigation__list'>
@@ -35,8 +35,7 @@ export const Main = (props) => {
                     Étlap
                 </NavLink>
             </li>}
-            {isMainPage && <OrderNavLink />
-            }
+
             {!isMainPage && <li className='navigation__item'>
                 <NavLink to='/'>
                     Főoldal
@@ -75,21 +74,19 @@ export const Main = (props) => {
                     Rólunk
                 </Link>
             </li>
-        </ul >
+        </ul>
     )
 }
 
 export const Checkout = (props) => {
-
     return (
         <ul className='navigation__list'>
-            <OrderNavLink />
             <li className='navigation__item'>
                 <NavLink to='/'>
                     Főoldal
                 </NavLink>
             </li>
-        </ul >
+        </ul>
     )
 }
 
@@ -101,7 +98,6 @@ export const Menu = () => {
                     Főoldal
                 </NavLink>
             </li>
-            <OrderNavLink />
             <li className='navigation__item'>
                 <Link
                     to='mains'
@@ -151,10 +147,10 @@ export const AdminLinks = props => {
                 </NavLink>
             </li>
             <li className='navigation__item'>
-                <AuthButton backdropClasses={props.backdropClasses} />
+                <AuthButton backdropClasses={props.backdropClasses}/>
             </li>
             <li className='navigation__item'>
-                <AdminNavLink backdropClasses={props.backdropClasses} />
+                <AdminNavLink backdropClasses={props.backdropClasses}/>
             </li>
         </ul>
     )
@@ -172,7 +168,7 @@ export const AdminLinksOrder = () => {
                 </NavLink>
             </li>
             <li className='navigation__item'>
-                <AuthButton />
+                <AuthButton/>
             </li>
             <li className='navigation__item'>
                 <NavLink
@@ -181,7 +177,7 @@ export const AdminLinksOrder = () => {
                     Főoldal
                 </NavLink>
             </li>
-        </ul >
+        </ul>
     )
 }
 
@@ -196,10 +192,10 @@ export const AdminLinksOrderDetails = () => {
                 </NavLink>
             </li>
             <li className='navigation__item'>
-                <AdminNavLink />
+                <AdminNavLink/>
             </li>
             <li className='navigation__item'>
-                <AuthButton />
+                <AuthButton/>
             </li>
             <li className='navigation__item'>
                 <NavLink
@@ -208,26 +204,26 @@ export const AdminLinksOrderDetails = () => {
                     Főoldal
                 </NavLink>
             </li>
-        </ul >
+        </ul>
     )
 }
 
 const AdminNavLink = props => {
-    const { isLoggedIn } = useContext(AuthContext);
+    const {isLoggedIn} = useContext(AuthContext);
 
     return <AuthModal
         onSuccess={() => redirect('/orders')}
         backdropClasses={props.backdropClasses}
     >
         {!isLoggedIn
-            ? <a href='#' id='auth-btn' >Rendelések</a>
-            : <NavLink to='/orders' >Rendelések</NavLink>}
+            ? <a href='#' id='auth-btn'>Rendelések</a>
+            : <NavLink to='/orders'>Rendelések</NavLink>}
     </AuthModal>;
 }
 
 const OrderNavLink = props => {
     const [message, setMessage] = useState('');
-    const { sendRequest, error } = useHttpClient();
+    const {sendRequest, error} = useHttpClient();
     const storage = new Storage('uniqueOrderId');
     const isRestaurantClosed = getIsRestuarantClosed();
     let tries = 0;
@@ -254,7 +250,9 @@ const OrderNavLink = props => {
 
     return <React.Fragment>
         <MessageModal
-            onClear={() => { setMessage('') }}
+            onClear={() => {
+                setMessage('')
+            }}
             message={message}
             className='admin-message-modal'
             backdropClasses={'z-300'}

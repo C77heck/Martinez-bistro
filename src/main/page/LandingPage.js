@@ -8,16 +8,15 @@ import Testimonial from '../components/Testimonial';
 
 const LandingPage = () => {
     /*     const ref = useRef();
-    
+
         useEffect(() => {
-    
+
             ref.current.scrollIntoView();
-    
+
         })
      */
     return (
         <React.Fragment>
-
             <MainHeader />
             <section id='about-us'>
                 <AboutUs />
@@ -33,9 +32,7 @@ const LandingPage = () => {
             </section>
             <section id='footer'>
                 <Footer />
-            </section>
-
-
+            </section>a
         </React.Fragment>
 
     )

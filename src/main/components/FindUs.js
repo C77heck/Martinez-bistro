@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { ExpiryContext } from '../../shared/context/expiry-context';
-import { useHttpClient } from '../../shared/hooks/http-hook';
-
+import React, {useContext, useEffect, useState} from 'react';
+import {ExpiryContext} from '../../shared/context/expiry-context';
+import {useHttpClient} from '../../shared/hooks/http-hook';
+import {useHttpMockClient} from "../../shared/hooks/http-mock-client-hook";
 
 
 const FindUs = () => {
@@ -16,10 +16,12 @@ const FindUs = () => {
         sunday: ''
     })
     const { openingExpiry } = useContext(ExpiryContext);
+    const {getOpeningTimes} = useHttpMockClient();
 
     useEffect(() => {
         (async () => {
-            const responseData = await sendRequest(process.env.REACT_APP_OPENING)
+            const responseData = getOpeningTimes();
+            // const responseData = await sendRequest(process.env.REACT_APP_OPENING)
 
             if (!!responseData) {
                 setOpening(responseData.opening)

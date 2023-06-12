@@ -2,10 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24a99004-18c2-4819-8d4e-8d0f3d375a23" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/shared/hooks/http-mock-client-hook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.development" beforeDir="false" afterPath="$PROJECT_DIR$/.env.development" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/components/AboutUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/components/AboutUs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/components/FindUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/components/FindUs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/components/Testimonial.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/components/Testimonial.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/page/LandingPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/page/LandingPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menu/components/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/components/Layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/hooks/http-hook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/hooks/http-hook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/shared/navigation/Navlinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/shared/navigation/Navlinks.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,20 +33,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/zoltancsilleri/prof/Martinez-bistro&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/zoltancsilleri/prof/Martinez-bistro/src/shared/hooks",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/shared/hooks" />
       <recent name="$PROJECT_DIR$/src/shared/navigation" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -70,7 +80,12 @@
       <workItem from="1668063425609" duration="816000" />
       <workItem from="1668069008997" duration="2420000" />
       <workItem from="1675339490740" duration="185000" />
-      <workItem from="1675339829230" duration="2269000" />
+      <workItem from="1675339829230" duration="3000000" />
+      <workItem from="1675348127282" duration="921000" />
+      <workItem from="1681317652913" duration="78000" />
+      <workItem from="1683176393331" duration="1388000" />
+      <workItem from="1683532009320" duration="2000" />
+      <workItem from="1686554420481" duration="1492000" />
     </task>
     <servers />
   </component>

@@ -1,17 +1,18 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { ExpiryContext } from '../../shared/context/expiry-context';
-import { useHttpClient } from '../../shared/hooks/http-hook';
-
+import React, {useContext, useEffect, useState} from 'react';
+import {ExpiryContext} from '../../shared/context/expiry-context';
+import {useHttpClient} from '../../shared/hooks/http-hook';
+import {useHttpMockClient} from "../../shared/hooks/http-mock-client-hook";
 
 
 const Testimonial = () => {
-    const { testimonialExpiry } = useContext(ExpiryContext);
+    const {testimonialExpiry} = useContext(ExpiryContext);
     const [mobile, setMobile] = useState('');
     const [testimonial, setTestimonial] = useState({
         quote: 'A főzés is művészet',
         text: ''
     })
-    const { sendRequest } = useHttpClient()
+    const {getTestimonial} = useHttpMockClient();
+    const {sendRequest} = useHttpClient()
     /* watch for screen size and use size appropiate images */
     const resizeWatcher = e => {
         if (e.target.outerWidth > 700) {
@@ -26,7 +27,8 @@ const Testimonial = () => {
     useEffect(() => {
         (async () => {
             try {
-                const responseData = await sendRequest(process.env.REACT_APP_QUOTE)
+                const responseData = getTestimonial();
+                // const responseData = await sendRequest(process.env.REACT_APP_QUOTE)
                 setTestimonial({
                     quote: responseData.testimonial.quote,
                     text: responseData.testimonial.text
@@ -54,7 +56,7 @@ const Testimonial = () => {
 
             <div className='testimonial__right'>
                 <div className='image-container'>
-                    <img src={`/img/chef${mobile}.jpg`} alt='Christian Martinez' className='chef-image' />
+                    <img src={`/img/chef${mobile}.jpg`} alt='Christian Martinez' className='chef-image'/>
                 </div>
 
 
@@ -62,7 +64,6 @@ const Testimonial = () => {
         </div>
     )
 }
-
 
 
 export default Testimonial;
