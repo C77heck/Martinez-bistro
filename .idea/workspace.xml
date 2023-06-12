@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="24a99004-18c2-4819-8d4e-8d0f3d375a23" name="Changes" comment="" />
+    <list default="true" id="24a99004-18c2-4819-8d4e-8d0f3d375a23" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,7 +27,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/zoltancsilleri/prof/Martinez-bistro/src/shared/hooks",
+    "last_opened_file_path": "/Users/zoltancsilleri/prof/Martinez-bistro",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
@@ -72,6 +75,7 @@
       <workItem from="1683176393331" duration="1388000" />
       <workItem from="1683532009320" duration="2000" />
       <workItem from="1686554420481" duration="1800000" />
+      <workItem from="1686556422506" duration="1495000" />
     </task>
     <servers />
   </component>
