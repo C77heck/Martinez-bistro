@@ -5,7 +5,6 @@ import {MenuContext} from '../../shared/context/menu-context';
 import {ExpiryContext} from '../../shared/context/expiry-context';
 import {foodTypes} from '../../admin/pages/EditMenu';
 import {FoodItem} from './FoodItem';
-import {useHttpMockClient} from "../../shared/hooks/http-mock-client-hook";
 import {useHttpClient} from "../../shared/hooks/http-hook";
 
 export const objectToArray = (object, foodTypes) => {
@@ -20,14 +19,11 @@ export const objectToArray = (object, foodTypes) => {
 
 const Layout = props => {
     const {types, menu, saveMenu} = useContext(MenuContext);
-    const {getMenu} = useHttpMockClient();
     const {sendRequest, isLoading} = useHttpClient();
 
     const {menuExpiry} = useContext(ExpiryContext);
 
     useEffect(() => {
-        return saveMenu(getMenu());
-        // todo we need it only to update data on local then update the response json in useHttpMockClient
         const storedMenu = JSON.parse(localStorage.getItem('menu')) || [];
         if (menu.length > 0) {// to map items when the admin changes things like type
             saveMenu(menu)

@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24a99004-18c2-4819-8d4e-8d0f3d375a23" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/components/AboutUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/components/AboutUs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/components/FindUs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/components/FindUs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/components/Testimonial.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/components/Testimonial.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menu/components/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu/components/Layout.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,11 +1,10 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {ExpiryContext} from '../../shared/context/expiry-context';
 import {useHttpClient} from '../../shared/hooks/http-hook';
-import {useHttpMockClient} from "../../shared/hooks/http-mock-client-hook";
 
 
 const FindUs = () => {
-    const { sendRequest } = useHttpClient()
+    const {sendRequest} = useHttpClient()
     const [opening, setOpening] = useState({
         monday: '',
         tuesday: '',
@@ -15,13 +14,11 @@ const FindUs = () => {
         saturday: '',
         sunday: ''
     })
-    const { openingExpiry } = useContext(ExpiryContext);
-    const {getOpeningTimes} = useHttpMockClient();
+    const {openingExpiry} = useContext(ExpiryContext);
 
     useEffect(() => {
         (async () => {
-            const responseData = getOpeningTimes();
-            // const responseData = await sendRequest(process.env.REACT_APP_OPENING)
+            const responseData = await sendRequest(process.env.REACT_APP_OPENING)
 
             if (!!responseData) {
                 setOpening(responseData.opening)
@@ -39,7 +36,7 @@ const FindUs = () => {
                         target='_blanc'
                         href='https://www.google.com/maps/place/El+poco+loco/@46.506658,18.4116852,15z/data=!4m5!3m4!1s0x0:0x253f81b5695e6d50!8m2!3d46.506658!4d18.4116852'
                     >
-                        <img src='/img/map.jpg' alt='map' className='map-img' />
+                        <img src='/img/map.jpg' alt='map' className='map-img'/>
                     </a>
 
                 </div>
@@ -48,7 +45,7 @@ const FindUs = () => {
             <div className='find-us__right'>
                 <h2 className='heading-secondary white-text '>
                     Nyitva tartás:
-        </h2>
+                </h2>
                 <div className='opening white-text'>
                     <div className='opening__days'>
                         <p>Hétfő</p>

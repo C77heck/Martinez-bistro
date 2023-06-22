@@ -3,11 +3,9 @@ import React, {useContext, useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {ExpiryContext} from '../../shared/context/expiry-context';
 import {useHttpClient} from '../../shared/hooks/http-hook';
-import {useHttpMockClient} from "../../shared/hooks/http-mock-client-hook";
 
 const AboutUs = () => {
     const {storyExpiry} = useContext(ExpiryContext);
-    const {getStory} = useHttpMockClient();
     const [mobile, setMobile] = useState('');
     const [stories, setStories] = useState({
         firsth2: '',
@@ -17,7 +15,7 @@ const AboutUs = () => {
         secondp: ''
     });
     const {sendRequest} = useHttpClient()
-    /* watch for screen size and use size appropiate images */
+
     const resizeWatcher = e => {
         if (e.target.outerWidth > 700) {
             setMobile('')
@@ -33,8 +31,7 @@ const AboutUs = () => {
     useEffect(() => {
         (async () => {
             try {
-                // const responseData = await sendRequest(process.env.REACT_APP_STORIES);
-                const responseData = getStory();
+                const responseData = await sendRequest(process.env.REACT_APP_STORIES);
                 setStories(responseData.story)
                 localStorage.setItem('stories', JSON.stringify(responseData.story));
             } catch (err) {
