@@ -1,5 +1,5 @@
-import {useState, useCallback} from 'react'
-import {objectSorting, assignIdentifiers} from '../../utility/objectSorting';
+import {useCallback, useState} from 'react'
+import {assignIdentifiers, objectSorting} from '../../utility/objectSorting';
 import {getFoodTypesInEnglish} from '../../admin/pages/EditMenu';
 
 export const useMenu = () => {
