@@ -16,6 +16,14 @@ export class Storage {
         return !!this.storage.getItem(this.name);
     }
 
+    get() {
+        const content = JSON.parse(this.storage.getItem(this.name));
+        if (!content) {
+            return {};
+        }
+        return content;
+    }
+
     set(value) {
         this.storage.setItem(this.name, JSON.stringify(value, null))
     }

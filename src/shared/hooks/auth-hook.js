@@ -66,7 +66,7 @@ export const useAuth = () => {
     //AUTOMATED SINGIN/SIGNOUT BASED ON EXPIRATION TIME.
     useEffect(() => {
         const storedData = storage.get();
-        signin(storedData, new Date(storedData.expiration))
+        signin(storedData, new Date(storedData?.expiration))
 
         // TODO -> review this in the future.
         // if (
