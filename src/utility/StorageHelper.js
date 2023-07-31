@@ -1,4 +1,3 @@
-import { get } from '../utility/helpers';
 /**
  * eases up to use the session and the local storage in code.
  * abstracts away the JSON usage
@@ -7,6 +6,7 @@ import { get } from '../utility/helpers';
 export class Storage {
     name;
     storage = window.localStorage;
+
     constructor(name, type = 'local') {
         this.name = name;
         this.storage = type === 'local' ? window.localStorage : window.sessionStorage;
@@ -18,11 +18,6 @@ export class Storage {
 
     set(value) {
         this.storage.setItem(this.name, JSON.stringify(value, null))
-    }
-    get() {
-        const val = this.storage.getItem(this.name);
-
-        return !!val ? JSON.parse(val) : false;
     }
 
     getItem(prop) {

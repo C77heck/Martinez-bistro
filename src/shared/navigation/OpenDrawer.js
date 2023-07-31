@@ -1,19 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
-
-import { Link } from 'react-router-dom';
-
-
+import React, {useContext, useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
-import { CSSTransition } from 'react-transition-group';
-import { useHistory } from 'react-router-dom';
-import { AuthButton } from '../../admin/components/AuthModal';
-import { AuthContext } from '../context/auth-context';
-import { AdminLinks, AdminLinksOrder, AdminLinksOrderDetails, Checkout, Main, Menu, OrderNavLinks } from './Navlinks';
+import {CSSTransition} from 'react-transition-group';
+import {useHistory} from 'react-router-dom';
+import {AuthContext} from '../context/auth-context';
+import {AdminLinks, AdminLinksOrder, AdminLinksOrderDetails, Checkout, Main, Menu, OrderNavLinks} from './Navlinks';
 
 
 const SideDrawer = props => {
 
-    const { isLoggedIn } = useContext(AuthContext);
+    const {isLoggedIn} = useContext(AuthContext);
     const content = (<CSSTransition
         in={props.show}
         timeout={200}
@@ -36,9 +31,9 @@ const SideDrawer = props => {
 
 
 const OpenDrawer = () => {
-    const { drawer } = useContext(AuthContext);
+    const {drawer} = useContext(AuthContext);
     const [show, setShow] = useState(false)
-    const { location } = useHistory()
+    const {location} = useHistory()
     const onClickHandler = e => {
         // to prevent the sidedrawer from closing when clicking on login button
         switch (e.target.id) {
@@ -83,34 +78,34 @@ const OpenDrawer = () => {
             return <div
                 onClick={onClickHandler}
                 className={'w-100 position-center MobileNavBarWrapper'}
-            ><Main isMainPage={true} /></div>
+            ><Main isMainPage={true}/></div>
         } else if (location.pathname === '/menu') {
             return <div
                 onClick={onClickHandler}
                 className={'w-100 position-center MobileNavBarWrapper'}
-            ><Menu /></div>
+            ><Menu/></div>
         } else if (location.pathname.match('/admin')) {
-            return <AdminLinks backdropClasses={'z-300'} />
+            return <AdminLinks backdropClasses={'z-300'}/>
         } else if (location.pathname === '/order') {
             return <div
                 onClick={onClickHandler}
                 className={'w-100 position-center MobileNavBarWrapper'}
-            ><OrderNavLinks /></div>
+            ><OrderNavLinks/></div>
         } else if (location.pathname === '/checkout') {
             return <div
                 onClick={onClickHandler}
                 className={'w-100 position-center MobileNavBarWrapper'}
-            ><Checkout /></div>
+            ><Checkout/></div>
         } else if (location.pathname === '/orders') {
             return <div
                 onClick={onClickHandler}
                 className={'w-100 position-center MobileNavBarWrapper'}
-            ><AdminLinksOrder /></div>
+            ><AdminLinksOrder/></div>
         } else if (location.pathname.match('/order-details')) {
             return <div
                 onClick={onClickHandler}
                 className={'w-100 position-center MobileNavBarWrapper'}
-            ><AdminLinksOrderDetails /></div>
+            ><AdminLinksOrderDetails/></div>
         }
     }
 
@@ -130,4 +125,3 @@ const OpenDrawer = () => {
 }
 
 export default OpenDrawer;
-
