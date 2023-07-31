@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="24a99004-18c2-4819-8d4e-8d0f3d375a23" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,6 +46,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/Users/zoltancsilleri/Library/Application Support/JetBrains/Toolbox/apps/WebStorm/ch-0/231.9161.29/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -53,6 +56,7 @@
       <recent name="$PROJECT_DIR$/src/shared/navigation" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/public" />
     </key>
   </component>
@@ -92,7 +96,7 @@
       <workItem from="1686559835756" duration="1328000" />
       <workItem from="1686561891274" duration="63000" />
       <workItem from="1690784888337" duration="115000" />
-      <workItem from="1690785923906" duration="1588000" />
+      <workItem from="1690785923906" duration="2739000" />
     </task>
     <servers />
   </component>
